@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics — Second Grade</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --navy:#0b1120;
+    --navy2:#141b33;
+    --indigo:#1a237e;
+    --indigo2:#283593;
+    --indigo3:#5c6bc0;
+    --gold:#ff8f00;
+    --gold2:#ffc107;
+    --teal:#00695c;
+    --teal2:#26a69a;
+    --teal3:#b2dfdb;
+    --rose:#c62828;
+    --bg:#f2f5fa;
+    --card:#ffffff;
+    --text:#0b1120;
+    --text2:#546e7a;
+    --text3:#90a4ae;
+    --shadow:0 4px 24px rgba(0,0,0,0.06);
+    --shadow2:0 12px 48px rgba(0,0,0,0.10);
+    --radius:16px;
+    --radius2:10px;
+    --ease:cubic-bezier(0.34,1.56,0.64,1);
+  }
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter','Tajawal',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.8;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--gold);color:#fff}
+  ::-webkit-scrollbar{width:5px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:linear-gradient(var(--indigo3),var(--teal2));border-radius:3px}
+
+  /* ===== HERO ===== */
+  .hero{
+    background:linear-gradient(160deg,var(--navy),var(--navy2) 40%,var(--indigo) 75%,#1a237e);
+    color:#fff;padding:48px 24px 80px;text-align:center;
+    position:relative;overflow:hidden;
+  }
+  .hero::before{
+    content:'';position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse at 20% 30%,rgba(255,143,0,0.08) 0,transparent 50%),
+      radial-gradient(ellipse at 80% 70%,rgba(38,166,154,0.06) 0,transparent 50%);
+    pointer-events:none;
+  }
+  .hero-wave{
+    position:absolute;bottom:0;left:0;width:100%;line-height:0;
+    fill:var(--bg);
+  }
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(255,255,255,0.07);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.08);
+    padding:5px 20px;border-radius:50px;
+    font-size:.78em;font-weight:500;margin-bottom:14px;
+  }
+  .hero h1{
+    font-size:clamp(2rem,5vw,3.2rem);
+    font-weight:900;letter-spacing:-0.5px;
+    line-height:1.15;
+  }
+  .hero h1 span{
+    background:linear-gradient(135deg,var(--gold2),var(--gold));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+  }
+  .hero p{font-size:1em;opacity:.8;max-width:500px;margin:8px auto 0;font-weight:400}
+  .hero-stats{display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+  .hero-stat{
+    background:rgba(255,255,255,0.06);
+    backdrop-filter:blur(8px);
+    border:1px solid rgba(255,255,255,0.07);
+    padding:8px 18px;border-radius:10px;
+    min-width:80px;text-align:center;
+  }
+  .hero-stat .num{
+    font-size:1.4em;font-weight:900;
+    background:linear-gradient(135deg,var(--gold2),#fff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+  }
+  .hero-stat .lbl{font-size:.7em;opacity:.65;margin-top:1px}
+  .hero-emoji{display:inline-block;font-size:2.6em;margin-bottom:8px;animation:float 3s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
+  /* ===== TOPBAR ===== */
+  .topbar{
+    position:sticky;top:0;z-index:100;
+    background:rgba(255,255,255,0.9);
+    backdrop-filter:blur(20px) saturate(1.2);
+    border-bottom:1px solid rgba(0,0,0,0.04);
+    margin-top:-40px;margin-bottom:20px;
+  }
+  .topbar-inner{
+    max-width:1060px;margin:0 auto;
+    display:flex;align-items:center;gap:6px;
+    padding:7px 16px;flex-wrap:wrap;
+  }
+  @media(max-width:600px){
+    .topbar-inner{justify-content:center}
+    .topbar-tabs{flex-wrap:wrap;justify-content:center;flex:none;width:100%}
+  }
+  .topbar-brand{
+    font-weight:800;color:var(--navy);font-size:.8em;
+    display:flex;align-items:center;gap:5px;white-space:nowrap;
+    padding:4px 12px 4px 8px;
+    border-radius:8px;
+    transition:all .2s;
+  }
+  .topbar-brand:hover{background:#e8eaf6;color:var(--indigo)}
+  .topbar-tabs{
+    display:flex;gap:2px;overflow-x:auto;
+    scrollbar-width:none;flex:1;
+  }
+  .topbar-tabs::-webkit-scrollbar{display:none}
+  .tb{
+    padding:6px 12px;border:none;border-radius:8px;
+    cursor:pointer;font-size:.7em;font-weight:700;
+    white-space:nowrap;flex-shrink:0;
+    background:transparent;color:var(--text2);
+    transition:all .2s var(--ease);
+    font-family:'Inter','Tajawal',sans-serif;
+    text-transform:uppercase;letter-spacing:.3px;
+  }
+  .tb:hover{background:#e8eaf6;color:var(--indigo)}
+  .tb.active{background:var(--indigo);color:#fff;box-shadow:0 4px 14px rgba(26,35,126,0.2)}
+  .progress-section{max-width:1060px;margin:0 auto;padding:0 16px 7px}
+  .progress-header{display:flex;justify-content:space-between;font-size:.7em;color:var(--text2);margin-bottom:3px}
+  .progress-track{height:4px;background:#e0e0e0;border-radius:10px;overflow:hidden}
+  .progress-fill{
+    height:100%;border-radius:10px;
+    background:linear-gradient(90deg,var(--gold),var(--teal2),var(--indigo3));
+    width:0%;transition:width .7s var(--ease);
+    position:relative;
+  }
+  .progress-fill::after{
+    content:'';position:absolute;right:0;top:0;
+    width:20px;height:100%;
+    background:rgba(255,255,255,0.3);border-radius:10px;
+    animation:shine 2s infinite;
+  }
+  @keyframes shine{
+    0%{transform:translateX(0);opacity:0}
+    50%{opacity:1}
+    100%{transform:translateX(-60px);opacity:0}
+  }
+
+  /* ===== WRAPPER ===== */
+  .wrap{max-width:1060px;margin:0 auto;padding:0 16px}
+
+  /* ===== LESSON CONTAINER ===== */
+  .lesson{display:none}
+  .lesson.show{display:block;animation:fadeIn .45s var(--ease)}
+  @keyframes fadeIn{
+    from{opacity:0;transform:translateY(28px) scale(.98)}
+    to{opacity:1;transform:translateY(0) scale(1)}
+  }
+
+  /* ===== LESSON HEADER ===== */
+  .lhead{
+    background:linear-gradient(135deg,var(--navy),var(--indigo));
+    color:#fff;border-radius:var(--radius);
+    padding:26px 30px;margin-bottom:20px;
+    position:relative;overflow:hidden;
+  }
+  .lhead::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(circle at 85% 15%,rgba(255,193,7,0.06) 0,transparent 50%);
+  }
+  .lhead .unit-badge{
+    display:inline-flex;align-items:center;gap:6px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.06);
+    padding:2px 14px;border-radius:20px;
+    font-size:.65em;font-weight:600;text-transform:uppercase;letter-spacing:.5px;
+    margin-bottom:6px;position:relative;
+  }
+  .lhead h2{font-size:clamp(1.2rem,3vw,1.7rem);font-weight:800;position:relative}
+  .lhead .sub{font-size:.82em;opacity:.65;margin-top:2px;position:relative;font-weight:400}
+  .lhead .big-icon{
+    position:absolute;right:28px;top:50%;
+    transform:translateY(-50%);
+    font-size:4em;opacity:.08;pointer-events:none;
+  }
+  /* In RTL, right would be the start, but since dir=ltr, right is the end */
+
+  /* ===== SECTION CARD ===== */
+  .section{
+    background:var(--card);
+    border-radius:var(--radius);
+    margin-bottom:14px;
+    box-shadow:var(--shadow);
+    border:1px solid rgba(0,0,0,0.03);
+    overflow:hidden;
+    transition:transform .2s var(--ease),box-shadow .2s var(--ease);
+  }
+  .section:hover{transform:translateY(-1px);box-shadow:var(--shadow2)}
+
+  .section-header{
+    display:flex;align-items:center;gap:12px;
+    padding:16px 22px;
+    cursor:pointer;
+    transition:background .2s;
+    user-select:none;
+    -webkit-user-select:none;
+  }
+  .section-header:hover{background:#f8f9ff}
+  .section-header .s-num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:32px;height:32px;border-radius:10px;
+    font-weight:800;font-size:.85em;flex-shrink:0;
+    color:#fff;
+  }
+  .section-header .s-info{flex:1;min-width:0}
+  .section-header .s-title{
+    font-weight:700;font-size:.95em;color:var(--text);
+    display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  }
+  .section-header .s-title .s-tag{
+    font-size:.55em;font-weight:700;text-transform:uppercase;
+    letter-spacing:.4px;padding:1px 10px;border-radius:20px;
+  }
+  .section-header .s-sub{
+    font-size:.75em;color:var(--text2);margin-top:1px;
+  }
+  .section-header .s-arrow{
+    font-size:1.1em;color:var(--text3);
+    transition:transform .3s var(--ease);
+    flex-shrink:0;
+  }
+  .section-header .s-arrow.open{transform:rotate(180deg)}
+
+  .section-body{
+    max-height:0;overflow:hidden;
+    transition:max-height .45s var(--ease),padding .3s;
+    padding:0 22px;
+  }
+  .section-body.open{
+    max-height:5000px;
+    padding:0 22px 20px;
+  }
+
+  /* Number colors */
+  .s-num.s1{background:linear-gradient(135deg,#1a237e,#5c6bc0)}
+  .s-num.s2{background:linear-gradient(135deg,#e65100,#ff8f00)}
+  .s-num.s3{background:linear-gradient(135deg,#00695c,#26a69a)}
+  .s-num.s4{background:linear-gradient(135deg,#c62828,#ef5350)}
+  .s-num.s5{background:linear-gradient(135deg,#4a148c,#7c4dff)}
+  .s-num.s6{background:linear-gradient(135deg,#004d40,#00897b)}
+
+  /* Dual panel within section */
+  .dual{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin:10px 0;
+  }
+  @media(max-width:700px){.dual{grid-template-columns:1fr}}
+
+  .dual .en-panel{
+    background:#f5f7ff;
+    border:1px solid #e8eaf6;
+    border-radius:var(--radius2);
+    padding:14px 18px;
+    position:relative;
+  }
+  .dual .en-panel::before{
+    content:'🇬🇧 English';
+    position:absolute;top:-8px;left:14px;
+    font-size:.55em;font-weight:700;text-transform:uppercase;
+    background:var(--indigo);color:#fff;
+    padding:1px 12px;border-radius:6px;
+    letter-spacing:.3px;
+  }
+  .dual .en-panel p{color:var(--indigo);margin-bottom:6px}
+
+  .dual .ar-panel{
+    background:#f0fdfa;
+    border:1px solid #e0f2f1;
+    border-radius:var(--radius2);
+    padding:14px 18px;
+    font-family:'Tajawal',sans-serif;
+    direction:rtl;
+    position:relative;
+  }
+  .dual .ar-panel::before{
+    content:'🇸🇦 العربية';
+    position:absolute;top:-8px;left:14px;
+    font-size:.55em;font-weight:700;font-family:'Inter',sans-serif;
+    background:var(--teal);color:#fff;direction:ltr;
+    padding:1px 12px;border-radius:6px;
+    letter-spacing:.3px;
+  }
+  .dual .ar-panel p{color:#00695c;margin-bottom:6px}
+
+  /* Formula inside section */
+  .frm-box{
+    background:linear-gradient(135deg,#fff8e1,#fff3e0);
+    border:2px solid var(--gold);
+    border-radius:var(--radius2);
+    padding:16px 20px;
+    text-align:center;
+    margin:10px 0;
+    direction:ltr;
+    box-shadow:0 3px 16px rgba(255,143,0,0.07);
+  }
+  .frm-box .frm-label{
+    display:block;
+    font-size:.45em;font-weight:600;
+    color:var(--text2);margin-bottom:4px;
+    text-transform:uppercase;letter-spacing:.5px;
+  }
+  .frm-box .frm-value{
+    font-size:1.2em;font-weight:800;color:var(--navy);
+    line-height:1.3;
+  }
+  .frm-pin{
+    display:inline-block;
+    background:var(--gold);color:#fff;
+    font-size:.5em;font-weight:700;
+    padding:2px 12px;border-radius:8px;
+    margin-bottom:6px;text-transform:uppercase;
+  }
+
+  /* Real life box */
+  .rl-box{
+    background:linear-gradient(135deg,#e0f7fa,#e0f2f1);
+    border:1px solid #b2dfdb;
+    border-radius:var(--radius2);
+    padding:14px 18px;
+    margin:10px 0;
+    display:flex;gap:14px;align-items:flex-start;
+    position:relative;
+  }
+  .rl-box .rl-icon{font-size:2em;flex-shrink:0;line-height:1}
+  .rl-box .rl-title{font-weight:700;color:var(--teal);font-size:.85em;margin-bottom:2px}
+  .rl-box p{color:#37474f;font-size:.85em}
+
+  /* Key points box */
+  .kbox{
+    border-radius:var(--radius2);
+    padding:14px 18px;
+    margin:10px 0;
+    border:1px solid;
+  }
+  .kbox h4{font-weight:700;font-size:.85em;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+  .kbox ul{list-style:none}
+  .kbox li{
+    padding:6px 0 6px 28px;
+    position:relative;
+    border-bottom:1px solid rgba(0,0,0,0.03);
+    font-size:.85em;
+  }
+  .kbox li:last-child{border-bottom:none}
+  .kbox li::before{position:absolute;left:0;top:6px;font-size:.8em}
+  .kbox.indigo{background:#e8eaf6;border-color:#c5cae9}
+  .kbox.indigo h4,.kbox.indigo li::before{color:var(--indigo)}
+  .kbox.indigo li::before{content:'◆'}
+  .kbox.amber{background:#fff8e1;border-color:#ffe082}
+  .kbox.amber h4,.kbox.amber li::before{color:#e65100}
+  .kbox.amber li::before{content:'◆'}
+  .kbox.teal{background:#e0f2f1;border-color:#b2dfdb}
+  .kbox.teal h4,.kbox.teal li::before{color:var(--teal)}
+  .kbox.teal li::before{content:'◆'}
+  .kbox.rose{background:#ffebee;border-color:#ffcdd2}
+  .kbox.rose h4,.kbox.rose li::before{color:var(--rose)}
+  .kbox.rose li::before{content:'◆'}
+  .kbox.purple{background:#f3e5f5;border-color:#e1bee7}
+  .kbox.purple h4,.kbox.purple li::before{color:#4a148c}
+  .kbox.purple li::before{content:'◆'}
+
+  /* SVG */
+  .svg-wrap{
+    display:flex;justify-content:center;
+    margin:10px 0;background:#fafafa;
+    border-radius:var(--radius2);padding:14px;
+    border:1px solid #eee;overflow:auto;
+  }
+  .svg-wrap svg{max-width:100%;height:auto}
+
+  /* Example box */
+  .ex-box{
+    background:#fffde7;border:1px solid #ffe082;
+    border-radius:var(--radius2);padding:14px 18px;margin:10px 0;
+  }
+  .ex-box .ex-title{color:#e65100;font-weight:700;font-size:.78em;margin-bottom:4px}
+  .ex-box.sol{background:#e8f5e9;border-color:#a5d6a7}
+  .ex-box.sol .ex-title{color:var(--teal)}
+  .ex-box p{font-size:.85em}
+
+  /* Table */
+  .tbl{
+    width:100%;border-collapse:collapse;
+    margin:10px 0;border-radius:var(--radius2);overflow:hidden;
+    box-shadow:0 2px 6px rgba(0,0,0,0.04);
+    font-size:.85em;
+  }
+  .tbl th{background:var(--navy);color:#fff;padding:10px 14px;font-weight:700}
+  .tbl td{padding:8px 14px;border-bottom:1px solid #eceff1}
+  .tbl tr:nth-child(even){background:#f8f9ff}
+  .tbl tr:hover{background:#e8eaf6}
+
+  /* Two col grid */
+  .two-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:700px){.two-grid{grid-template-columns:1fr}}
+
+  /* Compare cards */
+  .cmp-card{
+    border-radius:var(--radius2);padding:16px;
+    text-align:center;border:2px solid;
+  }
+  .cmp-card h4{font-weight:800;margin-bottom:6px;font-size:.9em}
+  .cmp-card p{font-size:.8em;color:var(--text2);margin-bottom:4px}
+  .cmp-card .big{font-size:1.05em;font-weight:800;color:var(--navy);margin:6px 0}
+  .cmp-card .cbadge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:.65em;font-weight:700}
+  .cmp-card.green{background:#e8f5e9;border-color:#a5d6a7}
+  .cmp-card.green .cbadge{background:#c8e6c9;color:#2e7d32}
+  .cmp-card.blue{background:#e3f2fd;border-color:#90caf9}
+  .cmp-card.blue .cbadge{background:#bbdefb;color:#1565c0}
+
+  /* ===== QUIZ BUTTON ===== */
+  .qz-zone{
+    text-align:center;margin:24px 0 12px;
+    position:relative;
+  }
+  .qz-zone::before{
+    content:'';display:block;height:2px;
+    background:linear-gradient(90deg,transparent,var(--gold),var(--teal2),var(--gold),transparent);
+    margin-bottom:18px;border-radius:2px;
+  }
+  .btn-qz{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:14px 40px;font-size:1em;font-weight:800;
+    color:#fff;
+    background:linear-gradient(135deg,var(--gold),#e65100);
+    border:none;border-radius:100px;cursor:pointer;
+    transition:all .3s var(--ease);
+    box-shadow:0 6px 28px rgba(255,143,0,0.22);
+    position:relative;overflow:hidden;
+    font-family:'Inter','Tajawal',sans-serif;
+  }
+  .btn-qz::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(135deg,transparent,rgba(255,255,255,0.1),transparent);
+    transition:transform .5s;transform:translateX(-100%);
+  }
+  .btn-qz:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 10px 36px rgba(255,143,0,0.3)}
+  .btn-qz:hover::after{transform:translateX(100%)}
+  .btn-qz .cnt{background:rgba(255,255,255,0.16);padding:1px 10px;border-radius:30px;font-size:.55em}
+  .btn-final{
+    background:linear-gradient(135deg,#6a1b9a,#283593) !important;
+    box-shadow:0 6px 28px rgba(106,27,154,0.3) !important;
+    padding:18px 48px !important;font-size:1.05em !important;
+  }
+  .btn-final:hover{box-shadow:0 10px 36px rgba(106,27,154,0.4) !important}
+
+  /* ===== LESSON NAV ===== */
+  .lnav{display:flex;justify-content:space-between;gap:10px;margin:20px 0 28px;flex-wrap:wrap}
+  .lnav button{
+    padding:8px 22px;border:none;border-radius:var(--radius2);
+    font-weight:700;cursor:pointer;font-size:.82em;
+    transition:all .25s var(--ease);
+    display:flex;align-items:center;gap:6px;
+    font-family:'Inter','Tajawal',sans-serif;
+  }
+  .lnav .prev{background:#eceff1;color:var(--text)}
+  .lnav .prev:hover{background:#cfd8dc}
+  .lnav .next{background:var(--indigo);color:#fff;box-shadow:0 3px 14px rgba(26,35,126,0.18)}
+  .lnav .next:hover{background:var(--indigo3)}
+  .lnav button:disabled{opacity:.25;cursor:not-allowed}
+
+  /* ===== HOME CONTENT ===== */
+  #homeContent{transition:opacity .35s,transform .35s}
+  /* ===== OVERVIEW GRID ===== */
+  .ov-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+    gap:14px;margin:14px 0;
+  }
+  .ov-card{
+    background:var(--card);border-radius:var(--radius);
+    padding:18px;box-shadow:var(--shadow);
+    transition:all .25s var(--ease);cursor:pointer;
+    text-align:center;border:1px solid rgba(0,0,0,0.03);
+  }
+  .ov-card:hover{transform:translateY(-4px);box-shadow:var(--shadow2)}
+  .ov-card.done{border-color:var(--teal2);background:linear-gradient(135deg,#fff,#f0faf8)}
+  .ov-card.done .ico{filter:drop-shadow(0 2px 6px rgba(0,105,92,0.2))}
+  .ov-card .ico{font-size:2.4em;margin-bottom:6px}
+  .ov-card .nm{font-weight:700;color:var(--navy);font-size:.9em;margin-bottom:2px}
+  .ov-card .un{font-size:.7em;color:var(--text2)}
+  .ov-card .st{
+    margin-top:8px;font-size:.68em;font-weight:700;
+    padding:2px 14px;border-radius:30px;display:inline-block;
+  }
+  .ov-card .st.pending{background:#fff3e0;color:#e65100}
+  .ov-card .st.done{background:#e8f5e9;color:#2e7d32}
+  .ov-card .stars{font-size:1em;margin-top:4px}
+  .u-card{
+    background:var(--card);border-radius:var(--radius);
+    padding:28px 20px;box-shadow:var(--shadow);
+    transition:all .25s var(--ease);cursor:pointer;
+    text-align:center;border:2px solid rgba(0,0,0,0.05);
+  }
+  .u-card:hover{transform:translateY(-6px);box-shadow:var(--shadow2);border-color:var(--indigo3)}
+  .u-card.done{border-color:var(--teal2);background:linear-gradient(135deg,#fff,#f0faf8)}
+  .u-card .u-ico{font-size:4em;margin-bottom:8px}
+  .u-card.done .u-ico{filter:drop-shadow(0 2px 10px rgba(0,105,92,0.25))}
+  .u-card .u-nm{font-size:1.3em;font-weight:800;color:var(--navy);margin-bottom:10px}
+  .u-card .u-pr{display:flex;align-items:center;gap:10px;justify-content:center;margin:10px 0}
+  .u-card .u-pr-bar{flex:1;max-width:180px;height:8px;background:#e0e0e0;border-radius:6px;overflow:hidden}
+  .u-card .u-pr-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--gold),#e65100);transition:width .4s}
+  .u-card.done .u-pr-fill{background:linear-gradient(90deg,var(--teal2),var(--teal))}
+  .u-card .u-pr-lbl{font-size:.8em;font-weight:700;color:var(--text2)}
+  .u-card .u-st{font-size:.75em;font-weight:700;color:var(--text3)}
+  .u-card.done .u-st{color:var(--teal)}
+  .u-back{
+    display:inline-block;padding:6px 16px;margin-bottom:10px;
+    border-radius:8px;font-size:.8em;font-weight:600;
+    background:#f0f0f0;color:var(--text2);cursor:pointer;
+    transition:all .2s;
+  }
+  .u-back:hover{background:#e0e0e0;color:var(--navy);transform:translateX(-3px)}
+
+  /* ===== KEY TERMS & SUMMARY ===== */
+  .kt-box,.sum-box{
+    background:var(--card);border-radius:var(--radius);
+    padding:18px 20px;margin-bottom:14px;
+    box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.03);
+  }
+  .kt-box h4,.sum-box h4{font-size:.9em;font-weight:800;color:var(--navy);margin-bottom:10px}
+  .kt-item{padding:5px 0;border-bottom:1px solid #f0f0f0}
+  .kt-item:last-child{border-bottom:none}
+  .kt-en{font-weight:700;color:var(--indigo);font-size:.88em}
+  .kt-ar{color:var(--gold);font-weight:600;font-size:.8em}
+  .kt-def{font-size:.78em;color:var(--text2);margin-top:1px}
+  .sum-box ul{list-style:none;padding:0}
+  .sum-box li{padding:4px 0 4px 20px;position:relative;font-size:.82em;color:var(--text);line-height:1.6}
+  .sum-box li::before{content:'▸';position:absolute;left:0;color:var(--indigo3);font-weight:700}
+
+  /* ===== MOTIVATION BANNER ===== */
+  .motiv{
+    background:linear-gradient(135deg,var(--navy),var(--indigo));
+    color:#fff;border-radius:var(--radius);
+    padding:22px 26px;margin-bottom:16px;text-align:center;
+    position:relative;overflow:hidden;
+  }
+  .motiv::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(circle at 70% 30%,rgba(255,193,7,0.06),transparent);
+  }
+  .motiv h3{font-size:1.15em;font-weight:800;position:relative}
+  .motiv p{opacity:.82;font-size:.85em;position:relative}
+  .motiv .qt{font-style:italic;opacity:.55;font-size:.78em;margin-top:6px;position:relative}
+
+  /* ===== QUIZ OVERLAY ===== */
+  .qoverlay{
+    display:none;position:fixed;inset:0;z-index:1000;
+    background:rgba(0,0,0,0.5);
+    backdrop-filter:blur(8px);
+    justify-content:center;align-items:center;
+    padding:20px;
+  }
+  .qoverlay.show{display:flex;animation:qoIn .25s ease}
+  @keyframes qoIn{from{opacity:0}to{opacity:1}}
+  .qmodal{
+    background:var(--card);border-radius:var(--radius);
+    width:100%;max-width:620px;max-height:90vh;
+    overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,0.25);
+    animation:qmIn .35s var(--ease);
+  }
+  @keyframes qmIn{
+    from{opacity:0;transform:scale(.92) translateY(24px)}
+    to{opacity:1;transform:scale(1) translateY(0)}
+  }
+  .qm-header{
+    background:linear-gradient(135deg,#6a1b9a,#ab47bc);
+    color:#fff;padding:18px 22px;
+    border-radius:var(--radius) var(--radius) 0 0;
+    display:flex;justify-content:space-between;align-items:center;
+    position:sticky;top:0;z-index:10;
+  }
+  .qm-header h2{font-size:1em;display:flex;align-items:center;gap:8px}
+  .qm-header .qc{
+    background:rgba(255,255,255,0.1);
+    border:none;color:#fff;width:34px;height:34px;
+    border-radius:50%;cursor:pointer;font-size:1.1em;
+    transition:all .25s;display:flex;align-items:center;justify-content:center;
+  }
+  .qm-header .qc:hover{background:rgba(255,255,255,0.2);transform:rotate(90deg)}
+  .qm-body{padding:22px}
+  .qm-foot{
+    padding:12px 22px 18px;
+    border-top:1px solid #eee;
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
+  }
+  .qm-score{font-size:.95em;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:6px}
+  .qm-rst{
+    padding:7px 22px;background:var(--indigo);color:#fff;
+    border:none;border-radius:8px;cursor:pointer;font-weight:700;
+    transition:all .2s;font-size:.85em;font-family:'Inter','Tajawal',sans-serif;
+  }
+  .qm-rst:hover{background:var(--indigo3)}
+  .qm-sub{
+    padding:7px 22px;background:var(--teal);color:#fff;
+    border:none;border-radius:8px;cursor:pointer;font-weight:700;
+    transition:all .2s;font-size:.85em;font-family:'Inter','Tajawal',sans-serif;
+  }
+  .qm-sub:hover{background:var(--teal2)}
+
+  /* Q item */
+  .qi{
+    background:#fafafa;border-radius:var(--radius2);
+    padding:16px 18px;margin-bottom:12px;border:1px solid #eee;
+  }
+  .qi .qtop{
+    display:flex;align-items:center;gap:10px;
+    font-weight:700;margin-bottom:10px;color:var(--text);font-size:.92em;
+  }
+  .qi .qnum{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:26px;height:26px;border-radius:50%;
+    background:var(--indigo);color:#fff;font-size:.75em;font-weight:800;
+    flex-shrink:0;
+  }
+  .qi .qopts{display:flex;flex-direction:column;gap:6px}
+  .qi .qopt{
+    padding:10px 14px;border:2px solid #e0e0e0;
+    border-radius:var(--radius2);cursor:pointer;
+    transition:all .2s var(--ease);
+    background:#fff;font-size:.88em;
+    display:flex;align-items:center;gap:8px;
+    font-family:'Inter','Tajawal',sans-serif;
+  }
+  .qi .qopt .lt{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:22px;height:22px;border-radius:50%;
+    background:#f0f0f0;font-weight:700;font-size:.78em;flex-shrink:0;
+  }
+  .qi .qopt:hover:not(.dis){border-color:var(--indigo3);background:#f5f7ff;transform:translateX(-2px)}
+  .qi .qopt.sel{border-color:var(--indigo);background:#e8eaf6}
+  .qi .qopt.sel .lt{background:var(--indigo);color:#fff}
+  .qi .qopt.correct{
+    border-color:#2e7d32;
+    background:linear-gradient(135deg,#e8f5e9,#c8e6c9);
+    color:#2e7d32;
+  }
+  .qi .qopt.correct .lt{background:#2e7d32;color:#fff}
+  .qi .qopt.wrong{
+    border-color:#c62828;
+    background:linear-gradient(135deg,#ffebee,#ffcdd2);
+    color:#c62828;
+  }
+  .qi .qopt.wrong .lt{background:#c62828;color:#fff}
+  .qi .qopt.dis{pointer-events:none;opacity:.65}
+  .qi .qfb{
+    margin-top:6px;padding:6px 12px;border-radius:6px;
+    font-size:.82em;display:none;
+  }
+  .qi .qfb.show{display:block}
+  .qi .qfb.good{background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7}
+  .qi .qfb.bad{background:#ffebee;color:#c62828;border:1px solid #ef9a9a}
+
+  /* ===== CONFETTI CANVAS ===== */
+  #confetti{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1001}
+
+  /* ===== TOAST ===== */
+  .toast{
+    position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(70px);
+    background:var(--navy);color:#fff;
+    padding:12px 26px;border-radius:50px;
+    box-shadow:0 8px 32px rgba(0,0,0,0.18);
+    z-index:2000;opacity:0;transition:all .4s var(--ease);
+    font-weight:600;font-size:.88em;max-width:90vw;text-align:center;
+    pointer-events:none;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  /* ===== FOOTER ===== */
+  .foot{
+    text-align:center;padding:28px 16px 20px;
+    color:var(--text2);font-size:.8em;
+    border-top:1px solid #eceff1;margin-top:28px;
+  }
+  .foot strong{color:var(--indigo)}
+
+  /* All sections open by default on desktop */
+  @media(min-width:701px){
+    .section-body{max-height:5000px;padding:0 22px 20px}
+    .section-header .s-arrow{display:none}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="confetti"></canvas>
+<div class="toast" id="toast"></div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-badge" onclick="showHome()" style="cursor:pointer">📘 Physics — Second Grade ⬅️ Home</div>
+  <div class="hero-emoji">⚡</div>
+  <h1>Physics <span>Made Simple &amp; Fun</span></h1>
+  <p>Bilingual lessons (English + Arabic) with illustrations, real-life examples &amp; interactive quizzes</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">8</div><div class="lbl">Lessons</div></div>
+    <div class="hero-stat"><div class="num" id="hDone">0</div><div class="lbl">Completed</div></div>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 1200 50" preserveAspectRatio="none"><path d="M0,25 C300,50 600,0 900,25 C1050,38 1150,25 1200,25 L1200,50 L0,50 Z"/></svg>
+</section>
+
+<!-- ===== TOPBAR ===== -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-brand" onclick="showHome()" style="cursor:pointer">📘 Physics</div>
+    <div class="topbar-tabs" id="tabBar">
+      <button class="tb active" data-lid="u1l1">U1·L1</button>
+      <button class="tb" data-lid="u1l2">U1·L2</button>
+      <button class="tb" data-lid="u1l3">U1·L3</button>
+      <button class="tb" data-lid="u1l4">U1·L4</button>
+      <button class="tb" data-lid="u2l1">U2·L1</button>
+      <button class="tb" data-lid="u2l2">U2·L2</button>
+      <button class="tb" data-lid="u2l3">U2·L3</button>
+      <button class="tb" data-lid="u2l4">U2·L4</button>
+    </div>
+  </div>
+  <div class="progress-section">
+    <div class="progress-header"><span id="pLabel">Progress: 0%</span><span id="pStars">☆☆☆☆</span></div>
+    <div class="progress-track"><div class="progress-fill" id="pFill"></div></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ===== WELCOME + OVERVIEW ===== -->
+<div id="homeContent">
+<div class="motiv" id="motivBanner">
+  <h3>🚀 Welcome to Your Physics Journey!</h3>
+  <p>Each lesson has: English explanation + Arabic translation + diagrams + real-life examples + quiz</p>
+  <div class="qt">"Physics is the key to understanding the universe — and it's easier than you think!"</div>
+</div>
+<div id="unitBack" style="display:none"></div>
+<div class="ov-grid" id="ovGrid"></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- LESSON 1 — FORCE -->
+<!-- ============================================================ -->
+<div class="lesson" id="l-u1l1">
+  <div class="lhead">
+    <div class="unit-badge">⚡ Unit 1: Forces</div>
+    <h2>Lesson 1: Meaning of Force &amp; Its Units</h2>
+    <div class="sub">معنى القوة ووحدات قياسها</div>
+    <div class="big-icon">💪</div>
+  </div>
+
+  <!-- SECTION 1: Introduction -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s1">1</span>
+      <div class="s-info">
+        <div class="s-title">
+          Introduction <span class="s-tag" style="background:#e8eaf6;color:var(--indigo)">START HERE</span>
+        </div>
+        <div class="s-sub">مقدمة — What is a force?</div>
+      </div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="dual">
+        <div class="en-panel">
+          <p>When you <strong>kick a ball</strong>, you exert a force. When you <strong>sit on a chair</strong>, you exert a force. When you <strong>push or pull a door</strong>, you exert a force too.</p>
+          <p>A force is a <strong>push or pull</strong> that results from an interaction between two objects. Forces describe the interactions between an object and its environment.</p>
+          <p>When there is an interaction, there is a force. When the interaction vanishes, the force disappears.</p>
+        </div>
+        <div class="ar-panel">
+          <p>عندما <strong>تركل الكرة</strong>، تؤثر بقوة. عندما <strong>تجلس على كرسي</strong>، تؤثر بقوة. عندما <strong>تفتح أو تغلق بابًا</strong>، تؤثر بقوة أيضًا.</p>
+          <p>القوة هي <strong>دفع أو سحب</strong> ينتج عن تفاعل بين جسمين. القوى تصف التفاعلات بين جسم والبيئة المحيطة به.</p>
+          <p>عندما يوجد تفاعل، توجد قوة. وعندما يختفي التفاعل، تختفي القوة.</p>
+        </div>
+      </div>
+      <div class="rl-box">
+        <div class="rl-icon">⚽</div>
+        <div><div class="rl-title">🌍 Real Life Connection</div>
+        <p>Think about <strong>football</strong>: when you kick the ball, you apply a force that changes it from rest to motion. The same happens when you open a fridge door or pull a desk drawer. <strong>Force is everywhere!</strong></p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: Push & Pull Visual -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s2">2</span>
+      <div class="s-info">
+        <div class="s-title">
+          Push &amp; Pull <span class="s-tag" style="background:#fff8e1;color:#e65100">VISUAL</span>
+        </div>
+        <div class="s-sub">الدفع والسحب — Illustration</div>
+      </div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="svg-wrap">
+        <svg viewBox="0 0 420 130" width="420" height="130">
+          <rect x="25" y="35" width="50" height="58" rx="8" fill="#283593" opacity=".9"/>
+          <text x="50" y="72" text-anchor="middle" fill="#fff" font-size="14">🏋️</text>
+          <line x1="75" y1="64" x2="135" y2="64" stroke="#ff8f00" stroke-width="3" marker-end="url(#ao)"/>
+          <text x="105" y="50" text-anchor="middle" fill="#ff8f00" font-size="10" font-weight="bold">PUSH</text>
+          <rect x="145" y="35" width="50" height="58" rx="8" fill="#eee" stroke="#283593" stroke-width="2"/>
+          <text x="170" y="72" text-anchor="middle" fill="#283593" font-size="20">📦</text>
+          <line x1="235" y1="64" x2="295" y2="64" stroke="#00695c" stroke-width="3" marker-end="url(#at)"/>
+          <rect x="305" y="35" width="50" height="58" rx="8" fill="#00695c" opacity=".9"/>
+          <text x="330" y="72" text-anchor="middle" fill="#fff" font-size="14">🏋️</text>
+          <text x="265" y="50" text-anchor="middle" fill="#00695c" font-size="10" font-weight="bold">PULL</text>
+          <rect x="190" y="35" width="50" height="58" rx="8" fill="#eee" stroke="#00695c" stroke-width="2"/>
+          <text x="215" y="72" text-anchor="middle" fill="#00695c" font-size="20">📦</text>
+          <defs><marker id="ao" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#ff8f00"/></marker><marker id="at" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#00695c"/></marker></defs>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: Definition -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s3">3</span>
+      <div class="s-info">
+        <div class="s-title">
+          Definition of Force <span class="s-tag" style="background:#e8eaf6;color:var(--indigo)">DEFINITION</span>
+        </div>
+        <div class="s-sub">تعريف القوة — Force (F)</div>
+      </div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="dual">
+        <div class="en-panel">
+          <p><strong>Force (F):</strong> An <strong>external effect</strong> that affects an object, changing or attempting to change its <strong>state, direction, shape, or size</strong>.</p>
+          <p>An action which produces or tends to produce a change in a body's <strong>state of rest or motion</strong>.</p>
+        </div>
+        <div class="ar-panel">
+          <p><strong>القوة (F):</strong> تأثير <strong>خارجي</strong> يؤثر على الجسم، يغير أو يحاول تغيير <strong>حالته، اتجاهه، شكله أو حجمه</strong>.</p>
+          <p>فعل يُنتج أو يميل إلى إنتاج تغيير في <strong>حالة السكون أو الحركة</strong> لجسم ما.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: Effects -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s4">4</span>
+      <div class="s-info">
+        <div class="s-title">
+          Effects of Force <span class="s-tag" style="background:#ffebee;color:#c62828">KEY</span>
+        </div>
+        <div class="s-sub">تأثيرات القوة — 4 main effects</div>
+      </div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="two-grid">
+        <div class="en-panel" style="border:1px solid #e8eaf6;border-radius:var(--radius2);padding:14px 18px;background:#f5f7ff">
+          <p><strong>a)</strong> Make a body at rest <strong>start moving</strong>.</p>
+          <p><strong>b)</strong> <strong>Stop</strong> a moving body or <strong>slow it down</strong>.</p>
+          <p><strong>c)</strong> <strong>Accelerate</strong> a moving body.</p>
+          <p><strong>d)</strong> Change <strong>direction</strong>, <strong>shape</strong>, and <strong>size</strong>.</p>
+        </div>
+        <div class="ar-panel" style="font-family:'Tajawal',sans-serif;direction:rtl;border:1px solid #e0f2f1;border-radius:var(--radius2);padding:14px 18px;background:#f0fdfa">
+          <p><strong>أ)</strong> جعل جسم ساكن <strong>يتحرك</strong>.</p>
+          <p><strong>ب)</strong> <strong>إيقاف</strong> جسم متحرك أو <strong>إبطاؤه</strong>.</p>
+          <p><strong>ج)</strong> <strong>تسريع</strong> جسم متحرك.</p>
+          <p><strong>د)</strong> تغيير <strong>الاتجاه</strong>، <strong>الشكل</strong>، <strong>الحجم</strong>.</p>
+        </div>
+      </div>
+      <div class="rl-box">
+        <div class="rl-icon">🚗</div>
+        <div><div class="rl-title">🌍 Real Life — Driving a Car!</div>
+        <p><strong>a)</strong> Press the gas → car moves. <strong>b)</strong> Press the brakes → car stops. <strong>c)</strong> Push the pedal harder → car accelerates. <strong>d)</strong> Turn the steering wheel → direction changes. All <strong>forces in action!</strong></p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: Types -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s5">5</span>
+      <div class="s-info">
+        <div class="s-title">
+          Types of Forces <span class="s-tag" style="background:#f3e5f5;color:#4a148c">CLASSIFICATION</span>
+        </div>
+        <div class="s-sub">أنواع القوى — Contact vs Non-Contact</div>
+      </div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="two-grid">
+        <div class="kbox rose"><h4>🤝 Contact Forces (تلامسية)</h4><ul><li>Friction (الاحتكاك)</li><li>Tension (الشد)</li><li>Normal Force (العمودية)</li><li>Air Resistance (مقاومة الهواء)</li><li>Applied Force (التطبيقية)</li><li>Spring Force (النابض)</li></ul></div>
+        <div class="kbox indigo"><h4>🌌 Non-Contact Forces (غير تلامسية)</h4><ul><li>Gravitational (الجاذبية)</li><li>Electrical (الكهربائية)</li><li>Magnetic (المغناطيسية)</li></ul></div>
+      </div>
+      <div class="rl-box">
+        <div class="rl-icon">🧲</div>
+        <div><div class="rl-title">🌍 Real Life</div>
+        <p><strong>Contact:</strong> Writing with a pencil — friction leaves a mark. <strong>Non-Contact:</strong> A magnet picks up a paperclip without touching it!</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: Newton -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s6">6</span>
+      <div class="s-info">
+        <div class="s-title">
+          The Newton — Unit of Force <span class="s-tag" style="background:#fff8e1;color:#e65100">FORMULA</span>
+        </div>
+        <div class="s-sub">النيوتن — وحدة قياس القوة</div>
+      </div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="dual">
+        <div class="en-panel">
+          <p>The SI unit of force is the <strong>Newton (N)</strong>.</p>
+          <p><strong>1 Newton</strong> = 1 kg·m/s²</p>
+          <p><strong>Definition:</strong> The force required to accelerate a mass of 1 kg at a rate of 1 m/s².</p>
+        </div>
+        <div class="ar-panel">
+          <p>وحدة قياس القوة في النظام الدولي هي <strong>النيوتن (N)</strong>.</p>
+          <p><strong>1 نيوتن</strong> = 1 كجم·م/ث²</p>
+          <p><strong>تعريف:</strong> القوة اللازمة لتسريع كتلة 1 كجم بمعدل 1 م/ث².</p>
+        </div>
+      </div>
+      <div class="frm-box">
+        <div class="frm-pin">📏 Unit of Force</div>
+        <span class="frm-label">Newton (SI Unit)</span>
+        <div class="frm-value">1 N = 1 kg · m / s²</div>
+      </div>
+      <div class="rl-box">
+        <div class="rl-icon">🍎</div>
+        <div><div class="rl-title">🌍 Imagine This!</div>
+        <p>An average <strong>apple</strong> weighs about <strong>1 Newton</strong>! When you hold an apple, you feel ~1 N of force. A car needs <strong>thousands of Newtons</strong> to move!</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qz-zone"><button class="btn-qz" onclick="openQuiz('u1l1','Lesson 1: Meaning of Force')"><span>🧪</span> Take Lesson Quiz <span class="cnt">12 questions</span></button></div>
+  <div class="lnav"><button class="prev" disabled>← Previous</button><button class="next" onclick="goTo('u1l2')">Next →</button></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- LESSON 2 — GRAVITY -->
+<!-- ============================================================ -->
+<div class="lesson" id="l-u1l2">
+  <div class="lhead">
+    <div class="unit-badge">⚡ Unit 1: Forces</div>
+    <h2>Lesson 2: Gravitational Force</h2>
+    <div class="sub">قوة الجاذبية</div>
+    <div class="big-icon">🌍</div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s1">1</span>
+      <div class="s-info"><div class="s-title">What Is Gravity? <span class="s-tag" style="background:#e8eaf6;color:var(--indigo)">DEFINITION</span></div><div class="s-sub">ما هي الجاذبية؟</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="dual">
+        <div class="en-panel"><p>Gravity is the force by which a planet or other body draws objects toward its <strong>center</strong>. It keeps planets in orbit around the sun.</p><p>Anything with mass has gravity. <strong>More mass = more gravity.</strong> Gravity weakens with distance.</p></div>
+        <div class="ar-panel"><p>الجاذبية هي القوة التي يجذب بها الكوكب الأجسام نحو <strong>مركزه</strong>. تبقي الكواكب في مداراتها حول الشمس.</p><p>أي شيء له كتلة له جاذبية. <strong>كتلة أكبر = جاذبية أكبر.</strong> الجاذبية تضعف بزيادة المسافة.</p></div>
+      </div>
+      <div class="rl-box"><div class="rl-icon">🏀</div><div><div class="rl-title">🌍 Real Life</div><p>Why does a ball fall back to Earth instead of floating away? <strong>Gravity!</strong> Why does Earth stay in orbit around the Sun? <strong>Gravity!</strong> It's the hidden hero of the universe.</p></div></div>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 360 220" width="360" height="220">
+          <circle cx="180" cy="145" r="50" fill="url(#eg)"/>
+          <defs><radialGradient id="eg" cx="40%" cy="35%"><stop offset="0%" stop-color="#4fc3f7"/><stop offset="60%" stop-color="#1565c0"/><stop offset="100%" stop-color="#0d47a1"/></radialGradient></defs>
+          <path d="M150 120 Q165 112 172 125 Q180 138 170 145 Q160 152 150 135Z" fill="#2e7d32" opacity=".6"/>
+          <path d="M195 128 Q210 124 218 135 Q225 148 215 156 Q205 162 195 145Z" fill="#2e7d32" opacity=".6"/>
+          <circle cx="180" cy="35" r="10" fill="#c62828"/><line x1="180" y1="25" x2="180" y2="15" stroke="#4e342e" stroke-width="2"/><ellipse cx="183" cy="15" rx="4" ry="2.5" fill="#4e342e"/>
+          <line x1="180" y1="45" x2="180" y2="93" stroke="#ff8f00" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#ao)"/>
+          <text x="192" y="75" fill="#ff8f00" font-size="10" font-weight="bold">F<sub>g</sub></text>
+          <circle cx="180" cy="210" r="10" fill="#c62828" opacity=".3"/>
+          <line x1="180" y1="145" x2="180" y2="200" stroke="#283593" stroke-width="1" stroke-dasharray="3,3"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s2">2</span>
+      <div class="s-info"><div class="s-title">Newton's Law of Gravitation <span class="s-tag" style="background:#fff8e1;color:#e65100">FORMULA</span></div><div class="s-sub">قانون نيوتن للجذب العام</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="dual">
+        <div class="en-panel"><p>The gravitational force is <strong>directly proportional</strong> to the product of masses and <strong>inversely proportional</strong> to the square of the distance between centers.</p></div>
+        <div class="ar-panel"><p>قوة الجاذبية تتناسب <strong>طرديًا</strong> مع حاصل ضرب الكتلتين و<strong>عكسيًا</strong> مع مربع المسافة بين المركزين.</p></div>
+      </div>
+      <div class="frm-box">
+        <div class="frm-pin">🌍 Universal Gravitation</div>
+        <span class="frm-label">Newton's Law</span>
+        <div class="frm-value">F = G·m₁·m₂ / r² = m·g</div>
+      </div>
+      <div class="kbox amber"><h4>🔑 Key</h4><ul><li><strong>G</strong> = 6.67×10⁻¹¹ N·m²/kg² (universal constant)</li><li><strong>m₁, m₂</strong> = masses (kg)</li><li><strong>r</strong> = distance between centers (m)</li><li>The force is <strong>mutual</strong>: F₁ = F₂ (action-reaction)</li></ul></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s3">3</span>
+      <div class="s-info"><div class="s-title">Solved Example <span class="s-tag" style="background:#ffebee;color:#c62828">EXAMPLE</span></div><div class="s-sub">مثال محلول</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="ex-box"><div class="ex-title">📝 Problem</div><p>Two balls, each of mass 7.3 kg, are placed 0.5 m apart (center to center). Calculate the gravitational attraction force between them.</p></div>
+      <div class="ex-box sol"><div class="ex-title">💡 Solution</div><p style="direction:ltr;text-align:center;font-weight:800;font-size:1em;color:#00695c">F = 6.67×10⁻¹¹ × 7.3 × 7.3 / (0.5)² = 1.4×10⁻⁸ N</p></div>
+      <div class="rl-box"><div class="rl-icon">💡</div><div><div class="rl-title">Notice!</div><p>The force is <strong>tiny</strong> between small objects (1.4×10⁻⁸ N). But it's <strong>enormous</strong> between celestial bodies like the Earth and Sun!</p></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s4">4</span>
+      <div class="s-info"><div class="s-title">Applications <span class="s-tag" style="background:#e0f2f1;color:var(--teal)">REAL WORLD</span></div><div class="s-sub">تطبيقات الجاذبية</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="kbox teal"><h4>🌌 Gravitation explains:</h4><ul><li>Motion of planets around the Sun</li><li>Motion of the Moon around Earth</li><li>Free fall of objects</li></ul></div>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 360 140" width="360" height="140">
+          <circle cx="170" cy="70" r="18" fill="#ff8f00"/><circle cx="170" cy="70" r="12" fill="#ffc107"/><circle cx="170" cy="70" r="6" fill="#ffd54f"/>
+          <text x="170" y="38" text-anchor="middle" fill="#ff8f00" font-size="9" font-weight="bold">☀️ Sun</text>
+          <ellipse cx="170" cy="70" rx="90" ry="38" fill="none" stroke="#283593" stroke-width="1.5" stroke-dasharray="5,3" opacity=".4"/>
+          <circle cx="260" cy="70" r="7" fill="#1565c0" stroke="#0d47a1" stroke-width="1.5"/>
+          <text x="274" y="74" fill="#1565c0" font-size="8" font-weight="bold">🌍 Earth</text>
+          <line x1="170" y1="70" x2="253" y2="70" stroke="#ff8f00" stroke-width="1.5" marker-end="url(#ao)"/>
+          <line x1="260" y1="70" x2="280" y2="60" stroke="#c62828" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <text x="215" y="66" fill="#ff8f00" font-size="7">F<sub>g</sub></text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="qz-zone"><button class="btn-qz" onclick="openQuiz('u1l2','Lesson 2: Gravitational Force')"><span>🧪</span> Take Lesson Quiz <span class="cnt">12 questions</span></button></div>
+  <div class="lnav"><button class="prev" onclick="goTo('u1l1')">← Previous</button><button class="next" onclick="goTo('u1l3')">Next →</button></div>
+</div>
+
+<!-- ===== REMAINING LESSONS (3-8) — using the same sectioned pattern ===== -->
+
+<!-- LESSON 3: CENTRIPETAL -->
+<div class="lesson" id="l-u1l3">
+  <div class="lhead">
+    <div class="unit-badge">⚡ Unit 1: Forces</div>
+    <h2>Lesson 3: Centripetal Force</h2>
+    <div class="sub">القوة المركزية</div>
+    <div class="big-icon">🎡</div>
+  </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s1">1</span>
+      <div class="s-info"><div class="s-title">Circular Motion <span class="s-tag" style="background:#e8eaf6;color:var(--indigo)">DEFINITION</span></div><div class="s-sub">الحركة الدائرية</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="dual">
+        <div class="en-panel"><p>In <strong>uniform circular motion</strong>, an object moves in a circular path at <strong>constant speed</strong> but continuously changing <strong>direction</strong>. Acceleration is always toward the <strong>center</strong>.</p></div>
+        <div class="ar-panel"><p>في <strong>الحركة الدائرية المنتظمة</strong>، يتحرك الجسم في مسار دائري بسرعة <strong>ثابتة المقدار</strong> ولكن اتجاه <strong>متغير</strong>. التسارع نحو <strong>المركز</strong> دائمًا.</p></div>
+      </div>
+      <div class="rl-box"><div class="rl-icon">🎢</div><div><div class="rl-title">🌍 Real Life — Amusement Parks!</div><p>On a roller coaster loop, you feel pushed toward the center — <strong>that's centripetal force!</strong> Your body wants to go straight, but the track pushes you into a circle.</p></div></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s2">2</span>
+      <div class="s-info"><div class="s-title">Key Formulas <span class="s-tag" style="background:#fff8e1;color:#e65100">FORMULA</span></div><div class="s-sub">القوانين الأساسية</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="two-grid">
+        <div class="frm-box"><div class="frm-pin">🔄 Acceleration</div><span class="frm-label">Centripetal Acceleration</span><div class="frm-value">a<sub>c</sub> = v² / r</div></div>
+        <div class="frm-box"><div class="frm-pin">💪 Force</div><span class="frm-label">Centripetal Force</span><div class="frm-value">F<sub>c</sub> = m·v² / r</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s3">3</span>
+      <div class="s-info"><div class="s-title">Factors Affecting F<sub>c</sub> <span class="s-tag" style="background:#f3e5f5;color:#4a148c">KEY</span></div><div class="s-sub">العوامل المؤثرة</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="kbox amber"><h4>📊 Depends on:</h4><ul><li><strong>Mass (m):</strong> directly proportional ↑ (truck needs more force than bicycle)</li><li><strong>Velocity (v):</strong> proportional to <strong>v²</strong> ↑↑ (double speed = 4× force!)</li><li><strong>Radius (r):</strong> inversely proportional ↓ (sharper curves need more force)</li></ul></div>
+      <div class="rl-box"><div class="rl-icon">🚗</div><div><div class="rl-title">🌍 Why Speed Limits on Curves?</div><p>Doubling speed = <strong>4× the centripetal force needed</strong>! Sharp curves (small r) also need more force. That's why we slow down on dangerous curves.</p></div></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s4">4</span>
+      <div class="s-info"><div class="s-title">What If F<sub>c</sub> = 0? <span class="s-tag" style="background:#ffebee;color:#c62828">DANGER</span></div><div class="s-sub">ماذا لو انعدمت؟</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="dual">
+        <div class="en-panel"><p>If centripetal force suddenly becomes <strong>zero</strong>, the body moves in a <strong>straight line tangent</strong> to the circular path (Newton's 1st Law).</p></div>
+        <div class="ar-panel"><p>إذا انعدمت القوة المركزية فجأة، يتحرك الجسم في <strong>خط مستقيم مماس</strong> للمسار الدائري (قانون نيوتن الأول).</p></div>
+      </div>
+      <div class="rl-box"><div class="rl-icon">🛞</div><div><div class="rl-title">🌍 Car Skidding</div><p>Oil on the road <strong>reduces friction</strong> (the centripetal force) → the car skids in a straight line out of the curve. <strong>Dangerous!</strong></p></div></div>
+    </div>
+  </div>
+  <div class="qz-zone"><button class="btn-qz" onclick="openQuiz('u1l3','Lesson 3: Centripetal Force')"><span>🧪</span> Take Lesson Quiz <span class="cnt">12 questions</span></button></div>
+  <div class="lnav"><button class="prev" onclick="goTo('u1l2')">← Previous</button><button class="next" onclick="goTo('u1l4')">Next →</button></div>
+</div>
+
+<!-- LESSON 4: FRICTION -->
+<div class="lesson" id="l-u1l4">
+  <div class="lhead">
+    <div class="unit-badge">⚡ Unit 1: Forces</div>
+    <h2>Lesson 4: Friction &amp; Viscosity</h2>
+    <div class="sub">الاحتكاك واللزوجة</div>
+    <div class="big-icon">🛑</div>
+  </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s1">1</span>
+      <div class="s-info"><div class="s-title">What Is Friction? <span class="s-tag" style="background:#e8eaf6;color:var(--indigo)">DEFINITION</span></div><div class="s-sub">مفهوم الاحتكاك</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="dual">
+        <div class="en-panel"><p>Friction is the force that <strong>resists motion</strong> when two surfaces are in contact. It depends on: <strong>pressing force, surface nature, and angle</strong>.</p></div>
+        <div class="ar-panel"><p>الاحتكاك هو القوة التي <strong>تقاوم الحركة</strong> عندما يتلامس سطحان. يعتمد على: <strong>قوة الضغط، طبيعة السطحين، الزاوية</strong>.</p></div>
+      </div>
+      <div class="rl-box"><div class="rl-icon">👟</div><div><div class="rl-title">🌍 Try Walking on Soap!</div><p>You'd slip because <strong>friction is very low</strong>. Friction is what allows you to walk without slipping. Car tires need friction with the road to move and stop safely.</p></div></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s2">2</span>
+      <div class="s-info"><div class="s-title">Types of Friction <span class="s-tag" style="background:#f3e5f5;color:#4a148c">CLASSIFICATION</span></div><div class="s-sub">الأنواع</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="two-grid">
+        <div class="kbox rose"><h4>🧊 Static (سكوني)</h4><ul><li>Prevents sliding before motion</li><li><strong>Strongest</strong> type</li><li>Walking, rock climbing</li></ul></div>
+        <div class="kbox indigo"><h4>📝 Sliding (انزلاقي)</h4><ul><li>Acts during sliding</li><li>Weaker than static</li><li>Pencil writing, brakes</li></ul></div>
+        <div class="kbox teal"><h4>⚽ Rolling (دحرجي)</h4><ul><li>Acts during rolling</li><li><strong>Weakest</strong> type</li><li>Wheels, ball bearings</li></ul></div>
+        <div style="display:flex;align-items:center;justify-content:center">
+          <div style="text-align:center;background:#fff8e1;border-radius:10px;padding:16px;width:100%;border:2px solid #ffe082">
+            <div style="font-size:1.8em">📊</div>
+            <div style="font-weight:800;color:var(--navy);font-size:.85em">Strength Order:</div>
+            <div style="font-size:.9em;color:#e65100;font-weight:700">Static > Sliding > Rolling</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s3">3</span>
+      <div class="s-info"><div class="s-title">Viscosity <span class="s-tag" style="background:#e8eaf6;color:var(--indigo)">DEFINITION</span></div><div class="s-sub">اللزوجة</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="dual">
+        <div class="en-panel"><p>Viscosity is the property that <strong>resists relative motion of liquid layers</strong>. Between two plates (one stationary, one moving), liquid layers move at speeds from <strong>0 to v</strong>.</p></div>
+        <div class="ar-panel"><p>اللزوجة هي الخاصية التي <strong>تقاوم الحركة النسبية لطبقات السائل</strong>. بين لوحين (ثابت ومتحرك)، تتحرك الطبقات بسرعات من <strong>0 إلى v</strong>.</p></div>
+      </div>
+      <div class="frm-box"><div class="frm-pin">🧴 Viscosity Coefficient</div><span class="frm-label">η (eta)</span><div class="frm-value">η = F·d / (A·v)</div></div>
+      <div class="kbox purple"><h4>🔬 Units of η</h4><ul><li>N·s/m² &nbsp;|&nbsp; kg/(m·s) &nbsp;|&nbsp; Pa·s &nbsp;|&nbsp; J·s/m³</li></ul></div>
+      <div class="rl-box"><div class="rl-icon">🛢️</div><div><div class="rl-title">🌍 Lubrication</div><p>We use <strong>high-viscosity oils</strong> for machines — they stay on the parts and don't leak away like water. Lubrication <strong>reduces heat and wear</strong>!</p></div></div>
+    </div>
+  </div>
+  <div class="qz-zone"><button class="btn-qz" onclick="openQuiz('u1l4','Lesson 4: Friction & Viscosity')"><span>🧪</span> Take Lesson Quiz <span class="cnt">12 questions</span></button></div>
+  <div class="lnav"><button class="prev" onclick="goTo('u1l3')">← Previous</button><button class="next" onclick="goTo('u2l1')">Next →</button></div>
+</div>
+
+<!-- LESSON 5: TEMPERATURE -->
+<div class="lesson" id="l-u2l1">
+  <div class="lhead">
+    <div class="unit-badge">🔥 Unit 2: Heat</div>
+    <h2>Lesson 1: Temperature &amp; Thermal Energy</h2>
+    <div class="sub">درجة الحرارة والطاقة الحرارية</div>
+    <div class="big-icon">🌡️</div>
+  </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s1">1</span>
+      <div class="s-info"><div class="s-title">Heat vs Temperature <span class="s-tag" style="background:#e8eaf6;color:var(--indigo)">DEFINITION</span></div><div class="s-sub">الفرق بين الحرارة ودرجة الحرارة</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="dual">
+        <div class="en-panel"><p><strong>Temperature:</strong> Average kinetic energy of molecules.<br><strong>Heat (Q):</strong> Thermal energy transferred due to temperature difference.<br><strong>Internal Energy:</strong> Sum of kinetic + potential energy of molecules.</p></div>
+        <div class="ar-panel"><p><strong>درجة الحرارة:</strong> متوسط الطاقة الحركية للجزيئات.<br><strong>الحرارة:</strong> طاقة تنتقل بسبب فرق الحرارة.<br><strong>الطاقة الداخلية:</strong> مجموع الطاقة الحركية + طاقة الوضع.</p></div>
+      </div>
+      <div class="rl-box"><div class="rl-icon">☕</div><div><div class="rl-title">🌍 Simple Explanation</div><p>A cup of tea at 40°C = its <strong>temperature</strong>. The <strong>heat</strong> is the energy that flows from the tea to your hand, making it feel warm!</p></div></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s2">2</span>
+      <div class="s-info"><div class="s-title">Quantity of Heat <span class="s-tag" style="background:#fff8e1;color:#e65100">FORMULA</span></div><div class="s-sub">كمية الحرارة</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="frm-box"><div class="frm-pin">🔥 Heat Formula</div><span class="frm-label">Quantity of Heat</span><div class="frm-value">Q<sub>th</sub> = m · C · Δt</div></div>
+      <div class="kbox teal"><h4>🔑 Key</h4><ul><li><strong>m</strong> = mass (kg)</li><li><strong>C</strong> = specific heat (property of material)</li><li><strong>Δt</strong> = temperature change</li><li>Q &amp; Δt <strong>positive</strong> → heat enters, temp rises. <strong>Negative</strong> → heat leaves, temp drops.</li></ul></div>
+      <div class="rl-box"><div class="rl-icon">🍳</div><div><div class="rl-title">🌍 Effects of Temperature</div><p><strong>1- State change:</strong> Ice melts at 0°C (solid → liquid). <strong>2- Expansion:</strong> Bridges need joints because they expand in summer and contract in winter!</p></div></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s3">3</span>
+      <div class="s-info"><div class="s-title">Solved Example <span class="s-tag" style="background:#e8f5e9;color:#2e7d32">APPLICATION</span></div><div class="s-sub">مسألة محلولة</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="ex-box"><div class="ex-title">📝 Example: Heating Water</div><p>How much heat is needed to raise 2 kg of water from 20°C to 50°C? (C<sub>water</sub> = 4200 J/(kg·K))</p><p style="direction:ltr;text-align:center;font-weight:800;margin-top:6px">Q = m·C·Δt = 2 × 4200 × 30 = <strong>252,000 J = 252 kJ</strong></p></div>
+      <div class="rl-box"><div class="rl-icon">🫖</div><div><div class="rl-title">🌍 In Real Life</div><p>A kettle uses ~2000 W. To heat 2 L of water (same as 2 kg) from 20°C to boiling (100°C): Q = 2 × 4200 × 80 = 672 kJ. At 2000 W, this takes about 5–6 minutes — exactly what you experience every morning!</p></div></div>
+    </div>
+  </div>
+  <div class="qz-zone"><button class="btn-qz" onclick="openQuiz('u2l1','Lesson 1: Temperature & Thermal Energy')"><span>🧪</span> Take Lesson Quiz <span class="cnt">12 questions</span></button></div>
+  <div class="lnav"><button class="prev" onclick="goTo('u1l4')">← Previous</button><button class="next" onclick="goTo('u2l2')">Next →</button></div>
+</div>
+
+<!-- LESSON 6: MEASURING TEMPERATURE -->
+<div class="lesson" id="l-u2l2">
+  <div class="lhead">
+    <div class="unit-badge">🔥 Unit 2: Heat</div>
+    <h2>Lesson 2: Measuring Temperature</h2>
+    <div class="sub">قياس درجة الحرارة</div>
+    <div class="big-icon">🌡️</div>
+  </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s1">1</span>
+      <div class="s-info"><div class="s-title">Thermometers &amp; Thermal Equilibrium <span class="s-tag" style="background:#e8eaf6;color:var(--indigo)">DEFINITION</span></div><div class="s-sub">مقاييس الحرارة والاتزان الحراري</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="dual">
+        <div class="en-panel"><p>Thermometers measure temperature based on physical properties that change with temperature. <strong>Thermal equilibrium:</strong> Two bodies in contact reach the same temperature.</p></div>
+        <div class="ar-panel"><p>مقاييس الحرارة تقيس درجة الحرارة بناءً على خواص فيزيائية تتغير بتغيرها. <strong>الاتزان الحراري:</strong> جسمان متلامسان يصبحان بنفس الحرارة.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s2">2</span>
+      <div class="s-info"><div class="s-title">Thermometer Formula <span class="s-tag" style="background:#fff8e1;color:#e65100">FORMULA</span></div><div class="s-sub">معادلة الترمومتر</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="frm-box" style="font-size:.9em"><div class="frm-pin">🌡️ Liquid Thermometer</div><span class="frm-label">Temperature from Column Length</span><div class="frm-value">t = 100 × (L<sub>t</sub> − L<sub>0</sub>) / (L<sub>100</sub> − L<sub>0</sub>)</div></div>
+      <div class="kbox indigo"><h4>🔑 Symbols</h4><ul><li><strong>L<sub>t</sub></strong>: length at temperature t</li><li><strong>L<sub>0</sub></strong>: length at 0°C (ice point)</li><li><strong>L<sub>100</sub></strong>: length at 100°C (steam point)</li></ul></div>
+      <div class="ex-box"><div class="ex-title">📝 Example</div><p>Mercury length = 15 cm at 0°C, = 40 cm at 100°C. Find t when length = 25 cm.</p><p style="direction:ltr;text-align:center;font-weight:800;margin-top:4px">t = 100 × (25−15)/(40−15) = <strong>40°C</strong></p></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s3">3</span>
+      <div class="s-info"><div class="s-title">Temperature Scales <span class="s-tag" style="background:#f3e5f5;color:#4a148c">COMPARE</span></div><div class="s-sub">تدريجات الحرارة</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <table class="tbl">
+        <tr><th>Point</th><th>°C</th><th>°F</th><th>K</th></tr>
+        <tr><td>Ice point (freezing)</td><td>0</td><td>32</td><td>273</td></tr>
+        <tr><td>Steam point (boiling)</td><td>100</td><td>212</td><td>373</td></tr>
+      </table>
+      <div class="frm-box" style="font-size:.9em"><div class="frm-pin">🔄 Conversion</div><span class="frm-label">Converting Between Scales</span><div class="frm-value">T<sub>K</sub> = T<sub>C</sub> + 273 &nbsp;|&nbsp; T<sub>F</sub> = <sup>9</sup>⁄<sub>5</sub>·T<sub>C</sub> + 32</div></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s4">4</span>
+      <div class="s-info"><div class="s-title">Real-Life Thermometers <span class="s-tag" style="background:#e8f5e9;color:#2e7d32">REAL WORLD</span></div><div class="s-sub">مقاييس حرارة من حياتنا</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="rl-box"><div class="rl-icon">🤒</div><div><div class="rl-title">🌍 Clinical Thermometer</div><p>Used to measure body temperature (~37°C). Has a kink (constriction) that prevents mercury from falling back so you can read it after removing!</p></div></div>
+      <div class="rl-box"><div class="rl-icon">🌡️</div><div><div class="rl-title">🌍 Outdoor / Room Thermometer</div><p>Mercury or alcohol expands in a glass tube. Colored alcohol is often used because it's safer and easier to read — common in homes and gardens.</p></div></div>
+      <div class="rl-box"><div class="rl-icon">🔥</div><div><div class="rl-title">🌍 Cooking Thermometer</div><p>Used in kitchens to check meat temperature (safe at 75°C+). Also in ovens to make sure the baking temperature is accurate.</p></div></div>
+      <div class="rl-box"><div class="rl-icon">📱</div><div><div class="rl-title">🌍 Digital Thermometers</div><p>Modern thermometers use thermistors or infrared sensors — no mercury, faster reading, used in schools, hospitals, and even smartphones!</p></div></div>
+    </div>
+  </div>
+  <div class="qz-zone"><button class="btn-qz" onclick="openQuiz('u2l2','Lesson 2: Measuring Temperature')"><span>🧪</span> Take Lesson Quiz <span class="cnt">12 questions</span></button></div>
+  <div class="lnav"><button class="prev" onclick="goTo('u2l1')">← Previous</button><button class="next" onclick="goTo('u2l3')">Next →</button></div>
+</div>
+
+<!-- LESSON 7: HEAT CAPACITY -->
+<div class="lesson" id="l-u2l3">
+  <div class="lhead">
+    <div class="unit-badge">🔥 Unit 2: Heat</div>
+    <h2>Lesson 3: Heat Capacity &amp; Specific Heat</h2>
+    <div class="sub">السعة الحرارية والحرارة النوعية</div>
+    <div class="big-icon">🔥</div>
+  </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s1">1</span>
+      <div class="s-info"><div class="s-title">Understanding the Difference <span class="s-tag" style="background:#e8eaf6;color:var(--indigo)">DEFINITION</span></div><div class="s-sub">الفرق بين المفهومين</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="two-grid">
+        <div class="cmp-card green">
+          <h4>📦 Heat Capacity (q<sub>th</sub>)</h4>
+          <p>Heat to raise <strong>entire body</strong> by 1 K</p>
+          <div class="big">q<sub>th</sub> = Q<sub>th</sub> / Δt</div>
+          <p>Unit: J/K</p>
+          <span class="cbadge">❌ NOT a physical property — depends on mass</span>
+        </div>
+        <div class="cmp-card blue">
+          <h4>🔬 Specific Heat (C<sub>th</sub>)</h4>
+          <p>Heat to raise <strong>1 kg</strong> of substance by 1 K</p>
+          <div class="big">C<sub>th</sub> = Q<sub>th</sub> / (m·Δt)</div>
+          <p>Unit: J/(kg·K)</p>
+          <span class="cbadge">✅ IS a physical property — varies by material</span>
+        </div>
+      </div>
+      <div class="rl-box"><div class="rl-icon">🏖️</div><div><div class="rl-title">🌍 Why Does Sand Heat Faster Than Water?</div><p>Water has a <strong>high specific heat</strong> (4186 J/kg·K). Sand has a <strong>low specific heat</strong>. At the beach: sand is scorching, water is cool!<br><strong>Analogy:</strong> Heat capacity = bucket size. Specific heat = material type (sponge absorbs more than plastic).</p></div></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s2">2</span>
+      <div class="s-info"><div class="s-title">Solved Example <span class="s-tag" style="background:#e8f5e9;color:#2e7d32">APPLICATION</span></div><div class="s-sub">مسألة محلولة</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="ex-box"><div class="ex-title">📝 Example: Comparing Materials</div><p>2 kg of water (C = 4200 J/(kg·K)) and 2 kg of copper (C = 385 J/(kg·K)) are each given 10,000 J of heat. Which heats up more?</p><p style="direction:ltr;text-align:center;font-weight:800;margin-top:6px">Δt<sub>water</sub> = Q/(m·C) = 10000/(2×4200) ≈ <strong>1.2°C</strong><br>Δt<sub>copper</sub> = 10000/(2×385) ≈ <strong>13°C</strong></p><p>Copper heats up <strong>10× more</strong> than water with the same energy!</p></div>
+      <div class="rl-box"><div class="rl-icon">🚗</div><div><div class="rl-title">🌍 Car Engines Use Water</div><p>Car radiators use water as coolant because its <strong>high specific heat</strong> absorbs lots of engine heat without getting too hot itself. Copper fins help release heat quickly because copper has <strong>low specific heat</strong> but is a great conductor!</p></div></div>
+    </div>
+  </div>
+  <div class="qz-zone"><button class="btn-qz" onclick="openQuiz('u2l3','Lesson 3: Heat Capacity & Specific Heat')"><span>🧪</span> Take Lesson Quiz <span class="cnt">12 questions</span></button></div>
+  <div class="lnav"><button class="prev" onclick="goTo('u2l2')">← Previous</button><button class="next" onclick="goTo('u2l4')">Next →</button></div>
+</div>
+
+<!-- LESSON 8: HEAT TRANSFER -->
+<div class="lesson" id="l-u2l4">
+  <div class="lhead">
+    <div class="unit-badge">🔥 Unit 2: Heat</div>
+    <h2>Lesson 4: Heat Transfer</h2>
+    <div class="sub">انتقال الحرارة</div>
+    <div class="big-icon">🔥</div>
+  </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s1">1</span>
+      <div class="s-info"><div class="s-title">Basics of Heat Transfer <span class="s-tag" style="background:#e8eaf6;color:var(--indigo)">DEFINITION</span></div><div class="s-sub">أساسيات انتقال الحرارة</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="dual">
+        <div class="en-panel"><p>Heat transfer is energy transfer due to temperature difference — always from <strong>higher to lower</strong> temperature. It may increase internal energy.</p></div>
+        <div class="ar-panel"><p>انتقال الحرارة هو نقل الطاقة بسبب فرق الحرارة — دائمًا من <strong>الأعلى إلى الأقل</strong>. قد يزيد الطاقة الداخلية.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s2">2</span>
+      <div class="s-info"><div class="s-title">Three Mechanisms <span class="s-tag" style="background:#f3e5f5;color:#4a148c">CLASSIFICATION</span></div><div class="s-sub">الآليات الثلاث</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="two-grid">
+        <div class="kbox rose"><h4>🔥 1. Conduction (التوصيل)</h4><ul><li>Direct contact</li><li>Needs solid medium</li><li>Metal spoon in hot tea</li></ul></div>
+        <div class="kbox indigo"><h4>💨 2. Convection (الحمل)</h4><ul><li>Mass movement of fluid</li><li>Liquids &amp; gases</li><li>Air conditioner, boiling water</li></ul></div>
+        <div class="kbox teal"><h4>☀️ 3. Radiation (الإشعاع)</h4><ul><li>Electromagnetic waves</li><li><strong>No medium needed!</strong></li><li>Sun warming Earth</li></ul></div>
+        <div style="display:flex;align-items:center;justify-content:center">
+          <div style="text-align:center;background:#fff8e1;border-radius:10px;padding:16px;width:100%;border:2px solid #ffe082">
+            <div style="font-size:1.8em">🌞</div>
+            <div style="font-weight:800;color:var(--navy);font-size:.85em">Only Radiation<br>Needs NO Medium!</div>
+            <div style="font-size:.7em;color:var(--text2)">Travels through empty space</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s3">3</span>
+      <div class="s-info"><div class="s-title">Comparison Table <span class="s-tag" style="background:#e0f2f1;color:var(--teal)">SUMMARY</span></div><div class="s-sub">جدول مقارنة</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <table class="tbl">
+        <tr><th>Mechanism</th><th>Medium</th><th>Example</th></tr>
+        <tr><td>Conduction (توصيل)</td><td>Solid</td><td>Pan on stove</td></tr>
+        <tr><td>Convection (حمل)</td><td>Fluids</td><td>AC cooling room</td></tr>
+        <tr><td>Radiation (إشعاع)</td><td>🚫 None needed</td><td>Sun heats Earth</td></tr>
+      </table>
+      <div class="rl-box"><div class="rl-icon">🍳</div><div><div class="rl-title">🌍 All Three in the Kitchen!</div><p><strong>Conduction:</strong> Pan heats on stove. <strong>Convection:</strong> Water boils and circulates. <strong>Radiation:</strong> You feel the heat from the oven without touching it!</p></div></div>
+    </div>
+  </div>
+  <div class="qz-zone"><button class="btn-qz" onclick="openQuiz('u2l4','Lesson 4: Heat Transfer')"><span>🧪</span> Take Lesson Quiz <span class="cnt">12 questions</span></button></div>
+  <div class="qz-zone" style="margin-top:10px"><button class="btn-qz btn-final" onclick="openQuiz('final','📚 Comprehensive Final Exam — All Units')"><span>🏆</span> Comprehensive Final Exam <span class="cnt">55 questions</span></button></div>
+  <div class="lnav"><button class="prev" onclick="goTo('u2l3')">← Previous</button><button class="next" disabled>🏁 Final Lesson</button></div>
+</div>
+
+</div><!--/wrap-->
+
+<!-- ===== QUIZ OVERLAY ===== -->
+<div class="qoverlay" id="qOverlay">
+  <div class="qmodal">
+    <div class="qm-header">
+      <h2><span>🧪</span> <span id="qTitle">Quiz</span></h2>
+      <button class="qc" onclick="closeQuiz()">✕</button>
+    </div>
+    <div class="qm-body" id="qBody"></div>
+    <div class="qm-foot">
+      <div class="qm-score" id="qScore">⭐ 0 / 0</div>
+      <button class="qm-sub" onclick="submitQuiz()">✅ Submit</button>
+      <button class="qm-rst" onclick="restartQ()">🔄 Retry</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="foot">
+  <p>📘 <strong>Physics — Second Grade</strong> | Bilingual interactive learning</p>
+  <p style="margin-top:3px;font-size:.9em">Physics isn't hard — it just needs a clear, engaging explanation ✨</p>
+</div>
+
+<script>
+// ===== LESSON NAMES =====
+const LN={
+  u1l1:'Lesson 1: Meaning of Force',
+  u1l2:'Lesson 2: Gravitational Force',
+  u1l3:'Lesson 3: Centripetal Force',
+  u1l4:'Lesson 4: Friction & Viscosity',
+  u2l1:'Lesson 1: Temperature & Thermal Energy',
+  u2l2:'Lesson 2: Measuring Temperature',
+  u2l3:'Lesson 3: Heat Capacity & Specific Heat',
+  u2l4:'Lesson 4: Heat Transfer'
+};
+const LIDS=Object.keys(LN);
+
+// ===== KEY TERMS & SUMMARY =====
+const KT={
+  u1l1:{terms:[['Force','قوة','A push or pull between interacting objects'],['Newton (N)','نيوتن','SI unit: 1 kg·m/s²'],['Contact force','قوة تلامس','Requires physical contact (friction, tension)'],['Non-contact force','قوة غير تلامسية','Acts at a distance (gravity, magnetic)'],['Tension','شد','Force transmitted through a rope/string'],['Friction','احتكاك','Force that opposes motion between surfaces']],summ:['Force is a push or pull measured in Newtons','Forces can start, stop, or change motion and shape','Contact forces need touch; non-contact forces act at a distance','Balanced forces = no change in motion']},
+  u1l2:{terms:[['Gravity','جاذبية','Force attracting objects with mass'],['Weight','وزن','Force of gravity on an object (W = m·g)'],['Mass','كتلة','Amount of matter in an object (kg)'],['Universal Gravitation','الجاذبية العامة','F = G·m₁·m₂ / r²'],['G (constant)','ثابت الجاذبية','6.67×10⁻¹¹ N·m²/kg²'],['Free fall','سقوط حر','All objects fall at same rate (no air)']],summ:['Gravity depends on mass and distance (inverse square law)','Weight = mass × gravity (g = 9.8 m/s² on Earth)','Gravitational force decreases when distance increases','Satellites orbit due to gravity as centripetal force']},
+  u1l3:{terms:[['Centripetal force','قوة جذب مركزية','Force toward center causing circular motion'],['Centripetal acceleration','عجلة جذب مركزية','a_c = v²/r, always toward center'],['Circular motion','حركة دائرية','Constant speed, changing direction'],['Radius (r)','نصف قطر','Distance from center of circle'],['Tangent','مماس','Direction of velocity in circular motion']],summ:['Centripetal force always points toward the center of the circle','F_c = m·v²/r — more speed needs much more force','If centripetal force stops, object flies off in a straight line','Friction on curves provides centripetal force for cars']},
+  u1l4:{terms:[['Friction','احتكاك','Force opposing relative motion of surfaces'],['Static friction','احتكاك سكوني','Prevents motion before it starts (strongest)'],['Sliding friction','احتكاك انزلاقي','Opposes sliding motion (medium)'],['Rolling friction','احتكاك دوراني','Opposes rolling motion (weakest)'],['Viscosity','لزوجة','Fluid resistance to flow'],['Lubricant','مزلق','Reduces friction between surfaces']],summ:['Friction always opposes motion between surfaces','Static > Sliding > Rolling in strength','Viscosity is fluid friction (honey > water)','Lubricants and ball bearings reduce friction']},
+  u2l1:{terms:[['Temperature','درجة حرارة','Average kinetic energy of molecules'],['Heat (Q)','حرارة','Thermal energy transferred due to ΔT'],['Thermal energy','طاقة حرارية','Total kinetic + potential energy of particles'],['Internal energy','طاقة داخلية','Sum of all molecular energies'],['Specific heat (C)','حرارة نوعية','Heat to raise 1 kg by 1 K']],summ:['Temperature = average KE of molecules; Heat = energy transfer','Heat flows from hot to cold objects','Q = m·C·Δt (mass × specific heat × temp change)','Adding heat can raise temperature or change state']},
+  u2l2:{terms:[['Thermometer','ترمومتر','Device that measures temperature'],['Thermal equilibrium','اتزان حراري','Two bodies in contact reach same temperature'],['Celsius','سيلسيوس','Water freezes at 0°C, boils at 100°C'],['Fahrenheit','فهرنهايت','Water freezes at 32°F, boils at 212°F'],['Kelvin','كلفن','Absolute scale: 0 K = -273°C'],['Absolute zero','الصفر المطلق','Lowest possible temperature (-273°C)']],summ:['Thermometers use thermal expansion of liquids','Thermal equilibrium: touching objects reach same temp','T_K = T_C + 273; T_F = 9/5·T_C + 32','Kelvin has no negative values']},
+  u2l3:{terms:[['Heat capacity','سعة حرارية','Heat to raise entire object by 1 K (J/K)'],['Specific heat','حرارة نوعية','Heat to raise 1 kg of material by 1 K (J/(kg·K))'],['Physical property','خاصية فيزيائية','Depends only on material, not on mass']],summ:['Heat capacity depends on mass and material (J/K)','Specific heat is a physical property of the material (J/(kg·K))','Water has high specific heat — used as coolant in cars','Q = m·C·Δt — more mass = more heat needed']},
+  u2l4:{terms:[['Conduction','توصيل','Heat transfer through solids by particle vibration'],['Convection','حمل','Heat transfer in fluids by movement of fluid'],['Radiation','إشعاع','Heat transfer by electromagnetic waves (no medium)'],['Conductor','موصل','Material that transfers heat easily (metals)'],['Insulator','عازل','Material that resists heat transfer (plastic, wood)']],summ:['Heat always flows from hot to cold','Conduction = solids; Convection = fluids; Radiation = no medium','Dark surfaces absorb more radiation; shiny surfaces reflect','Vacuum flask reduces all three: conduction, convection, radiation']}
+};
+function buildL(){
+  LIDS.forEach(id=>{
+    const d=KT[id];if(!d)return;
+    const el=document.getElementById('l-'+id);
+    if(!el)return;
+    const qz=el.querySelector('.qz-zone');
+    if(!qz)return;
+    const div=document.createElement('div');
+    div.innerHTML='<div class="kt-box"><h4>📋 Key Terms</h4>'+d.terms.map(t=>'<div class="kt-item"><span class="kt-en">'+t[0]+'</span> <span class="kt-ar">('+t[1]+')</span><div class="kt-def">'+t[2]+'</div></div>').join('')+'</div><div class="sum-box"><h4>📌 Quick Summary</h4><ul>'+d.summ.map(s=>'<li>'+s+'</li>').join('')+'</ul></div>';
+    el.insertBefore(div, qz);
+  });
+}
+const QD={
+  u1l1:[
+    {q:'Force is defined as:',o:['A push or pull from interaction','A quantity of matter','A form of energy only','Speed in a direction'],a:0},
+    {q:'Which is NOT an effect of force?',o:['Start motion','Change mass','Change direction','Stop motion'],a:1},
+    {q:'Which is a non-contact force?',o:['Friction','Tension','Gravity','Applied force'],a:2},
+    {q:'1 Newton equals:',o:['1 kg·m/s','1 kg·m/s²','1 g·m/s²','1 kg·cm/s²'],a:1},
+    {q:'Which force opposes motion between surfaces?',o:['Gravity','Friction','Tension','Magnetic'],a:1},
+    {q:'The unit of force is named after:',o:['Einstein','Newton','Pascal','Joule'],a:1},
+    {q:'Which is a contact force?',o:['Gravity','Electrostatic','Friction','Magnetic'],a:2},
+    {q:'Force can change an object\'s:',o:['Mass only','Volume only','Shape or motion','Color'],a:2},
+    {q:'If you push a wall and it doesn\'t move:',o:['No force applied','Forces are balanced','Gravity stopped it','Wall is too heavy'],a:1},
+    {q:'Tension force acts through:',o:['Air','A rope or string','Solid surfaces','Liquids'],a:1},
+    {q:'Spring force follows which law?',o:['Newton\'s law','Hooke\'s law','Pascal\'s law','Ohm\'s law'],a:1},
+    {q:'What does a dynamometer measure?',o:['Mass','Force','Speed','Temperature'],a:1}
+  ],
+  u1l2:[
+    {q:'Gravity is ___ proportional to the square of distance.',o:['Directly','Inversely','Not','Equally'],a:1},
+    {q:'The universal constant G =',o:['9.8 m/s²','6.67×10⁻¹¹ N·m²/kg²','3×10⁸ m/s','1.6×10⁻¹⁹ C'],a:1},
+    {q:'Gravitation does NOT explain:',o:['Planets orbiting Sun','Moon around Earth','Electrons around nucleus','Free fall'],a:2},
+    {q:'If distance doubles, gravity becomes:',o:['2×','½','¼','4×'],a:2},
+    {q:'Weight depends on:',o:['Mass only','Gravity only','Mass and gravity','Volume'],a:2},
+    {q:'A person weighs less on the Moon because:',o:['Moon has less mass','Moon is smaller','Moon has less gravity','Both B and C'],a:3},
+    {q:'If mass doubles, gravitational force:',o:['Halves','Doubles','Quadruples','Stays same'],a:1},
+    {q:'g on Earth is approximately:',o:['1.6 m/s²','9.8 m/s²','15 m/s²','20 m/s²'],a:1},
+    {q:'The force of gravity on an object is called:',o:['Mass','Weight','Density','Volume'],a:1},
+    {q:'Two objects fall at the same rate (no air resistance) because:',o:['They have same weight','Gravity acts equally on all masses','Air pushes them','Earth pulls harder on heavier'],a:1},
+    {q:'Tides are caused mainly by:',o:['Sun\'s gravity alone','Moon\'s gravity','Earth\'s rotation','Wind'],a:1},
+    {q:'Gravitational force between objects ___ with distance.',o:['Increases','Decreases','Stays constant','Doubles'],a:1}
+  ],
+  u1l3:[
+    {q:'Centripetal force causes ___ motion.',o:['Straight-line','Circular','Parabolic','Elliptical'],a:1},
+    {q:'Centripetal acceleration a<sub>c</sub> =',o:['m·v²/r','v²/r','m·v/r','v/r'],a:1},
+    {q:'Doubling speed needs ___ centripetal force.',o:['Same','2×','4×','½'],a:2},
+    {q:'If centripetal force becomes zero:',o:['Move toward center','Move opposite','Move tangent','Stop'],a:2},
+    {q:'Centripetal force always points toward:',o:['The center of the circle','Outside the circle','Forward direction','Backward'],a:0},
+    {q:'When a car turns a corner, what provides centripetal force?',o:['Engine','Friction between tires and road','Gravity','Air resistance'],a:1},
+    {q:'A satellite orbits Earth due to:',o:['Rockets always firing','Centripetal force from gravity','Solar wind','Magnetic field'],a:1},
+    {q:'If radius of circular path doubles, centripetal force (same speed):',o:['Doubles','Halves','Quadruples','Stays same'],a:1},
+    {q:'Centripetal force is always ___ to velocity.',o:['Parallel','Perpendicular','Opposite','Same direction'],a:1},
+    {q:'An object in uniform circular motion:',o:['Has constant velocity','Has constant speed','Has no acceleration','Moves in a straight line'],a:1},
+    {q:'The direction of centripetal acceleration is:',o:['Tangent to circle','Away from center','Toward center','Forward'],a:2},
+    {q:'Centrifugal force is:',o:['A real force','An apparent outward force','Always gravity','The same as centripetal'],a:1}
+  ],
+  u1l4:[
+    {q:'Which friction prevents sliding before motion?',o:['Static','Sliding','Rolling','Viscosity'],a:0},
+    {q:'Strongest friction type:',o:['Static','Sliding','Rolling','Equal'],a:0},
+    {q:'Viscosity coefficient η unit:',o:['N/m²','N·s/m²','kg·m/s²','J/K'],a:1},
+    {q:'Why use oil instead of water for lubrication?',o:['Cheaper','Cleaner','Higher viscosity','Faster'],a:2},
+    {q:'Friction always ___ motion.',o:['Helps','Opposes','Ignores','Accelerates'],a:1},
+    {q:'Which has the least friction?',o:['Sliding','Rolling','Static','Same'],a:1},
+    {q:'Air resistance is a type of:',o:['Static friction','Fluid friction','Rolling friction','Tension'],a:1},
+    {q:'Friction between solids depends on:',o:['Surface roughness and normal force','Speed only','Area of contact only','Color'],a:0},
+    {q:'Sand on icy roads ___ friction.',o:['Decreases','Increases','Doesn\'t change','Eliminates'],a:1},
+    {q:'Honey flows slower than water due to higher:',o:['Temperature','Viscosity','Density','Weight'],a:1},
+    {q:'What reduces friction?',o:['Lubricants','Rough surfaces','More weight','Sand'],a:0},
+    {q:'Brakes use friction to:',o:['Speed up','Slow down','Turn','Illuminate'],a:1}
+  ],
+  u2l1:[
+    {q:'Temperature measures average ___ energy.',o:['Potential','Kinetic','Total','Chemical'],a:1},
+    {q:'Heat transfers due to:',o:['Temperature difference','Mass difference','Volume difference','Density difference'],a:0},
+    {q:'Heat formula: Q =',o:['m·v²','m·g·h','m·C·Δt','½m·v²'],a:2},
+    {q:'When temperature rises, molecules:',o:['Slow down','Speed up','Stop','Decrease'],a:1},
+    {q:'Thermal energy is the total ___ energy of particles.',o:['Potential','Kinetic','Both potential and kinetic','Chemical'],a:2},
+    {q:'At absolute zero, particles:',o:['Move fastest','Stop completely','Move very slowly','Explode'],a:1},
+    {q:'Which has more thermal energy: a cup of coffee or a swimming pool?',o:['Coffee','Swimming pool','Same','Depends on temperature'],a:1},
+    {q:'Heat flows from:',o:['Cold to hot','Hot to cold','Only in solids','Only in liquids'],a:1},
+    {q:'SI unit of heat energy:',o:['Newton','Joule','Pascal','Watt'],a:1},
+    {q:'Temperature is measured in:',o:['Joules','Newtons','Kelvin or Celsius','Watts'],a:2},
+    {q:'When you touch ice, heat:',o:['Flows from your hand to ice','Flows from ice to hand','Stays same','Disappears'],a:0},
+    {q:'Which is a good thermal conductor?',o:['Wood','Plastic','Metal','Rubber'],a:2}
+  ],
+  u2l2:[
+    {q:'0°C = ___ K',o:['0','100','273','373'],a:2},
+    {q:'Boiling point in Fahrenheit:',o:['100°F','32°F','212°F','180°F'],a:2},
+    {q:'Convert °C to K:',o:['T<sub>K</sub>=T<sub>C</sub>+273','T<sub>K</sub>=T<sub>C</sub>−273','T<sub>K</sub>=T<sub>C</sub>×273','T<sub>K</sub>=T<sub>C</sub>/273'],a:0},
+    {q:'Liquid thermometer works by:',o:['Constant volume','Liquid expansion','Color change','Density change'],a:1},
+    {q:'Freezing point of water in Celsius:',o:['0°C','100°C','32°C','273°C'],a:0},
+    {q:'Freezing point of water in Fahrenheit:',o:['0°F','32°F','100°F','212°F'],a:1},
+    {q:'Absolute zero in Celsius:',o:['0°C','−100°C','−273°C','−459°C'],a:2},
+    {q:'Thermometer uses principle of:',o:['Electrical resistance','Thermal expansion','Light reflection','Sound waves'],a:1},
+    {q:'37°C in Kelvin is about:',o:['273 K','300 K','310 K','37 K'],a:2},
+    {q:'Which temperature scale has no negative values?',o:['Celsius','Fahrenheit','Kelvin','All have negative'],a:2},
+    {q:'1°C change equals ___ change in Kelvin.',o:['0','1','273','212'],a:1},
+    {q:'Room temperature is about:',o:['0°C','37°C','20°C','100°C'],a:2}
+  ],
+  u2l3:[
+    {q:'Heat capacity depends on:',o:['Mass','Material only','Nothing','Color'],a:0},
+    {q:'Specific heat raises 1 ___ by 1 K.',o:['Body','kg','g','L'],a:1},
+    {q:'Specific heat unit:',o:['J/K','J/(kg·K)','J/kg','J·K/kg'],a:1},
+    {q:'Which is true?',o:['Specific heat depends on mass','Heat capacity is a physical property','Specific heat is a physical property','All of the above'],a:2},
+    {q:'Water has a ___ specific heat.',o:['Low','High','Zero','Negative'],a:1},
+    {q:'Which requires more energy to heat: 1 kg water or 1 kg iron?',o:['Water','Iron','Same','Depends on time'],a:0},
+    {q:'Heat capacity unit:',o:['J/(kg·K)','J/K','J/kg','W/K'],a:1},
+    {q:'If mass increases, heat capacity:',o:['Increases','Decreases','Stays same','Halves'],a:0},
+    {q:'Specific heat of water is about:',o:['420 J/(kg·K)','4200 J/(kg·K)','42 J/(kg·K)','42000 J/(kg·K)'],a:1},
+    {q:'Coastal areas have mild climate due to water\'s:',o:['Low density','High specific heat','Transparency','Salinity'],a:1},
+    {q:'Heat capacity of an object depends on:',o:['Mass and material','Color only','Volume only','Shape'],a:0},
+    {q:'Q = m·C·Δt. If Δt doubles, Q:',o:['Halves','Doubles','Quadruples','Stays same'],a:1}
+  ],
+  u2l4:[
+    {q:'Which needs NO medium?',o:['Conduction','Convection','Radiation','All need'],a:2},
+    {q:'Spoon heats in tea by:',o:['Conduction','Convection','Radiation','All'],a:0},
+    {q:'Heat always flows from:',o:['Hot to cold','Cold to hot','Solids only','Equally'],a:0},
+    {q:'AC cools a room by:',o:['Conduction','Convection','Radiation','All'],a:1},
+    {q:'Sun heats Earth by:',o:['Conduction','Convection','Radiation','All of the above'],a:2},
+    {q:'Warm air rises because it is:',o:['Less dense','More dense','Heavier','Same density'],a:0},
+    {q:'Which is the best conductor?',o:['Wood','Plastic','Copper','Glass'],a:2},
+    {q:'Vacuum flask reduces heat loss by:',o:['Stopping conduction only','Stopping convection only','Stopping all three methods','None'],a:2},
+    {q:'Dark-colored surfaces ___ radiation.',o:['Reflect','Absorb more','Transmit','Don\'t affect'],a:1},
+    {q:'Sea breeze is an example of:',o:['Conduction','Convection','Radiation','Insulation'],a:1},
+    {q:'Materials that don\'t conduct heat well are called:',o:['Conductors','Insulators','Radiators','Converters'],a:1},
+    {q:'In conduction, heat transfers by:',o:['Particle vibration and collision','Bulk fluid movement','Electromagnetic waves','All'],a:0}
+  ],
+  final:[
+    {q:'Force is measured in:',o:['Newtons','Joules','Watts','Pascals'],a:0},
+    {q:'Which force always opposes motion?',o:['Gravity','Friction','Tension','Magnetic'],a:1},
+    {q:'Gravitational constant G value is:',o:['9.8 N/kg','6.67×10⁻¹¹ N·m²/kg²','3×10⁸ m/s','1.6×10⁻¹⁹ C'],a:1},
+    {q:'If mass doubles, weight:',o:['Halves','Doubles','Quadruples','Stays same'],a:1},
+    {q:'Centripetal force direction is:',o:['Away from center','Toward center','Tangent','Forward'],a:1},
+    {q:'Which has highest friction?',o:['Rolling','Sliding','Static','Fluid'],a:2},
+    {q:'Temperature measures average:',o:['Potential energy','Kinetic energy','Total energy','Chemical energy'],a:1},
+    {q:'0 Kelvin equals:',o:['−273°C','273°C','0°C','−100°C'],a:0},
+    {q:'Specific heat unit is:',o:['J/K','J/(kg·K)','J/kg','J·K'],a:1},
+    {q:'Heat transfer without medium:',o:['Conduction','Convection','Radiation','All'],a:2},
+    {q:'Boiling point of water in Fahrenheit:',o:['100°F','212°F','32°F','273°F'],a:1},
+    {q:'Convert 100°C to Kelvin:',o:['100 K','273 K','373 K','200 K'],a:2},
+    {q:'Friction between solids depends on:',o:['Speed','Surface roughness and normal force','Color','Temperature'],a:1},
+    {q:'Which is NOT a type of friction?',o:['Static','Sliding','Rolling','Floating'],a:3},
+    {q:'Hooke\'s law relates to:',o:['Gravity','Spring force','Friction','Heat'],a:1},
+    {q:'Weight formula is:',o:['W = m/v','W = m·g','W = m·a','W = F/d'],a:1},
+    {q:'If distance triples, gravity becomes:',o:['⅓','1/9','3×','9×'],a:1},
+    {q:'Tension force direction:',o:['Away from object along rope','Toward center','Downward','Sideways'],a:0},
+    {q:'In circular motion, velocity direction is:',o:['Toward center','Away from center','Tangent to circle','Random'],a:2},
+    {q:'Centripetal acceleration formula:',o:['a = v²/r','a = v/r','a = m·v²/r','a = r/v'],a:0},
+    {q:'Lubricants ___ friction.',o:['Increase','Reduce','Don\'t affect','Eliminate'],a:1},
+    {q:'Viscosity measures:',o:['Surface roughness','Fluid resistance to flow','Weight of fluid','Temperature'],a:1},
+    {q:'Heat formula Q = m·C·Δt. C stands for:',o:['Heat capacity','Specific heat','Conductivity','Temperature'],a:1},
+    {q:'Absolute zero is:',o:['0°C','−273°C','273°C','100°C'],a:1},
+    {q:'Thermometer liquid commonly used:',o:['Water','Mercury or alcohol','Oil','Gasoline'],a:1},
+    {q:'Which energy is transferred as heat?',o:['Kinetic','Potential','Thermal','Chemical'],a:2},
+    {q:'Good thermal conductor example:',o:['Wood','Plastic','Aluminum','Fiberglass'],a:2},
+    {q:'Heat transfer in fluids mainly by:',o:['Conduction','Convection','Radiation','All equally'],a:1},
+    {q:'Vacuum flask silver coating reduces:',o:['Conduction','Convection','Radiation','All'],a:2},
+    {q:'Shiny surfaces ___ radiation.',o:['Absorb','Reflect','Transmit','Amplify'],a:1},
+    {q:'Particles in a solid transfer heat by:',o:['Moving freely','Vibrating and colliding','Flying apart','None'],a:1},
+    {q:'Specific heat of water is:',o:['420 J/(kg·K)','4200 J/(kg·K)','42 J/(kg·K)','4.2 J/(kg·K)'],a:1},
+    {q:'If mass is 2 kg, C = 500 J/(kg·K), Δt = 10 K, Q =',o:['5000 J','10000 J','2500 J','2000 J'],a:1},
+    {q:'Which force is non-contact?',o:['Tension','Normal','Gravitational','Friction'],a:2},
+    {q:'Which is a scalar quantity?',o:['Force','Weight','Temperature','Acceleration'],a:2},
+    {q:'For every action, there is an equal and opposite reaction is:',o:['Newton\'s 1st law','Newton\'s 2nd law','Newton\'s 3rd law','Hooke\'s law'],a:2},
+    {q:'Friction produces:',o:['Light only','Heat and wear','Sound only','No effect'],a:1},
+    {q:'Which scale has absolute zero?',o:['Celsius','Fahrenheit','Kelvin','All'],a:2},
+    {q:'Heat capacity depends on:',o:['Mass only','Material only','Mass and material','Color'],a:2},
+    {q:'Room temperature in Celsius is about:',o:['0°C','37°C','20°C','100°C'],a:2},
+    {q:'Car tires have treads to:',o:['Look good','Increase friction','Decrease friction','Reduce weight'],a:1},
+    {q:'A rocket launching uses which law?',o:['Newton\'s 1st','Newton\'s 2nd','Newton\'s 3rd','Gravitation'],a:2},
+    {q:'When you stir coffee with a metal spoon:',o:['Heat conducts through spoon','Heat convects in spoon','Spoon radiates heat','No heat transfer'],a:0},
+    {q:'Which has more heat capacity: ocean or cup of tea?',o:['Cup of tea','Ocean','Same','Depends on temperature'],a:1},
+    {q:'Moon orbits Earth due to:',o:['Magnetic force','Gravitational force','Electric force','Tension'],a:1},
+    {q:'Rolling friction is ___ than sliding friction.',o:['Greater','Less','Equal','Unrelated'],a:1},
+    {q:'Thermal equilibrium means:',o:['No heat transfer','Maximum heat','Constant temperature difference','Fast heat transfer'],a:0},
+    {q:'Pressure unit is:',o:['Newton','Pascal','Joule','Watt'],a:1},
+    {q:'Density formula:',o:['ρ = m/v','ρ = m×v','ρ = v/m','ρ = m+v'],a:0},
+    {q:'Convection current forms because:',o:['Hot fluid rises, cold sinks','Cold fluid rises, hot sinks','All fluid stays still','Only in solids'],a:0},
+    {q:'A black surface ___ heat radiation.',o:['Reflects','Absorbs well','Transmits','Blocks'],a:1},
+    {q:'F = m·a is:',o:['Newton\'s 1st law','Newton\'s 2nd law','Newton\'s 3rd law','Law of gravitation'],a:1},
+    {q:'If net force is zero, object:',o:['Accelerates','Moves at constant velocity','Stops immediately','Changes direction'],a:1},
+    {q:'Inertia is related to:',o:['Weight','Mass','Volume','Density'],a:1}
+  ]
+};
+
+// ===== SECTION TOGGLE (mobile only) =====
+function toggleSec(header){
+  if(window.innerWidth > 700) return;
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.s-arrow');
+  body.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+// ===== NAVIGATION =====
+let atHome = true;
+let currentUnit = null;
+const UNITS=[
+  {key:'u1',n:'⚡ Forces',ico:'⚡',ids:['u1l1','u1l2','u1l3','u1l4']},
+  {key:'u2',n:'🔥 Heat',ico:'🔥',ids:['u2l1','u2l2','u2l3','u2l4']}
+];
+
+function showHome(){
+  atHome = true;
+  currentUnit = null;
+  document.getElementById('homeContent').style.display='block';
+  document.getElementById('motivBanner').style.display='block';
+  document.getElementById('unitBack').style.display='none';
+  document.querySelectorAll('.tb').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.lesson').forEach(l=>l.classList.remove('show'));
+  document.querySelector('.wrap').scrollIntoView({behavior:'smooth',block:'start'});
+  updateP();
+}
+
+function showUnit(key){
+  atHome = true;
+  currentUnit = key;
+  document.getElementById('homeContent').style.display='block';
+  document.getElementById('motivBanner').style.display='none';
+  document.querySelectorAll('.tb').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.lesson').forEach(l=>l.classList.remove('show'));
+  document.querySelector('.wrap').scrollIntoView({behavior:'smooth',block:'start'});
+  updateP();
+}
+
+function goTo(id){
+  atHome = false;
+  document.getElementById('homeContent').style.display='none';
+  document.querySelectorAll('.tb').forEach(b=>b.classList.remove('active'));
+  const tab=document.querySelector(`.tb[data-lid="${id}"]`);
+  if(tab)tab.classList.add('active');
+  document.querySelectorAll('.lesson').forEach(l=>l.classList.remove('show'));
+  const el=document.getElementById('l-'+id);
+  if(el)el.classList.add('show');
+  document.querySelector('.wrap').scrollIntoView({behavior:'smooth',block:'start'});
+  updateP();
+}
+document.querySelectorAll('.tb').forEach(b=>{
+  b.addEventListener('click',function(){
+    if(this.classList.contains('active')) { showHome(); return; }
+    goTo(this.dataset.lid);
+  });
+});
+
+// ===== OVERVIEW =====
+function unitDone(u){
+  return u.ids.every(id=>getAllAttempted(id));
+}
+function unitProgress(u){
+  const done=u.ids.filter(id=>getAllAttempted(id)).length;
+  return {done,total:u.ids.length,pct:Math.round(done/u.ids.length*100)};
+}
+function buildOV(){
+  const g=document.getElementById('ovGrid');
+  if(!currentUnit){
+    // Show unit cards
+    let h='';
+    UNITS.forEach(u=>{
+      const pr=unitProgress(u);
+      const allDone=pr.done===pr.total;
+      h+=`<div class="u-card${allDone?' done':''}" onclick="showUnit('${u.key}')">
+        <div class="u-ico">${allDone?'✅':u.ico}</div>
+        <div class="u-nm">${u.n}</div>
+        <div class="u-pr"><div class="u-pr-bar"><div class="u-pr-fill" style="width:${pr.pct}%"></div></div><span class="u-pr-lbl">${pr.done}/${pr.total}</span></div>
+        <div class="u-st">${allDone?'✅ Completed':'⏳ In Progress'}</div>
+      </div>`;
+    });
+    g.innerHTML=h;
+  }else{
+    // Show lesson cards for selected unit
+    const u=UNITS.find(x=>x.key===currentUnit);
+    if(!u){g.innerHTML='';return;}
+    document.getElementById('unitBack').innerHTML='<div class="u-back" onclick="showHome()">⬅️ Back to Units</div>';
+    document.getElementById('unitBack').style.display='block';
+    let h='';
+    u.ids.forEach(id=>{
+      const attempted=getAllAttempted(id);
+      const sc=getQS(id),tl=getQT(id);
+      h+=`<div class="ov-card${attempted?' done':''}" onclick="goTo('${id}')">
+        <div class="ico">${attempted?'✅':u.ico}</div>
+        <div class="nm">${LN[id]}</div>
+        <div class="un">${u.n}</div>
+        <div class="st">${attempted?'Score: '+sc+'/'+tl+' ✅':'⏳ Not Started'}</div>
+      </div>`;
+    });
+    g.innerHTML=h;
+  }
+}
+
+// ===== QUIZ =====
+let cq=null,qa={};
+
+function openQuiz(id,title){
+  cq=id;qa={};
+  const saved=localStorage.getItem('qa_'+id);
+  if(saved)qa=JSON.parse(saved);
+  const submitted=localStorage.getItem('qsub_'+id)==='1';
+  document.getElementById('qTitle').textContent='Quiz: '+title;
+  const d=QD[id];if(!d)return;
+  let h='';
+  const ll='ABCD';
+  d.forEach((q,i)=>{
+    h+=`<div class="qi" data-qi="${i}"><div class="qtop"><span class="qnum">${i+1}</span>${q.q}</div><div class="qopts">`;
+    q.o.forEach((o,j)=>{
+      const sel=qa[i]==j?' sel':'';
+      h+=`<div class="qopt${sel}" data-oi="${j}" onclick="aq(${i},${j})"><span class="lt">${ll[j]||j}</span>${o}</div>`;
+    });
+    h+=`</div><div class="qfb" id="qfb-${i}"></div></div>`;
+  });
+  document.getElementById('qBody').innerHTML=h;
+  document.getElementById('qScore').textContent='⭐ 0 / '+d.length;
+  if(submitted){
+    showQuizResults();
+  }else{
+    updateQS();
+  }
+  document.getElementById('qOverlay').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeQuiz(){
+  document.getElementById('qOverlay').classList.remove('show');
+  document.body.style.overflow='';
+  updateP();buildOV();
+}
+function aq(qi,oi){
+  if(localStorage.getItem('qsub_'+cq)==='1')return;
+  qa[qi]=oi;
+  localStorage.setItem('qa_'+cq, JSON.stringify(qa));
+  const el=document.querySelectorAll('.qi')[qi];
+  el.querySelectorAll('.qopt').forEach(o=>o.classList.remove('sel'));
+  el.querySelector(`.qopt[data-oi="${oi}"]`).classList.add('sel');
+  updateQS();
+}
+function submitQuiz(){
+  const d=QD[cq];if(!d)return;
+  const an=Object.keys(qa).length;
+  if(an<d.length){toast('⚠️ Answer all questions before submitting!');return;}
+  localStorage.setItem('qsub_'+cq,'1');
+  localStorage.setItem('q_'+cq, getQS(cq));
+  showQuizResults();
+  updateP();buildOV();
+}
+function showQuizResults(){
+  const d=QD[cq];if(!d)return;
+  d.forEach((q,i)=>{
+    const oi=qa[i];
+    if(oi===undefined)return;
+    const el=document.querySelectorAll('.qi')[i];
+    if(!el)return;
+    const opts=el.querySelectorAll('.qopt');
+    const fb=document.getElementById('qfb-'+i);
+    const ca=q.a;
+    opts.forEach((o,j)=>{
+      o.classList.add('dis');
+      if(j===ca)o.classList.add('correct');
+      if(j===oi&&oi!==ca)o.classList.add('wrong');
+    });
+    if(oi===ca){fb.textContent='✅ Correct! Well done! 🎉';fb.className='qfb show good';}
+    else{fb.textContent='❌ The correct answer is: '+q.o[ca];fb.className='qfb show bad';}
+  });
+  const sc=getQS(cq),tt=getQT(cq),an=Object.keys(qa).length;
+  document.getElementById('qScore').textContent=fmtStars(sc,tt)+'  ('+sc+'/'+tt+')';
+  if(an===tt){
+    if(sc===tt){showConfetti();toast('🎉 Perfect score on '+LN[cq]+'!');}
+    else if(sc>=tt*.75)toast('🌟 Excellent! Great performance!');
+    else if(sc>=tt*.5)toast('👍 Good! Try again to improve');
+    else toast('💪 Keep trying! Review and retry');
+  }
+}
+function fmtStars(sc,tl){
+  if(tl===0)return'☆☆☆☆';
+  const p=sc/tl;
+  if(p===1)return'⭐⭐⭐⭐';
+  if(p>=.75)return'⭐⭐⭐☆';
+  if(p>=.5)return'⭐⭐☆☆';
+  if(p>0)return'⭐☆☆☆';
+  return'☆☆☆☆';
+}
+function updateQS(){
+  const d=QD[cq];if(!d)return;
+  const an=Object.keys(qa).length;
+  document.getElementById('qScore').textContent='📝 '+an+' / '+d.length;
+}
+function getQS(id){
+  const d=QD[id];if(!d)return 0;
+  if(cq===id){let c=0;Object.keys(qa).forEach(k=>{if(parseInt(qa[k])===d[parseInt(k)].a)c++;});return c;}
+  return parseInt(localStorage.getItem('q_'+id))||0;
+}
+function getQT(id){const d=QD[id];return d?d.length:0}
+function getAllAttempted(id){
+  return localStorage.getItem('qsub_'+id)==='1';
+}
+function restartQ(){if(!cq)return;localStorage.removeItem('qa_'+cq);localStorage.removeItem('qsub_'+cq);openQuiz(cq,document.getElementById('qTitle').textContent.replace('Quiz: ','').replace('اختبار: ',''));}
+
+// ===== PROGRESS =====
+function updateP(){
+  let done, total;
+  if(currentUnit){
+    const u=UNITS.find(x=>x.key===currentUnit);
+    if(u){const pr=unitProgress(u);done=pr.done;total=pr.total;}
+    else{done=0;total=8;}
+  }else{
+    done=0;total=8;
+    LIDS.forEach(id=>{if(getAllAttempted(id))done++;});
+  }
+  const pct=Math.round(done/total*100);
+  document.getElementById('pFill').style.width=pct+'%';
+  const label=currentUnit ? 'Unit '+(currentUnit==='u1'?'1':'2')+' Progress:' : 'Progress:';
+  document.getElementById('pLabel').textContent=label+' '+pct+'%';
+  document.getElementById('hDone').textContent=done;
+  let s='';const fs=Math.floor(done/2);
+  for(let i=0;i<4;i++)s+=i<fs?'⭐':'☆';
+  document.getElementById('pStars').textContent=s;
+  buildOV();
+}
+
+// ===== CONFETTI =====
+function showConfetti(){
+  const c=document.getElementById('confetti'),ctx=c.getContext('2d');
+  c.width=window.innerWidth;c.height=window.innerHeight;
+  const colors=['#ff8f00','#4dd0e1','#ffd54f','#ef5350','#66bb6a','#ab47bc','#5c6bc0'];
+  const ps=[];
+  for(let i=0;i<140;i++)ps.push({x:Math.random()*c.width,y:-20-Math.random()*c.height,w:5+Math.random()*8,h:3+Math.random()*6,col:colors[Math.floor(Math.random()*colors.length)],vx:(Math.random()-.5)*4,vy:2+Math.random()*4,rot:Math.random()*360,rv:(Math.random()-.5)*8});
+  let f=0;
+  function dr(){
+    ctx.clearRect(0,0,c.width,c.height);let alive=false;
+    ps.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.rot+=p.rv;p.vy+=.05;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot*Math.PI/180);ctx.fillStyle=p.col;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore();if(p.y<c.height+20)alive=true;});
+    f++;if(alive&&f<200)requestAnimationFrame(dr);else ctx.clearRect(0,0,c.width,c.height);
+  }
+  dr();
+}
+
+// ===== TOAST =====
+function toast(m){
+  const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3500);
+}
+
+// ===== CLOSE QUIZ ON BACKDROP & ESC =====
+document.getElementById('qOverlay').addEventListener('click',function(e){if(e.target===this)closeQuiz();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeQuiz();});
+
+// ===== INIT =====
+buildL();
+updateP();
+</script>
+</body>
+</html>
