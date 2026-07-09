@@ -570,6 +570,29 @@
   .motiv p{opacity:.82;font-size:.85em;position:relative}
   .motiv .qt{font-style:italic;opacity:.55;font-size:.78em;margin-top:6px;position:relative}
 
+  /* ===== BOOK BAR ===== */
+  .book-bar{
+    display:flex;align-items:center;gap:14px;
+    background:linear-gradient(135deg,#e8eaf6,#c5cae9);
+    border:1px solid #9fa8da;
+    border-radius:var(--radius);padding:14px 20px;
+    margin-bottom:16px;flex-wrap:wrap;
+  }
+  .book-bar-ico{font-size:2.2em;flex-shrink:0}
+  .book-bar-info{flex:1;min-width:160px}
+  .book-bar-title{font-weight:800;color:var(--navy);font-size:.9em}
+  .book-bar-desc{font-size:.75em;color:var(--text2)}
+  .book-bar-btns{display:flex;gap:8px;flex-wrap:wrap}
+  .book-btn{
+    padding:8px 20px;border:none;border-radius:8px;
+    font-weight:700;font-size:.78em;cursor:pointer;
+    transition:all .2s var(--ease);font-family:'Inter','Tajawal',sans-serif;
+  }
+  .book-btn.view{background:var(--indigo);color:#fff}
+  .book-btn.view:hover{background:var(--indigo3)}
+  .book-btn.down{background:var(--teal);color:#fff}
+  .book-btn.down:hover{background:var(--teal2)}
+
   /* ===== QUIZ OVERLAY ===== */
   .qoverlay{
     display:none;position:fixed;inset:0;z-index:1000;
@@ -755,6 +778,17 @@
   <h3>🚀 Welcome to Your Physics Journey!</h3>
   <p>Each lesson has: English explanation + Arabic translation + diagrams + real-life examples + quiz</p>
   <div class="qt">"Physics is the key to understanding the universe — and it's easier than you think!"</div>
+</div>
+<div class="book-bar">
+  <div class="book-bar-ico">📖</div>
+  <div class="book-bar-info">
+    <div class="book-bar-title">Physics Textbook — Second Grade</div>
+    <div class="book-bar-desc">Full curriculum reference with explanations, diagrams &amp; practice problems</div>
+  </div>
+  <div class="book-bar-btns">
+    <button class="book-btn view" onclick="window.open('Physics%20_%5BFirst%20Grade%5D%20.pdf')">View</button>
+    <button class="book-btn down" onclick="var a=document.createElement('a');a.href='Physics%20_%5BFirst%20Grade%5D%20.pdf';a.download='Physics_First_Grade.pdf';a.click()">⬇️ Download</button>
+  </div>
 </div>
 <div id="unitBack" style="display:none"></div>
 <div class="ov-grid" id="ovGrid"></div>
