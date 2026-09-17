@@ -729,6 +729,121 @@
     .section-body{max-height:5000px;padding:0 22px 20px}
     .section-header .s-arrow{display:none}
   }
+
+  /* ===== FUTURE UI LAYER — glass, neon, motion ===== */
+  :root{
+    --neon:#00f0ff;
+    --violet:#8b5cf6;
+    --magenta:#e879f9;
+    --space:#050816;
+    --glass:rgba(255,255,255,0.72);
+  }
+  body{
+    background:
+      radial-gradient(1000px 400px at 10% -5%,rgba(139,92,246,.12),transparent),
+      radial-gradient(900px 380px at 90% 0%,rgba(0,240,255,.10),transparent),
+      radial-gradient(700px 500px at 50% 100%,rgba(232,121,249,.08),transparent),
+      var(--bg);
+  }
+  .hero{
+    background:
+      radial-gradient(600px 300px at 20% 20%,rgba(0,240,255,.18),transparent),
+      radial-gradient(700px 350px at 80% 30%,rgba(139,92,246,.28),transparent),
+      radial-gradient(500px 300px at 50% 90%,rgba(232,121,249,.15),transparent),
+      linear-gradient(160deg,#050816,#0a1030 45%,#1e1b4b 75%,#312e81);
+    border-bottom:1px solid rgba(0,240,255,.18);
+    padding:56px 24px 96px;
+  }
+  .hero::after{
+    content:'';position:absolute;inset:0;pointer-events:none;opacity:.35;
+    background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
+    background-size:42px 42px;
+    mask-image:radial-gradient(600px 300px at 50% 30%,black,transparent);
+  }
+  .orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;pointer-events:none;animation:orbFloat 8s ease-in-out infinite}
+  .orb.o1{width:220px;height:220px;background:#00f0ff;left:8%;top:10%}
+  .orb.o2{width:260px;height:260px;background:#8b5cf6;right:10%;top:20%;animation-delay:-3s}
+  .orb.o3{width:160px;height:160px;background:#e879f9;left:45%;bottom:5%;animation-delay:-5s;opacity:.35}
+  @keyframes orbFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-24px) scale(1.08)}}
+  .hero-badge{
+    background:rgba(0,240,255,.10);
+    border:1px solid rgba(0,240,255,.28);
+    box-shadow:0 0 20px rgba(0,240,255,.15),inset 0 0 12px rgba(255,255,255,.06);
+    backdrop-filter:blur(14px);
+  }
+  .hero h1 span{
+    background:linear-gradient(90deg,#00f0ff,#a78bfa,#e879f9,#facc15);
+    -webkit-background-clip:text;background-clip:text;
+  }
+  .hero-stat{
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.15);
+  }
+  .topbar{
+    background:rgba(255,255,255,.78);
+    backdrop-filter:blur(22px) saturate(1.4);
+    border-bottom:1px solid rgba(139,92,246,.12);
+    box-shadow:0 8px 32px rgba(5,8,22,.08);
+    border-radius:0 0 18px 18px;
+  }
+  .tb.active{
+    background:linear-gradient(135deg,#4f46e5,#8b5cf6);
+    box-shadow:0 4px 18px rgba(139,92,246,.4);
+  }
+  .section{
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(139,92,246,.08);
+  }
+  .section:hover{transform:translateY(-2px)}
+  .ov-card,.u-card{
+    position:relative;overflow:hidden;
+    background:rgba(255,255,255,.9);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(139,92,246,.10)!important;
+  }
+  .ov-card::before,.u-card::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,#00f0ff,#8b5cf6,#e879f9);
+    opacity:0;transition:opacity .25s;
+  }
+  .ov-card:hover::before,.u-card:hover::before{opacity:1}
+  .ov-card:hover,.u-card:hover{transform:translateY(-6px) scale(1.01)}
+  .motiv{
+    background:linear-gradient(135deg,#050816,#1e1b4b 60%,#4c1d95);
+    border:1px solid rgba(0,240,255,.2);
+    box-shadow:0 12px 40px rgba(76,29,149,.25);
+  }
+  .book-bar{
+    background:linear-gradient(135deg,rgba(255,255,255,.9),rgba(224,231,255,.9));
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(79,70,229,.18);
+  }
+  .btn-qz{
+    background:linear-gradient(135deg,#06b6d4,#8b5cf6 60%,#e879f9);
+    box-shadow:0 8px 30px rgba(139,92,246,.35);
+  }
+  .lhead{
+    background:linear-gradient(135deg,#050816 0%,#312e81 60%,#6d28d9 100%);
+    border:1px solid rgba(0,240,255,.18);
+    box-shadow:0 12px 40px rgba(49,46,129,.25);
+  }
+  .frm-box{
+    background:linear-gradient(135deg,#fff,#f0f9ff);
+    border:2px solid transparent;
+    background-clip:padding-box;
+    position:relative;
+  }
+  .frm-box::before{
+    content:'';position:absolute;inset:-2px;border-radius:12px;z-index:-1;
+    background:linear-gradient(135deg,#00f0ff,#8b5cf6,#e879f9);
+  }
+  /* AI removed — key stored in openrouter_api_key.txt */
+  .streak-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#e0e0e0;margin:0 2px}
+  .streak-dot.on{background:linear-gradient(135deg,#00f0ff,#8b5cf6);box-shadow:0 0 8px rgba(0,240,255,.6)}
+  .type-caret{display:inline-block;width:2px;height:1em;background:#00f0ff;vertical-align:middle;animation:blink 1s infinite;margin-left:2px}
+  @keyframes blink{50%{opacity:0}}
 </style>
 </head>
 <body>
@@ -736,15 +851,26 @@
 <canvas id="confetti"></canvas>
 <div class="toast" id="toast"></div>
 
+<!-- Shared arrow markers for all lesson diagrams -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><marker id="ao" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#ff8f00"/></marker><marker id="at" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#00695c"/></marker><marker id="mFc" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#c62828"/></marker><marker id="mV" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#00695c"/></marker><marker id="mMo" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#90a4ae"/></marker><marker id="mW" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#5d4037"/></marker><marker id="mLy" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#0288d1"/></marker><marker id="mHt" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#c62828"/></marker></defs></svg>
+
 <!-- ===== HERO ===== -->
 <section class="hero">
-  <div class="hero-badge" onclick="showHome()" style="cursor:pointer">📘 Physics — Second Grade ⬅️ Home</div>
+  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+  <div class="hero-badge" onclick="showHome()" style="cursor:pointer">🚀 Physics Lab 2030 &nbsp;•&nbsp; Second Grade ⬅️ Home</div>
   <div class="hero-emoji">⚡</div>
-  <h1>Physics <span>Made Simple &amp; Fun</span></h1>
-  <p>Bilingual lessons (English + Arabic) with illustrations, real-life examples &amp; interactive quizzes</p>
+  <h1>Physics <span>Future Lab</span></h1>
+  <p><span id="typeText">Explore • Experiment • Master the universe</span><span class="type-caret"></span></p>
+  <p style="font-size:.8em;opacity:.7">دروس ثنائية اللغة + تجارب تفاعلية + كويزات ذكية + تقدم محفوظ</p>
   <div class="hero-stats">
-    <div class="hero-stat"><div class="num">8</div><div class="lbl">Lessons</div></div>
-    <div class="hero-stat"><div class="num" id="hDone">0</div><div class="lbl">Completed</div></div>
+    <div class="hero-stat"><div class="num">8</div><div class="lbl">📚 Lessons</div></div>
+    <div class="hero-stat"><div class="num" id="hDone">0</div><div class="lbl">✅ Completed</div></div>
+    <div class="hero-stat"><div class="num">151</div><div class="lbl">🧪 Questions</div></div>
+    <div class="hero-stat"><div class="lbl" id="streakRow" style="margin-top:4px"><span class="streak-dot on"></span><span class="streak-dot on"></span><span class="streak-dot"></span><span class="streak-dot"></span></div><div class="lbl">🔥 Streak</div></div>
+  </div>
+  <div style="margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;position:relative;z-index:2">
+    <button onclick="startJourney()" style="padding:12px 32px;border-radius:100px;border:none;font-weight:800;cursor:pointer;background:linear-gradient(90deg,#00f0ff,#8b5cf6);color:#fff;font-size:.95em;box-shadow:0 8px 28px rgba(0,240,255,.35)">▶️ Start Journey</button>
+    <button onclick="openQuiz('final','📚 Comprehensive Final Exam — All Units')" style="padding:12px 28px;border-radius:100px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);backdrop-filter:blur(10px);color:#fff;font-weight:700;cursor:pointer;font-size:.9em">🏆 Final Challenge</button>
   </div>
   <svg class="hero-wave" viewBox="0 0 1200 50" preserveAspectRatio="none"><path d="M0,25 C300,50 600,0 900,25 C1050,38 1150,25 1200,25 L1200,50 L0,50 Z"/></svg>
 </section>
@@ -752,7 +878,7 @@
 <!-- ===== TOPBAR ===== -->
 <div class="topbar">
   <div class="topbar-inner">
-    <div class="topbar-brand" onclick="showHome()" style="cursor:pointer">📘 Physics</div>
+    <div class="topbar-brand" onclick="showHome()" style="cursor:pointer">🚀 Future Physics</div>
     <div class="topbar-tabs" id="tabBar">
       <button class="tb active" data-lid="u1l1">U1·L1</button>
       <button class="tb" data-lid="u1l2">U1·L2</button>
@@ -775,9 +901,14 @@
 <!-- ===== WELCOME + OVERVIEW ===== -->
 <div id="homeContent">
 <div class="motiv" id="motivBanner">
-  <h3>🚀 Welcome to Your Physics Journey!</h3>
-  <p>Each lesson has: English explanation + Arabic translation + diagrams + real-life examples + quiz</p>
-  <div class="qt">"Physics is the key to understanding the universe — and it's easier than you think!"</div>
+  <h3>🚀 Welcome to Physics Future Lab!</h3>
+  <p>🔬 كل درس = شرح EN + عربي + رسم توضيحي + مثال من حياتك + كويز فوري &nbsp;|&nbsp; اجمع ⭐ وافتح 🏆 التحدي النهائي</p>
+  <div class="qt" id="quoteBox">"The universe is under no obligation to make sense to you — but physics makes it fun!" — Neil deGrasse Tyson</div>
+  <div style="margin-top:10px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;position:relative">
+    <span style="background:rgba(0,240,255,.15);border:1px solid rgba(0,240,255,.3);padding:3px 14px;border-radius:20px;font-size:.72em">⚡ 8 Missions</span>
+    <span style="background:rgba(232,121,249,.15);border:1px solid rgba(232,121,249,.3);padding:3px 14px;border-radius:20px;font-size:.72em">🧪 151 Experiments</span>
+    <span style="background:rgba(250,204,21,.15);border:1px solid rgba(250,204,21,.3);padding:3px 14px;border-radius:20px;font-size:.72em">🏆 Final Boss</span>
+  </div>
 </div>
 <div class="book-bar">
   <div class="book-bar-ico">📖</div>
@@ -852,19 +983,52 @@
     </div>
     <div class="section-body open">
       <div class="svg-wrap">
-        <svg viewBox="0 0 420 130" width="420" height="130">
-          <rect x="25" y="35" width="50" height="58" rx="8" fill="#283593" opacity=".9"/>
-          <text x="50" y="72" text-anchor="middle" fill="#fff" font-size="14">🏋️</text>
-          <line x1="75" y1="64" x2="135" y2="64" stroke="#ff8f00" stroke-width="3" marker-end="url(#ao)"/>
-          <text x="105" y="50" text-anchor="middle" fill="#ff8f00" font-size="10" font-weight="bold">PUSH</text>
-          <rect x="145" y="35" width="50" height="58" rx="8" fill="#eee" stroke="#283593" stroke-width="2"/>
-          <text x="170" y="72" text-anchor="middle" fill="#283593" font-size="20">📦</text>
-          <line x1="235" y1="64" x2="295" y2="64" stroke="#00695c" stroke-width="3" marker-end="url(#at)"/>
-          <rect x="305" y="35" width="50" height="58" rx="8" fill="#00695c" opacity=".9"/>
-          <text x="330" y="72" text-anchor="middle" fill="#fff" font-size="14">🏋️</text>
-          <text x="265" y="50" text-anchor="middle" fill="#00695c" font-size="10" font-weight="bold">PULL</text>
-          <rect x="190" y="35" width="50" height="58" rx="8" fill="#eee" stroke="#00695c" stroke-width="2"/>
-          <text x="215" y="72" text-anchor="middle" fill="#00695c" font-size="20">📦</text>
+        <svg viewBox="0 0 640 252" width="640" height="252">
+          <!-- PUSH panel -->
+          <rect x="8" y="8" width="304" height="212" rx="12" fill="#fff8e1" stroke="#ffe082" stroke-width="1.5"/>
+          <text x="160" y="34" text-anchor="middle" fill="#ff8f00" font-size="17" font-weight="bold">PUSH 💪</text>
+          <text x="160" y="54" text-anchor="middle" fill="#e65100" font-size="12">دفع — بعيدًا عنك</text>
+          <line x1="28" y1="200" x2="292" y2="200" stroke="#b0bec5" stroke-width="2"/>
+          <!-- person pushing -->
+          <circle cx="82" cy="128" r="12" fill="#ffcc99" stroke="#5d4037" stroke-width="2"/>
+          <line x1="82" y1="140" x2="82" y2="174" stroke="#283593" stroke-width="7" stroke-linecap="round"/>
+          <line x1="82" y1="174" x2="66" y2="198" stroke="#283593" stroke-width="6" stroke-linecap="round"/>
+          <line x1="82" y1="174" x2="98" y2="198" stroke="#283593" stroke-width="6" stroke-linecap="round"/>
+          <line x1="82" y1="150" x2="126" y2="160" stroke="#283593" stroke-width="6" stroke-linecap="round"/>
+          <!-- crate -->
+          <rect x="140" y="150" width="62" height="50" rx="6" fill="#eceff1" stroke="#283593" stroke-width="2"/>
+          <text x="171" y="183" text-anchor="middle" font-size="22">📦</text>
+          <!-- F arrow into crate -->
+          <line x1="96" y1="163" x2="137" y2="163" stroke="#ff8f00" stroke-width="4" marker-end="url(#ao)"/>
+          <text x="116" y="152" text-anchor="middle" fill="#ff8f00" font-size="11" font-weight="bold">F</text>
+          <!-- motion -->
+          <line x1="214" y1="160" x2="238" y2="160" stroke="#ff8f00" stroke-width="2" opacity=".5"/>
+          <line x1="220" y1="173" x2="248" y2="173" stroke="#ff8f00" stroke-width="2" opacity=".5"/>
+          <line x1="214" y1="186" x2="238" y2="186" stroke="#ff8f00" stroke-width="2" opacity=".5"/>
+          <text x="252" y="176" text-anchor="middle" fill="#ff8f00" font-size="10" font-weight="bold">moves →</text>
+          <!-- PULL panel -->
+          <rect x="328" y="8" width="304" height="212" rx="12" fill="#e0f2f1" stroke="#b2dfdb" stroke-width="1.5"/>
+          <text x="480" y="34" text-anchor="middle" fill="#00695c" font-size="17" font-weight="bold">PULL 🧲</text>
+          <text x="480" y="54" text-anchor="middle" fill="#00695c" font-size="12">سحب — نحوك</text>
+          <line x1="348" y1="200" x2="612" y2="200" stroke="#b0bec5" stroke-width="2"/>
+          <!-- crate -->
+          <rect x="372" y="150" width="62" height="50" rx="6" fill="#eceff1" stroke="#00695c" stroke-width="2"/>
+          <text x="403" y="183" text-anchor="middle" font-size="22">📦</text>
+          <!-- rope -->
+          <line x1="434" y1="168" x2="512" y2="162" stroke="#795548" stroke-width="2.5"/>
+          <text x="473" y="182" text-anchor="middle" fill="#795548" font-size="9">rope حبل</text>
+          <!-- F arrow toward person -->
+          <line x1="440" y1="148" x2="505" y2="144" stroke="#00695c" stroke-width="4" marker-end="url(#at)"/>
+          <text x="472" y="137" text-anchor="middle" fill="#00695c" font-size="11" font-weight="bold">F</text>
+          <!-- person pulling -->
+          <circle cx="552" cy="128" r="12" fill="#ffcc99" stroke="#5d4037" stroke-width="2"/>
+          <line x1="552" y1="140" x2="552" y2="174" stroke="#00695c" stroke-width="7" stroke-linecap="round"/>
+          <line x1="552" y1="174" x2="536" y2="198" stroke="#00695c" stroke-width="6" stroke-linecap="round"/>
+          <line x1="552" y1="174" x2="568" y2="198" stroke="#00695c" stroke-width="6" stroke-linecap="round"/>
+          <line x1="552" y1="150" x2="514" y2="160" stroke="#00695c" stroke-width="6" stroke-linecap="round"/>
+          <text x="588" y="176" text-anchor="middle" fill="#00695c" font-size="10" font-weight="bold">← moves</text>
+          <!-- caption -->
+          <text x="320" y="240" text-anchor="middle" fill="#546e7a" font-size="12">Force = push or pull from interaction 🤝 القوة دفع أو سحب بين جسمين</text>
           <defs><marker id="ao" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#ff8f00"/></marker><marker id="at" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#00695c"/></marker></defs>
         </svg>
       </div>
@@ -995,6 +1159,38 @@
     </div>
   </div>
 
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s1">7</span>
+      <div class="s-info">
+        <div class="s-title">
+          Newton's 2nd Law in Action <span class="s-tag" style="background:#fff8e1;color:#e65100">FORMULA</span>
+        </div>
+        <div class="s-sub">قانون نيوتن الثاني — F = m·a</div>
+      </div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="dual">
+        <div class="en-panel">
+          <p>When <strong>no resultant force</strong> acts (ΣF = 0), velocity doesn't change. When a <strong>resultant force</strong> acts (ΣF ≠ 0), the body <strong>accelerates</strong> (a ≠ 0).</p>
+          <p>Force is a <strong>vector quantity</strong> — it has <strong>magnitude &amp; direction</strong>.</p>
+        </div>
+        <div class="ar-panel">
+          <p>عندما <strong>لا توجد قوة محصلة</strong> (ΣF = 0) لا تتغير السرعة. وعندما تؤثر <strong>قوة محصلة</strong> (ΣF ≠ 0) يتحرك الجسم <strong>بعجلة</strong> (a ≠ 0).</p>
+          <p>القوة كمية <strong>متجهة</strong> — لها <strong>مقدار واتجاه</strong>.</p>
+        </div>
+      </div>
+      <div class="frm-box">
+        <div class="frm-pin">💪 Newton's 2nd Law</div>
+        <span class="frm-label">Force = Mass × Acceleration</span>
+        <div class="frm-value">F = m · a</div>
+      </div>
+      <div class="ex-box"><div class="ex-title">📝 Solved (from the book): The Truck</div><p>A truck of mass <strong>2000 kg</strong> is decelerated at <strong>7 m/s²</strong>. Calculate the force.</p><p style="direction:ltr;text-align:center;font-weight:800;margin-top:4px">F = m·a = 2000 × 7 = <strong>14,000 N</strong></p></div>
+      <div class="ex-box sol"><div class="ex-title">✍️ Try Yourself</div><p>A 5 kg box accelerates at 3 m/s² → F = 5 × 3 = <strong>15 N</strong>. Now you: 12 kg at 2.5 m/s² → <strong>30 N</strong> ✅</p></div>
+    </div>
+  </div>
+
   <div class="qz-zone"><button class="btn-qz" onclick="openQuiz('u1l1','Lesson 1: Meaning of Force')"><span>🧪</span> Take Lesson Quiz <span class="cnt">12 questions</span></button></div>
   <div class="lnav"><button class="prev" disabled>← Previous</button><button class="next" onclick="goTo('u1l2')">Next →</button></div>
 </div>
@@ -1023,16 +1219,22 @@
       </div>
       <div class="rl-box"><div class="rl-icon">🏀</div><div><div class="rl-title">🌍 Real Life</div><p>Why does a ball fall back to Earth instead of floating away? <strong>Gravity!</strong> Why does Earth stay in orbit around the Sun? <strong>Gravity!</strong> It's the hidden hero of the universe.</p></div></div>
       <div class="svg-wrap">
-        <svg viewBox="0 0 360 220" width="360" height="220">
-          <circle cx="180" cy="145" r="50" fill="url(#eg)"/>
+        <svg viewBox="0 0 360 230" width="360" height="230">
+          <circle cx="40" cy="30" r="1.6" fill="#90a4ae" opacity=".5"/><circle cx="320" cy="22" r="1.6" fill="#90a4ae" opacity=".5"/><circle cx="300" cy="90" r="1.3" fill="#90a4ae" opacity=".5"/><circle cx="60" cy="100" r="1.3" fill="#90a4ae" opacity=".5"/><circle cx="90" cy="45" r="1" fill="#90a4ae" opacity=".4"/>
+          <circle cx="180" cy="150" r="50" fill="url(#eg)"/>
           <defs><radialGradient id="eg" cx="40%" cy="35%"><stop offset="0%" stop-color="#4fc3f7"/><stop offset="60%" stop-color="#1565c0"/><stop offset="100%" stop-color="#0d47a1"/></radialGradient></defs>
-          <path d="M150 120 Q165 112 172 125 Q180 138 170 145 Q160 152 150 135Z" fill="#2e7d32" opacity=".6"/>
-          <path d="M195 128 Q210 124 218 135 Q225 148 215 156 Q205 162 195 145Z" fill="#2e7d32" opacity=".6"/>
-          <circle cx="180" cy="35" r="10" fill="#c62828"/><line x1="180" y1="25" x2="180" y2="15" stroke="#4e342e" stroke-width="2"/><ellipse cx="183" cy="15" rx="4" ry="2.5" fill="#4e342e"/>
-          <line x1="180" y1="45" x2="180" y2="93" stroke="#ff8f00" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#ao)"/>
-          <text x="192" y="75" fill="#ff8f00" font-size="10" font-weight="bold">F<sub>g</sub></text>
-          <circle cx="180" cy="210" r="10" fill="#c62828" opacity=".3"/>
-          <line x1="180" y1="145" x2="180" y2="200" stroke="#283593" stroke-width="1" stroke-dasharray="3,3"/>
+          <path d="M150 125 Q165 117 172 130 Q180 143 170 150 Q160 157 150 140Z" fill="#2e7d32" opacity=".6"/>
+          <path d="M195 133 Q210 129 218 140 Q225 153 215 161 Q205 167 195 150Z" fill="#2e7d32" opacity=".6"/>
+          <text x="180" y="205" text-anchor="middle" fill="#0d47a1" font-size="11" font-weight="bold">🌍 Earth — center pulls you</text>
+          <circle cx="180" cy="38" r="10" fill="#c62828"/><line x1="180" y1="28" x2="180" y2="18" stroke="#4e342e" stroke-width="2"/><ellipse cx="183" cy="18" rx="4" ry="2.5" fill="#4e342e"/>
+          <text x="206" y="30" fill="#c62828" font-size="10" font-weight="bold">🍎 apple</text>
+          <line x1="180" y1="48" x2="180" y2="96" stroke="#ff8f00" stroke-width="2.5" stroke-dasharray="5,4" marker-end="url(#ao)"/>
+          <text x="192" y="76" fill="#ff8f00" font-size="11" font-weight="bold">Fg ↓</text>
+          <text x="120" y="70" fill="#546e7a" font-size="9">gravity pulls down</text>
+          <circle cx="180" cy="213" r="9" fill="#c62828" opacity=".25"/>
+          <text x="206" y="216" fill="#90a4ae" font-size="9">lands here</text>
+          <line x1="180" y1="150" x2="180" y2="204" stroke="#283593" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="148" y="185" fill="#283593" font-size="9">to center</text>
         </svg>
       </div>
     </div>
@@ -1080,17 +1282,33 @@
     <div class="section-body open">
       <div class="kbox teal"><h4>🌌 Gravitation explains:</h4><ul><li>Motion of planets around the Sun</li><li>Motion of the Moon around Earth</li><li>Free fall of objects</li></ul></div>
       <div class="svg-wrap">
-        <svg viewBox="0 0 360 140" width="360" height="140">
-          <circle cx="170" cy="70" r="18" fill="#ff8f00"/><circle cx="170" cy="70" r="12" fill="#ffc107"/><circle cx="170" cy="70" r="6" fill="#ffd54f"/>
-          <text x="170" y="38" text-anchor="middle" fill="#ff8f00" font-size="9" font-weight="bold">☀️ Sun</text>
-          <ellipse cx="170" cy="70" rx="90" ry="38" fill="none" stroke="#283593" stroke-width="1.5" stroke-dasharray="5,3" opacity=".4"/>
-          <circle cx="260" cy="70" r="7" fill="#1565c0" stroke="#0d47a1" stroke-width="1.5"/>
-          <text x="274" y="74" fill="#1565c0" font-size="8" font-weight="bold">🌍 Earth</text>
-          <line x1="170" y1="70" x2="253" y2="70" stroke="#ff8f00" stroke-width="1.5" marker-end="url(#ao)"/>
-          <line x1="260" y1="70" x2="280" y2="60" stroke="#c62828" stroke-width="1.5" stroke-dasharray="3,2"/>
-          <text x="215" y="66" fill="#ff8f00" font-size="7">F<sub>g</sub></text>
+        <svg viewBox="0 0 360 150" width="360" height="150">
+          <circle cx="170" cy="75" r="18" fill="#ff8f00"/><circle cx="170" cy="75" r="12" fill="#ffc107"/><circle cx="170" cy="75" r="6" fill="#ffd54f"/>
+          <text x="170" y="43" text-anchor="middle" fill="#ff8f00" font-size="9" font-weight="bold">☀️ Sun</text>
+          <ellipse cx="170" cy="75" rx="90" ry="38" fill="none" stroke="#283593" stroke-width="1.5" stroke-dasharray="5,3" opacity=".4"/>
+          <text x="82" y="52" fill="#90a4ae" font-size="8">orbit path</text>
+          <circle cx="260" cy="75" r="7" fill="#1565c0" stroke="#0d47a1" stroke-width="1.5"/>
+          <text x="274" y="79" fill="#1565c0" font-size="8" font-weight="bold">🌍 Earth</text>
+          <line x1="170" y1="75" x2="253" y2="75" stroke="#ff8f00" stroke-width="1.5" marker-end="url(#ao)"/>
+          <line x1="260" y1="75" x2="260" y2="48" stroke="#00695c" stroke-width="2" marker-end="url(#at)"/>
+          <text x="266" y="60" fill="#00695c" font-size="9" font-weight="bold">v</text>
+          <text x="266" y="100" fill="#00695c" font-size="8">tangent ↑</text>
+          <text x="212" y="71" fill="#ff8f00" font-size="7">Fg pulls in</text>
+          <text x="180" y="140" text-anchor="middle" fill="#546e7a" font-size="9">Gravity bends motion into a circle: Fc = Fg</text>
         </svg>
       </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s5">5</span>
+      <div class="s-info"><div class="s-title">Practice Exercise <span class="s-tag" style="background:#e8f5e9;color:#2e7d32">TRY IT</span></div><div class="s-sub">تدريب من كتاب المدرسة</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="ex-box"><div class="ex-title">📝 Exercise</div><p>Two <strong>identical spheres</strong>, centers <strong>1 m</strong> apart, attract each other with <strong>1 N</strong>. Calculate each mass.</p></div>
+      <div class="ex-box sol"><div class="ex-title">💡 Solution</div><p style="direction:ltr;text-align:center;font-weight:800">m = √(F·r²/G) = √(1 / 6.67×10⁻¹¹) ≈ <strong>1.22×10⁵ kg</strong></p><p>Each sphere ≈ <strong>122,000 kg</strong>! Gravity between normal objects is incredibly tiny — you need planet-size masses to feel it. 🌍</p></div>
     </div>
   </div>
 
@@ -1120,6 +1338,27 @@
         <div class="ar-panel"><p>في <strong>الحركة الدائرية المنتظمة</strong>، يتحرك الجسم في مسار دائري بسرعة <strong>ثابتة المقدار</strong> ولكن اتجاه <strong>متغير</strong>. التسارع نحو <strong>المركز</strong> دائمًا.</p></div>
       </div>
       <div class="rl-box"><div class="rl-icon">🎢</div><div><div class="rl-title">🌍 Real Life — Amusement Parks!</div><p>On a roller coaster loop, you feel pushed toward the center — <strong>that's centripetal force!</strong> Your body wants to go straight, but the track pushes you into a circle.</p></div></div>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 380 225" width="380" height="225">
+          <circle cx="170" cy="112" r="72" fill="none" stroke="#283593" stroke-width="1.5" stroke-dasharray="6,4" opacity=".45"/>
+          <text x="170" y="22" text-anchor="middle" fill="#90a4ae" font-size="9">circular path</text>
+          <circle cx="170" cy="112" r="5" fill="#283593"/>
+          <text x="170" y="132" text-anchor="middle" fill="#283593" font-size="9" font-weight="bold">center</text>
+          <line x1="170" y1="112" x2="238" y2="112" stroke="#5d4037" stroke-width="2"/>
+          <text x="204" y="105" text-anchor="middle" fill="#5d4037" font-size="9">string (r)</text>
+          <circle cx="242" cy="112" r="12" fill="#c62828" stroke="#7f0000" stroke-width="1.5"/>
+          <text x="242" y="116" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold">m</text>
+          <line x1="230" y1="112" x2="178" y2="112" stroke="#c62828" stroke-width="3" marker-end="url(#mFc)"/>
+          <text x="204" y="128" text-anchor="middle" fill="#c62828" font-size="11" font-weight="bold">Fc ↓ center</text>
+          <line x1="242" y1="100" x2="242" y2="66" stroke="#00695c" stroke-width="3" marker-end="url(#mV)"/>
+          <text x="252" y="82" fill="#00695c" font-size="11" font-weight="bold">v</text>
+          <text x="300" y="70" fill="#00695c" font-size="9">tangent</text>
+          <text x="300" y="150" fill="#c62828" font-size="9">toward</text>
+          <text x="300" y="162" fill="#c62828" font-size="9">center</text>
+          <text x="190" y="212" text-anchor="middle" fill="#546e7a" font-size="10">Fc ⊥ v — always! (Fc = m·v²/r)</text>
+          <defs><marker id="mFc" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#c62828"/></marker><marker id="mV" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#00695c"/></marker></defs>
+        </svg>
+      </div>
     </div>
   </div>
   <div class="section">
@@ -1160,6 +1399,38 @@
       <div class="rl-box"><div class="rl-icon">🛞</div><div><div class="rl-title">🌍 Car Skidding</div><p>Oil on the road <strong>reduces friction</strong> (the centripetal force) → the car skids in a straight line out of the curve. <strong>Dangerous!</strong></p></div></div>
     </div>
   </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s5">5</span>
+      <div class="s-info"><div class="s-title">Periodic Time <span class="s-tag" style="background:#fff8e1;color:#e65100">FORMULA</span></div><div class="s-sub">الزمن الدوري T</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="dual">
+        <div class="en-panel"><p><strong>Periodic time (T):</strong> time for <strong>one complete revolution</strong>. Speed = distance/time around the circle: <strong>v = 2πr / T</strong>, so <strong>a<sub>c</sub> = 4π²r / T²</strong>.</p></div>
+        <div class="ar-panel"><p><strong>الزمن الدوري (T):</strong> الزمن اللازم لعمل <strong>دورة كاملة</strong>. السرعة = المسافة/الزمن حول الدائرة: <strong>v = 2πr / T</strong>، ومنها <strong>a<sub>c</sub> = 4π²r / T²</strong>.</p></div>
+      </div>
+      <div class="two-grid">
+        <div class="frm-box"><div class="frm-pin">🔄 Speed</div><span class="frm-label">From Periodic Time</span><div class="frm-value">v = 2πr / T</div></div>
+        <div class="frm-box"><div class="frm-pin">🎯 Acceleration</div><span class="frm-label">From Periodic Time</span><div class="frm-value">a<sub>c</sub> = 4π²r / T²</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s6">6</span>
+      <div class="s-info"><div class="s-title">Solved Problems <span class="s-tag" style="background:#ffebee;color:#c62828">EXAMPLE</span></div><div class="s-sub">مسائل محلولة من الكتاب</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="ex-box"><div class="ex-title">📝 Problem 1 — String &amp; Mass</div><p>2 kg tied to a string, horizontal circle r = <strong>1.5 m</strong>, v = <strong>28.26 m/s</strong>. Find a<sub>c</sub> and string tension.</p></div>
+      <div class="ex-box sol"><div class="ex-title">💡 Solution</div><p style="direction:ltr;text-align:center;font-weight:800">a<sub>c</sub> = v²/r = 798.63/1.5 = <strong>532.42 m/s²</strong><br>F<sub>c</sub> = m·a<sub>c</sub> = 2 × 532.42 = <strong>1064.84 N</strong> (tension) 💪</p></div>
+      <div class="ex-box"><div class="ex-title">📝 Problem 2 — Toy on a Circle</div><p>Toy 600 g (0.6 kg), circle diameter <strong>4 m</strong> (r = 2 m), v = <strong>10 m/s</strong>. Find a<sub>c</sub>, F<sub>c</sub>, T.</p></div>
+      <div class="ex-box sol"><div class="ex-title">💡 Solution</div><p style="direction:ltr;text-align:center;font-weight:800">a<sub>c</sub> = 100/2 = <strong>50 m/s²</strong> &nbsp;|&nbsp; F<sub>c</sub> = 0.6 × 50 = <strong>30 N</strong><br>T = 2πr/v = 12.56/10 = <strong>1.256 s</strong> ⏱️</p></div>
+      <div class="kbox purple"><h4>💡 Important Note</h4><ul><li>Centripetal force is <strong>NOT a new type</strong> of force — it is a <strong>role</strong>: any of tension, gravity, friction, normal or lift force pointing toward the center.</li></ul></div>
+    </div>
+  </div>
+
   <div class="qz-zone"><button class="btn-qz" onclick="openQuiz('u1l3','Lesson 3: Centripetal Force')"><span>🧪</span> Take Lesson Quiz <span class="cnt">12 questions</span></button></div>
   <div class="lnav"><button class="prev" onclick="goTo('u1l2')">← Previous</button><button class="next" onclick="goTo('u1l4')">Next →</button></div>
 </div>
@@ -1184,6 +1455,27 @@
         <div class="ar-panel"><p>الاحتكاك هو القوة التي <strong>تقاوم الحركة</strong> عندما يتلامس سطحان. يعتمد على: <strong>قوة الضغط، طبيعة السطحين، الزاوية</strong>.</p></div>
       </div>
       <div class="rl-box"><div class="rl-icon">👟</div><div><div class="rl-title">🌍 Try Walking on Soap!</div><p>You'd slip because <strong>friction is very low</strong>. Friction is what allows you to walk without slipping. Car tires need friction with the road to move and stop safely.</p></div></div>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 380 205" width="380" height="205">
+          <line x1="20" y1="165" x2="360" y2="165" stroke="#78909c" stroke-width="3"/>
+          <line x1="30" y1="165" x2="22" y2="175" stroke="#78909c" stroke-width="2"/><line x1="70" y1="165" x2="62" y2="175" stroke="#78909c" stroke-width="2"/><line x1="300" y1="165" x2="292" y2="175" stroke="#78909c" stroke-width="2"/><line x1="340" y1="165" x2="332" y2="175" stroke="#78909c" stroke-width="2"/>
+          <text x="342" y="160" fill="#78909c" font-size="9">rough surface</text>
+          <rect x="140" y="90" width="100" height="75" rx="6" fill="#eceff1" stroke="#283593" stroke-width="2"/>
+          <text x="168" y="112" text-anchor="middle" fill="#283593" font-size="15" font-weight="bold">m</text>
+          <line x1="75" y1="128" x2="137" y2="128" stroke="#ff8f00" stroke-width="3.5" marker-end="url(#ao)"/>
+          <text x="106" y="116" text-anchor="middle" fill="#ff8f00" font-size="11" font-weight="bold">Applied F</text>
+          <line x1="244" y1="128" x2="306" y2="128" stroke="#90a4ae" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#mMo)"/>
+          <text x="322" y="131" fill="#90a4ae" font-size="9">motion</text>
+          <line x1="205" y1="130" x2="205" y2="160" stroke="#5d4037" stroke-width="2.5" marker-end="url(#mW)"/>
+          <text x="228" y="152" fill="#5d4037" font-size="10" font-weight="bold">W=mg ↓</text>
+          <line x1="175" y1="130" x2="175" y2="100" stroke="#00695c" stroke-width="2.5" marker-end="url(#mV)"/>
+          <text x="152" y="112" fill="#00695c" font-size="10" font-weight="bold">↑ N</text>
+          <line x1="215" y1="165" x2="140" y2="165" stroke="#c62828" stroke-width="3.5" marker-end="url(#mFc)"/>
+          <text x="177" y="185" text-anchor="middle" fill="#c62828" font-size="11" font-weight="bold">friction f (opposes motion)</text>
+          <text x="190" y="200" text-anchor="middle" fill="#546e7a" font-size="9">N up balances W down • f left opposes F right</text>
+          <defs><marker id="mMo" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#90a4ae"/></marker><marker id="mW" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#5d4037"/></marker></defs>
+        </svg>
+      </div>
     </div>
   </div>
   <div class="section">
@@ -1218,11 +1510,69 @@
         <div class="en-panel"><p>Viscosity is the property that <strong>resists relative motion of liquid layers</strong>. Between two plates (one stationary, one moving), liquid layers move at speeds from <strong>0 to v</strong>.</p></div>
         <div class="ar-panel"><p>اللزوجة هي الخاصية التي <strong>تقاوم الحركة النسبية لطبقات السائل</strong>. بين لوحين (ثابت ومتحرك)، تتحرك الطبقات بسرعات من <strong>0 إلى v</strong>.</p></div>
       </div>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 400 225" width="400" height="225">
+          <rect x="60" y="40" width="220" height="14" rx="3" fill="#455a64"/>
+          <line x1="60" y1="47" x2="30" y2="47" stroke="#00695c" stroke-width="3" marker-end="url(#mV)"/>
+          <text x="170" y="32" text-anchor="middle" fill="#00695c" font-size="10" font-weight="bold">moving plate → v</text>
+          <rect x="60" y="54" width="220" height="110" fill="#e1f5fe" opacity=".7"/>
+          <line x1="80" y1="150" x2="86" y2="150" stroke="#0288d1" stroke-width="2"/>
+          <text x="52" y="153" text-anchor="end" fill="#0288d1" font-size="9">slow ≈ 0</text>
+          <line x1="80" y1="132" x2="110" y2="132" stroke="#0288d1" stroke-width="2" marker-end="url(#mLy)"/>
+          <line x1="80" y1="114" x2="140" y2="114" stroke="#0288d1" stroke-width="2" marker-end="url(#mLy)"/>
+          <line x1="80" y1="96" x2="170" y2="96" stroke="#0288d1" stroke-width="2" marker-end="url(#mLy)"/>
+          <line x1="80" y1="78" x2="200" y2="78" stroke="#0288d1" stroke-width="2" marker-end="url(#mLy)"/>
+          <line x1="80" y1="62" x2="232" y2="62" stroke="#0288d1" stroke-width="2.5" marker-end="url(#mLy)"/>
+          <text x="246" y="65" fill="#0288d1" font-size="9">fast = v</text>
+          <text x="150" y="112" text-anchor="middle" fill="#01579b" font-size="9">liquid layers</text>
+          <rect x="60" y="164" width="220" height="14" rx="3" fill="#455a64"/>
+          <line x1="60" y1="178" x2="100" y2="178" stroke="#78909c" stroke-width="2"/><line x1="120" y1="178" x2="160" y2="178" stroke="#78909c" stroke-width="2"/><line x1="180" y1="178" x2="220" y2="178" stroke="#78909c" stroke-width="2"/>
+          <text x="170" y="196" text-anchor="middle" fill="#546e7a" font-size="10" font-weight="bold">fixed plate (v = 0) 🔒</text>
+          <line x1="296" y1="54" x2="296" y2="164" stroke="#5d4037" stroke-width="1.5"/>
+          <line x1="290" y1="54" x2="302" y2="54" stroke="#5d4037" stroke-width="1.5"/><line x1="290" y1="164" x2="302" y2="164" stroke="#5d4037" stroke-width="1.5"/>
+          <text x="312" y="112" fill="#5d4037" font-size="11" font-weight="bold">d</text>
+          <line x1="280" y1="30" x2="200" y2="30" stroke="#ff8f00" stroke-width="3" marker-end="url(#ao)"/>
+          <text x="240" y="22" text-anchor="middle" fill="#ff8f00" font-size="10" font-weight="bold">F (keeps it moving)</text>
+          <text x="200" y="216" text-anchor="middle" fill="#546e7a" font-size="9">Arrows grow 0 → v • friction between layers resists sliding</text>
+          <defs><marker id="mLy" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#0288d1"/></marker></defs>
+        </svg>
+      </div>
       <div class="frm-box"><div class="frm-pin">🧴 Viscosity Coefficient</div><span class="frm-label">η (eta)</span><div class="frm-value">η = F·d / (A·v)</div></div>
       <div class="kbox purple"><h4>🔬 Units of η</h4><ul><li>N·s/m² &nbsp;|&nbsp; kg/(m·s) &nbsp;|&nbsp; Pa·s &nbsp;|&nbsp; J·s/m³</li></ul></div>
       <div class="rl-box"><div class="rl-icon">🛢️</div><div><div class="rl-title">🌍 Lubrication</div><p>We use <strong>high-viscosity oils</strong> for machines — they stay on the parts and don't leak away like water. Lubrication <strong>reduces heat and wear</strong>!</p></div></div>
     </div>
   </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s4">4</span>
+      <div class="s-info"><div class="s-title">Fluid Friction &amp; Factors <span class="s-tag" style="background:#f3e5f5;color:#4a148c">KEY</span></div><div class="s-sub">احتكاك الموائع والعوامل المؤثرة</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="dual">
+        <div class="en-panel"><p><strong>Fluid friction</strong> acts on objects moving through a <strong>fluid</strong> (liquid or gas). The <strong>faster or larger</strong> the object, the <strong>greater</strong> the resistance.</p></div>
+        <div class="ar-panel"><p><strong>احتكاك الموائع</strong> يؤثر على الأجسام المتحركة في <strong>مائع</strong> (سائل أو غاز). كلما كان الجسم <strong>أسرع أو أكبر</strong> زادت المقاومة.</p></div>
+      </div>
+      <div class="rl-box"><div class="rl-icon">🏊</div><div><div class="rl-title">🌍 Feel It Yourself</div><p>Push your open hand through pool water — that's <strong>water resistance</strong>. A skydiver's <strong>parachute</strong> is huge on purpose: greater <strong>air resistance</strong> slows the descent. 🪂</p></div></div>
+      <div class="kbox amber"><h4>📊 Factors Affecting Friction</h4><ul><li><strong>Pressing force:</strong> flat object → friction = its <strong>weight</strong>; pushed against surface → friction <strong>exceeds</strong> weight</li><li><strong>Nature of surfaces</strong> sliding on each other</li><li><strong>Angle &amp; position</strong> of the object</li></ul></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s5">5</span>
+      <div class="s-info"><div class="s-title">Viscosity Lab <span class="s-tag" style="background:#ffebee;color:#c62828">EXAMPLE</span></div><div class="s-sub">تجربة اللزوجة ومسألة محلولة</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="dual">
+        <div class="en-panel"><p><strong>Experiment:</strong> two beakers — water vs <strong>glycerin</strong>. Drop a metal ball in each: the water ball hits bottom <strong>first</strong> → glycerin resists more → <strong>more viscous</strong>. Viscosity depends on <strong>liquid type &amp; temperature</strong>.</p></div>
+        <div class="ar-panel"><p><strong>تجربة:</strong> كأسان — ماء وجلسرين. أسقط كرة معدنية في كل منهما: كرة الماء تصل أولًا → الجلسرين يقاوم أكثر → <strong>أكثر لزوجة</strong>. اللزوجة تعتمد على <strong>نوع السائل ودرجة الحرارة</strong>.</p></div>
+      </div>
+      <div class="frm-box"><div class="frm-pin">🧴 Viscosity Force</div><span class="frm-label">Tangential force on moving plate</span><div class="frm-value">F<sub>vs</sub> = η · A · v / d</div></div>
+      <div class="ex-box"><div class="ex-title">📝 Solved (from the book)</div><p>Slab A = <strong>0.1 m²</strong>, oil layer d = <strong>10⁻⁵ m</strong>, η = <strong>1.5 kg/m·s</strong>, v = <strong>1 m/s</strong>. Force?</p><p style="direction:ltr;text-align:center;font-weight:800;margin-top:4px">F = 1.5 × 0.1 × 1 / 10⁻⁵ = <strong>15,000 N</strong></p></div>
+    </div>
+  </div>
+
   <div class="qz-zone"><button class="btn-qz" onclick="openQuiz('u1l4','Lesson 4: Friction & Viscosity')"><span>🧪</span> Take Lesson Quiz <span class="cnt">12 questions</span></button></div>
   <div class="lnav"><button class="prev" onclick="goTo('u1l3')">← Previous</button><button class="next" onclick="goTo('u2l1')">Next →</button></div>
 </div>
@@ -1247,6 +1597,22 @@
         <div class="ar-panel"><p><strong>درجة الحرارة:</strong> متوسط الطاقة الحركية للجزيئات.<br><strong>الحرارة:</strong> طاقة تنتقل بسبب فرق الحرارة.<br><strong>الطاقة الداخلية:</strong> مجموع الطاقة الحركية + طاقة الوضع.</p></div>
       </div>
       <div class="rl-box"><div class="rl-icon">☕</div><div><div class="rl-title">🌍 Simple Explanation</div><p>A cup of tea at 40°C = its <strong>temperature</strong>. The <strong>heat</strong> is the energy that flows from the tea to your hand, making it feel warm!</p></div></div>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 460 200" width="460" height="200">
+          <rect x="10" y="10" width="215" height="180" rx="12" fill="#e3f2fd" stroke="#90caf9" stroke-width="1.5"/>
+          <text x="117" y="34" text-anchor="middle" fill="#1565c0" font-size="13" font-weight="bold">❄️ COLD — low T</text>
+          <circle cx="70" cy="80" r="9" fill="#1565c0"/><circle cx="120" cy="70" r="9" fill="#1565c0"/><circle cx="160" cy="95" r="9" fill="#1565c0"/><circle cx="95" cy="120" r="9" fill="#1565c0"/><circle cx="145" cy="140" r="9" fill="#1565c0"/><circle cx="60" cy="145" r="9" fill="#1565c0"/>
+          <line x1="70" y1="80" x2="78" y2="84" stroke="#0d47a1" stroke-width="2"/><line x1="120" y1="70" x2="128" y2="73" stroke="#0d47a1" stroke-width="2"/><line x1="160" y1="95" x2="166" y2="99" stroke="#0d47a1" stroke-width="2"/>
+          <text x="117" y="172" text-anchor="middle" fill="#1565c0" font-size="10">slow molecules • small KE</text>
+          <rect x="235" y="10" width="215" height="180" rx="12" fill="#ffebee" stroke="#ef9a9a" stroke-width="1.5"/>
+          <text x="342" y="34" text-anchor="middle" fill="#c62828" font-size="13" font-weight="bold">🔥 HOT — high T</text>
+          <circle cx="290" cy="80" r="9" fill="#c62828"/><circle cx="340" cy="68" r="9" fill="#c62828"/><circle cx="385" cy="95" r="9" fill="#c62828"/><circle cx="315" cy="120" r="9" fill="#c62828"/><circle cx="365" cy="142" r="9" fill="#c62828"/><circle cx="280" cy="145" r="9" fill="#c62828"/>
+          <line x1="290" y1="80" x2="312" y2="68" stroke="#c62828" stroke-width="2.5" marker-end="url(#mHt)"/><line x1="340" y1="68" x2="362" y2="58" stroke="#c62828" stroke-width="2.5" marker-end="url(#mHt)"/><line x1="385" y1="95" x2="405" y2="82" stroke="#c62828" stroke-width="2.5" marker-end="url(#mHt)"/><line x1="315" y1="120" x2="296" y2="134" stroke="#c62828" stroke-width="2.5" marker-end="url(#mHt)"/>
+          <text x="342" y="172" text-anchor="middle" fill="#c62828" font-size="10">fast molecules • large KE</text>
+          <text x="230" y="196" text-anchor="middle" fill="#546e7a" font-size="10">Temperature = average kinetic energy of molecules 🌡️</text>
+          <defs><marker id="mHt" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#c62828"/></marker></defs>
+        </svg>
+      </div>
     </div>
   </div>
   <div class="section">
@@ -1272,6 +1638,18 @@
       <div class="rl-box"><div class="rl-icon">🫖</div><div><div class="rl-title">🌍 In Real Life</div><p>A kettle uses ~2000 W. To heat 2 L of water (same as 2 kg) from 20°C to boiling (100°C): Q = 2 × 4200 × 80 = 672 kJ. At 2000 W, this takes about 5–6 minutes — exactly what you experience every morning!</p></div></div>
     </div>
   </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s4">4</span>
+      <div class="s-info"><div class="s-title">Extra Solved + Signs <span class="s-tag" style="background:#e8f5e9;color:#2e7d32">APPLICATION</span></div><div class="s-sub">مثال إضافي وملحوظات مهمة</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="ex-box"><div class="ex-title">📝 Solved (from the book): Copper</div><p>Heat needed to raise <strong>0.3 kg</strong> copper from <strong>20°C to 70°C</strong>? (C = 390 J/kg·K)</p><p style="direction:ltr;text-align:center;font-weight:800;margin-top:4px">Q = m·C·Δt = 0.3 × 390 × 50 = <strong>5,850 J</strong></p></div>
+      <div class="kbox teal"><h4>🔑 Signs &amp; Balance</h4><ul><li><strong>Positive</strong> Q &amp; Δt → heat <strong>enters</strong>, temperature <strong>rises</strong>; <strong>negative</strong> → heat <strong>leaves</strong>, temperature <strong>drops</strong></li><li>Constant temperature ≠ no exchange: heat <strong>gained = heat lost</strong> per second</li><li>Gaining heat raises molecule <strong>vibration, speed &amp; kinetic energy</strong> → internal energy up (and vice versa)</li></ul></div>
+    </div>
+  </div>
+
   <div class="qz-zone"><button class="btn-qz" onclick="openQuiz('u2l1','Lesson 1: Temperature & Thermal Energy')"><span>🧪</span> Take Lesson Quiz <span class="cnt">12 questions</span></button></div>
   <div class="lnav"><button class="prev" onclick="goTo('u1l4')">← Previous</button><button class="next" onclick="goTo('u2l2')">Next →</button></div>
 </div>
@@ -1306,6 +1684,25 @@
     <div class="section-body open">
       <div class="frm-box" style="font-size:.9em"><div class="frm-pin">🌡️ Liquid Thermometer</div><span class="frm-label">Temperature from Column Length</span><div class="frm-value">t = 100 × (L<sub>t</sub> − L<sub>0</sub>) / (L<sub>100</sub> − L<sub>0</sub>)</div></div>
       <div class="kbox indigo"><h4>🔑 Symbols</h4><ul><li><strong>L<sub>t</sub></strong>: length at temperature t</li><li><strong>L<sub>0</sub></strong>: length at 0°C (ice point)</li><li><strong>L<sub>100</sub></strong>: length at 100°C (steam point)</li></ul></div>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 400 230" width="400" height="230">
+          <rect x="170" y="20" width="26" height="150" rx="10" fill="#eceff1" stroke="#78909c" stroke-width="2"/>
+          <rect x="176" y="120" width="14" height="38" fill="#c62828"/>
+          <rect x="176" y="40" width="14" height="80" fill="#c62828" opacity=".85"/>
+          <circle cx="183" cy="182" r="20" fill="#c62828" stroke="#7f0000" stroke-width="2"/>
+          <circle cx="183" cy="182" r="12" fill="#e57373"/>
+          <line x1="150" y1="158" x2="170" y2="158" stroke="#0288d1" stroke-width="2"/>
+          <text x="142" y="162" text-anchor="end" fill="#0288d1" font-size="10" font-weight="bold">L₀ 🧊 0°C</text>
+          <line x1="150" y1="40" x2="170" y2="40" stroke="#c62828" stroke-width="2"/>
+          <text x="142" y="44" text-anchor="end" fill="#c62828" font-size="10" font-weight="bold">L₁₀₀ ♨️ 100°C</text>
+          <line x1="150" y1="99" x2="170" y2="99" stroke="#ff8f00" stroke-width="2" stroke-dasharray="4,2"/>
+          <text x="142" y="103" text-anchor="end" fill="#ff8f00" font-size="10" font-weight="bold">Lt = ? 🌡️</text>
+          <line x1="230" y1="40" x2="230" y2="158" stroke="#5d4037" stroke-width="1.5"/>
+          <line x1="224" y1="40" x2="236" y2="40" stroke="#5d4037" stroke-width="1.5"/><line x1="224" y1="158" x2="236" y2="158" stroke="#5d4037" stroke-width="1.5"/>
+          <text x="244" y="102" fill="#5d4037" font-size="10">length ∝ t</text>
+          <text x="200" y="222" text-anchor="middle" fill="#546e7a" font-size="10">Liquid expands with heat → longer column = higher t</text>
+        </svg>
+      </div>
       <div class="ex-box"><div class="ex-title">📝 Example</div><p>Mercury length = 15 cm at 0°C, = 40 cm at 100°C. Find t when length = 25 cm.</p><p style="direction:ltr;text-align:center;font-weight:800;margin-top:4px">t = 100 × (25−15)/(40−15) = <strong>40°C</strong></p></div>
     </div>
   </div>
@@ -1337,6 +1734,19 @@
       <div class="rl-box"><div class="rl-icon">📱</div><div><div class="rl-title">🌍 Digital Thermometers</div><p>Modern thermometers use thermistors or infrared sensors — no mercury, faster reading, used in schools, hospitals, and even smartphones!</p></div></div>
     </div>
   </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s5">5</span>
+      <div class="s-info"><div class="s-title">Practice Exercises <span class="s-tag" style="background:#e8f5e9;color:#2e7d32">TRY IT</span></div><div class="s-sub">تمارين الكتاب محلولة</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="ex-box"><div class="ex-title">📝 1) Convert 50°F</div><p>50°F → °C → K?</p><p style="direction:ltr;text-align:center;font-weight:800;margin-top:4px">T<sub>C</sub> = (50−32)×5/9 = <strong>10°C</strong> &nbsp;→&nbsp; T<sub>K</sub> = 283 K</p></div>
+      <div class="ex-box"><div class="ex-title">📝 2) Rank: highest → lowest</div><p>(a) 0°C &nbsp;(b) 0°F &nbsp;(c) 260 K &nbsp;(d) 77 K &nbsp;(e) −180°C</p><p style="direction:ltr;text-align:center;font-weight:800;margin-top:4px">273 &gt; 260 &gt; 255 &gt; 93 &gt; 77 → <strong>a, c, b, e, d</strong> 🏆</p></div>
+      <div class="ex-box sol"><div class="ex-title">📝 3) +2 on Celsius = ? on Kelvin</div><p style="text-align:center;font-weight:800">Celsius and Kelvin degrees are the <strong>same size</strong> → <strong>+2 K (a)</strong> ✅</p></div>
+    </div>
+  </div>
+
   <div class="qz-zone"><button class="btn-qz" onclick="openQuiz('u2l2','Lesson 2: Measuring Temperature')"><span>🧪</span> Take Lesson Quiz <span class="cnt">12 questions</span></button></div>
   <div class="lnav"><button class="prev" onclick="goTo('u2l1')">← Previous</button><button class="next" onclick="goTo('u2l3')">Next →</button></div>
 </div>
@@ -1373,6 +1783,26 @@
         </div>
       </div>
       <div class="rl-box"><div class="rl-icon">🏖️</div><div><div class="rl-title">🌍 Why Does Sand Heat Faster Than Water?</div><p>Water has a <strong>high specific heat</strong> (4186 J/kg·K). Sand has a <strong>low specific heat</strong>. At the beach: sand is scorching, water is cool!<br><strong>Analogy:</strong> Heat capacity = bucket size. Specific heat = material type (sponge absorbs more than plastic).</p></div></div>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 460 210" width="460" height="210">
+          <text x="115" y="24" text-anchor="middle" fill="#1565c0" font-size="12" font-weight="bold">💧 2 kg WATER</text>
+          <rect x="55" y="40" width="120" height="70" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+          <text x="115" y="70" text-anchor="middle" fill="#1565c0" font-size="11">+10,000 J</text>
+          <text x="115" y="90" text-anchor="middle" fill="#1565c0" font-size="11" font-weight="bold">Δt ≈ 1.2°C 🧊</text>
+          <rect x="55" y="125" width="120" height="18" rx="4" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+          <rect x="55" y="125" width="14" height="18" rx="4" fill="#1565c0"/>
+          <text x="115" y="158" text-anchor="middle" fill="#1565c0" font-size="9">barely warms!</text>
+          <text x="345" y="24" text-anchor="middle" fill="#e65100" font-size="12" font-weight="bold">🟠 2 kg COPPER</text>
+          <rect x="285" y="40" width="120" height="70" rx="8" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+          <text x="345" y="70" text-anchor="middle" fill="#e65100" font-size="11">+10,000 J</text>
+          <text x="345" y="90" text-anchor="middle" fill="#e65100" font-size="11" font-weight="bold">Δt ≈ 13°C 🔥</text>
+          <rect x="285" y="125" width="120" height="18" rx="4" fill="#fff3e0" stroke="#e65100" stroke-width="1.5"/>
+          <rect x="285" y="125" width="110" height="18" rx="4" fill="#e65100"/>
+          <text x="345" y="158" text-anchor="middle" fill="#e65100" font-size="9">10× hotter!</text>
+          <text x="230" y="182" text-anchor="middle" fill="#546e7a" font-size="10">Same heat, same mass — low C heats much more! ⚖️</text>
+          <text x="230" y="198" text-anchor="middle" fill="#546e7a" font-size="10">Cwater = 4200 • Ccopper = 385 J/(kg·K)</text>
+        </svg>
+      </div>
     </div>
   </div>
   <div class="section">
@@ -1386,6 +1816,28 @@
       <div class="rl-box"><div class="rl-icon">🚗</div><div><div class="rl-title">🌍 Car Engines Use Water</div><p>Car radiators use water as coolant because its <strong>high specific heat</strong> absorbs lots of engine heat without getting too hot itself. Copper fins help release heat quickly because copper has <strong>low specific heat</strong> but is a great conductor!</p></div></div>
     </div>
   </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s3">3</span>
+      <div class="s-info"><div class="s-title">Specific Heats Table <span class="s-tag" style="background:#e0f2f1;color:var(--teal)">FROM THE BOOK</span></div><div class="s-sub">جدول الحرارات النوعية</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <table class="tbl">
+        <tr><th>Substance</th><th>C (J/g·°C)</th><th>Substance</th><th>C (J/g·°C)</th></tr>
+        <tr><td>Water (liquid)</td><td><strong>4.18</strong></td><td>Copper (s)</td><td>0.385</td></tr>
+        <tr><td>Water (solid)</td><td>2.06</td><td>Gold (s)</td><td>0.129</td></tr>
+        <tr><td>Water (gas)</td><td>1.87</td><td>Iron (s)</td><td>0.449</td></tr>
+        <tr><td>Ammonia (g)</td><td>2.09</td><td>Lead (s)</td><td>0.129</td></tr>
+        <tr><td>Ethanol (l)</td><td>2.44</td><td>Mercury (l)</td><td>0.140</td></tr>
+        <tr><td>Aluminum (s)</td><td>0.897</td><td>Silver (s)</td><td>0.233</td></tr>
+        <tr><td>Carbon, graphite (s)</td><td>0.709</td><td></td><td></td></tr>
+      </table>
+      <div class="kbox indigo"><h4>🔑 Reading the Table</h4><ul><li>1 J/g·°C = <strong>1000 J/kg·K</strong> → water ≈ <strong>4180 J/kg·K</strong> (highest here!)</li><li>Metals are <strong>low</strong> (gold/lead 0.129) → heat up fast, cool fast</li></ul></div>
+      <div class="rl-box"><div class="rl-icon">🏊</div><div><div class="rl-title">🌍 Wading Pool vs Swimming Pool</div><p>Same sun, same water: the <strong>wading pool heats faster</strong> because heat capacity depends on <strong>mass + material</strong>. That's also why coastal cities stay mild — the huge ocean barely changes temperature! 🌊</p></div></div>
+    </div>
+  </div>
+
   <div class="qz-zone"><button class="btn-qz" onclick="openQuiz('u2l3','Lesson 3: Heat Capacity & Specific Heat')"><span>🧪</span> Take Lesson Quiz <span class="cnt">12 questions</span></button></div>
   <div class="lnav"><button class="prev" onclick="goTo('u2l2')">← Previous</button><button class="next" onclick="goTo('u2l4')">Next →</button></div>
 </div>
@@ -1430,6 +1882,38 @@
           </div>
         </div>
       </div>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 620 205" width="620" height="205">
+          <rect x="8" y="8" width="190" height="189" rx="12" fill="#ffebee" stroke="#ef9a9a" stroke-width="1.5"/>
+          <text x="103" y="32" text-anchor="middle" fill="#c62828" font-size="12" font-weight="bold">🔥 Conduction</text>
+          <text x="103" y="48" text-anchor="middle" fill="#c62828" font-size="9">solids • touch</text>
+          <rect x="30" y="70" width="60" height="26" rx="4" fill="#78909c"/>
+          <text x="60" y="88" text-anchor="middle" fill="#fff" font-size="9">hot</text>
+          <rect x="90" y="70" width="80" height="26" rx="4" fill="#b0bec5"/>
+          <text x="130" y="88" text-anchor="middle" fill="#37474f" font-size="9">metal rod</text>
+          <line x1="45" y1="120" x2="160" y2="120" stroke="#c62828" stroke-width="3" marker-end="url(#mHt)"/>
+          <text x="103" y="142" text-anchor="middle" fill="#c62828" font-size="9">vibrations pass heat →</text>
+          <text x="103" y="170" text-anchor="middle" fill="#c62828" font-size="10" font-weight="bold">🍳 pan on stove</text>
+          <rect x="215" y="8" width="190" height="189" rx="12" fill="#e8eaf6" stroke="#9fa8da" stroke-width="1.5"/>
+          <text x="310" y="32" text-anchor="middle" fill="#283593" font-size="12" font-weight="bold">💨 Convection</text>
+          <text x="310" y="48" text-anchor="middle" fill="#283593" font-size="9">fluids • moving</text>
+          <ellipse cx="310" cy="115" rx="55" ry="42" fill="none" stroke="#283593" stroke-width="2" stroke-dasharray="5,3"/>
+          <line x1="265" y1="140" x2="258" y2="108" stroke="#c62828" stroke-width="2.5" marker-end="url(#mHt)"/>
+          <text x="244" y="128" fill="#c62828" font-size="8">hot ↑</text>
+          <line x1="355" y1="90" x2="362" y2="122" stroke="#0288d1" stroke-width="2.5" marker-end="url(#mLy)"/>
+          <text x="370" y="110" fill="#0288d1" font-size="8">cold ↓</text>
+          <text x="310" y="170" text-anchor="middle" fill="#283593" font-size="10" font-weight="bold">♨️ boiling water</text>
+          <rect x="422" y="8" width="190" height="189" rx="12" fill="#fff8e1" stroke="#ffe082" stroke-width="1.5"/>
+          <text x="517" y="32" text-anchor="middle" fill="#e65100" font-size="12" font-weight="bold">☀️ Radiation</text>
+          <text x="517" y="48" text-anchor="middle" fill="#e65100" font-size="9">waves • NO medium!</text>
+          <circle cx="470" cy="110" r="18" fill="#ff8f00"/><circle cx="470" cy="110" r="11" fill="#ffc107"/>
+          <line x1="492" y1="100" x2="540" y2="82" stroke="#e65100" stroke-width="2" stroke-dasharray="4,3"/>
+          <line x1="492" y1="112" x2="542" y2="108" stroke="#e65100" stroke-width="2" stroke-dasharray="4,3"/>
+          <line x1="492" y1="124" x2="540" y2="140" stroke="#e65100" stroke-width="2" stroke-dasharray="4,3"/>
+          <circle cx="560" cy="110" r="12" fill="#1565c0"/>
+          <text x="517" y="170" text-anchor="middle" fill="#e65100" font-size="10" font-weight="bold">🌍 Sun → Earth</text>
+        </svg>
+      </div>
     </div>
   </div>
   <div class="section">
@@ -1448,6 +1932,19 @@
       <div class="rl-box"><div class="rl-icon">🍳</div><div><div class="rl-title">🌍 All Three in the Kitchen!</div><p><strong>Conduction:</strong> Pan heats on stove. <strong>Convection:</strong> Water boils and circulates. <strong>Radiation:</strong> You feel the heat from the oven without touching it!</p></div></div>
     </div>
   </div>
+  <div class="section">
+    <div class="section-header" onclick="toggleSec(this)">
+      <span class="s-num s4">4</span>
+      <div class="s-info"><div class="s-title">Demos &amp; Nature <span class="s-tag" style="background:#e8f5e9;color:#2e7d32">REAL WORLD</span></div><div class="s-sub">أمثلة الكتاب من الحياة والطبيعة</div></div>
+      <span class="s-arrow">▾</span>
+    </div>
+    <div class="section-body open">
+      <div class="rl-box"><div class="rl-icon">🔥</div><div><div class="rl-title">🌍 The Copper Rod Demo</div><p>Hold one end of a copper rod, put the other in a flame — your end gets hot by <strong>conduction</strong>. Heat flows only from <strong>higher to lower</strong> temperature. A cold spoon in hot coffee? Same story: spoon warms, coffee cools → <strong>thermal equilibrium</strong>. ☕</p></div></div>
+      <div class="kbox indigo"><h4>💨 Convection Runs the World</h4><ul><li>Car engine <strong>cooling system</strong> 🚗</li><li><strong>Blood flow</strong> warming your body 🩸</li><li>Atmosphere <strong>weather</strong>, ocean currents, <strong>storms &amp; tornadoes</strong> 🌪️ (hot air rises, cold sinks)</li></ul></div>
+      <div class="rl-box"><div class="rl-icon">☀️</div><div><div class="rl-title">🌍 Everything Glows!</div><p><strong>All objects</strong> continuously radiate electromagnetic waves from <strong>thermal molecular vibrations</strong> — the Sun just does it across empty space. Dark surfaces <strong>absorb</strong>, shiny ones <strong>reflect</strong>.</p></div></div>
+    </div>
+  </div>
+
   <div class="qz-zone"><button class="btn-qz" onclick="openQuiz('u2l4','Lesson 4: Heat Transfer')"><span>🧪</span> Take Lesson Quiz <span class="cnt">12 questions</span></button></div>
   <div class="qz-zone" style="margin-top:10px"><button class="btn-qz btn-final" onclick="openQuiz('final','📚 Comprehensive Final Exam — All Units')"><span>🏆</span> Comprehensive Final Exam <span class="cnt">55 questions</span></button></div>
   <div class="lnav"><button class="prev" onclick="goTo('u2l3')">← Previous</button><button class="next" disabled>🏁 Final Lesson</button></div>
@@ -1472,10 +1969,13 @@
 </div>
 
 <!-- ===== FOOTER ===== -->
-<div class="foot">
-  <p>📘 <strong>Physics — Second Grade</strong> | Bilingual interactive learning</p>
+<div class="foot" style="background:linear-gradient(135deg,#050816,#1e1b4b);color:#cbd5e1;border:none;border-radius:18px 18px 0 0;margin-top:32px">
+  <p>🚀 <strong style="color:#00f0ff">Physics Future Lab</strong> | تعلّم • جرّب • اتقن</p>
   <p style="margin-top:3px;font-size:.9em">Physics isn't hard — it just needs a clear, engaging explanation ✨</p>
+  <p style="margin-top:6px;font-size:.75em;opacity:.6">💡 Tip: خلص كويز كل درس عشان تفتح النجوم وتوصل للـ Final Boss 🏆</p>
 </div>
+
+<!-- AI chatbot removed — key stored in openrouter_api_key.txt -->
 
 <script>
 // ===== LESSON NAMES =====
@@ -1495,8 +1995,8 @@ const LIDS=Object.keys(LN);
 const KT={
   u1l1:{terms:[['Force','قوة','A push or pull between interacting objects'],['Newton (N)','نيوتن','SI unit: 1 kg·m/s²'],['Contact force','قوة تلامس','Requires physical contact (friction, tension)'],['Non-contact force','قوة غير تلامسية','Acts at a distance (gravity, magnetic)'],['Tension','شد','Force transmitted through a rope/string'],['Friction','احتكاك','Force that opposes motion between surfaces']],summ:['Force is a push or pull measured in Newtons','Forces can start, stop, or change motion and shape','Contact forces need touch; non-contact forces act at a distance','Balanced forces = no change in motion']},
   u1l2:{terms:[['Gravity','جاذبية','Force attracting objects with mass'],['Weight','وزن','Force of gravity on an object (W = m·g)'],['Mass','كتلة','Amount of matter in an object (kg)'],['Universal Gravitation','الجاذبية العامة','F = G·m₁·m₂ / r²'],['G (constant)','ثابت الجاذبية','6.67×10⁻¹¹ N·m²/kg²'],['Free fall','سقوط حر','All objects fall at same rate (no air)']],summ:['Gravity depends on mass and distance (inverse square law)','Weight = mass × gravity (g = 9.8 m/s² on Earth)','Gravitational force decreases when distance increases','Satellites orbit due to gravity as centripetal force']},
-  u1l3:{terms:[['Centripetal force','قوة جذب مركزية','Force toward center causing circular motion'],['Centripetal acceleration','عجلة جذب مركزية','a_c = v²/r, always toward center'],['Circular motion','حركة دائرية','Constant speed, changing direction'],['Radius (r)','نصف قطر','Distance from center of circle'],['Tangent','مماس','Direction of velocity in circular motion']],summ:['Centripetal force always points toward the center of the circle','F_c = m·v²/r — more speed needs much more force','If centripetal force stops, object flies off in a straight line','Friction on curves provides centripetal force for cars']},
-  u1l4:{terms:[['Friction','احتكاك','Force opposing relative motion of surfaces'],['Static friction','احتكاك سكوني','Prevents motion before it starts (strongest)'],['Sliding friction','احتكاك انزلاقي','Opposes sliding motion (medium)'],['Rolling friction','احتكاك دوراني','Opposes rolling motion (weakest)'],['Viscosity','لزوجة','Fluid resistance to flow'],['Lubricant','مزلق','Reduces friction between surfaces']],summ:['Friction always opposes motion between surfaces','Static > Sliding > Rolling in strength','Viscosity is fluid friction (honey > water)','Lubricants and ball bearings reduce friction']},
+  u1l3:{terms:[['Centripetal force','قوة جذب مركزية','Force toward center causing circular motion'],['Centripetal acceleration','عجلة جذب مركزية','a_c = v²/r, always toward center'],['Circular motion','حركة دائرية','Constant speed, changing direction'],['Radius (r)','نصف قطر','Distance from center of circle'],['Periodic time (T)','زمن دوري','T = 2πr/v — time for one full revolution'],['Tangent','مماس','Direction of velocity in circular motion']],summ:['Centripetal force always points toward the center of the circle','F_c = m·v²/r — more speed needs much more force','If centripetal force stops, object flies off in a straight line','Friction on curves provides centripetal force for cars']},
+  u1l4:{terms:[['Friction','احتكاك','Force opposing relative motion of surfaces'],['Static friction','احتكاك سكوني','Prevents motion before it starts (strongest)'],['Sliding friction','احتكاك انزلاقي','Opposes sliding motion (medium)'],['Rolling friction','احتكاك دوراني','Opposes rolling motion (weakest)'],['Fluid friction','احتكاك مائع','Resistance in liquids & gases (water/air)'],['Viscosity','لزوجة','Fluid resistance to flow'],['Lubricant','مزلق','Reduces friction between surfaces']],summ:['Friction always opposes motion between surfaces','Static > Sliding > Rolling in strength','Viscosity is fluid friction (honey > water)','Lubricants and ball bearings reduce friction']},
   u2l1:{terms:[['Temperature','درجة حرارة','Average kinetic energy of molecules'],['Heat (Q)','حرارة','Thermal energy transferred due to ΔT'],['Thermal energy','طاقة حرارية','Total kinetic + potential energy of particles'],['Internal energy','طاقة داخلية','Sum of all molecular energies'],['Specific heat (C)','حرارة نوعية','Heat to raise 1 kg by 1 K']],summ:['Temperature = average KE of molecules; Heat = energy transfer','Heat flows from hot to cold objects','Q = m·C·Δt (mass × specific heat × temp change)','Adding heat can raise temperature or change state']},
   u2l2:{terms:[['Thermometer','ترمومتر','Device that measures temperature'],['Thermal equilibrium','اتزان حراري','Two bodies in contact reach same temperature'],['Celsius','سيلسيوس','Water freezes at 0°C, boils at 100°C'],['Fahrenheit','فهرنهايت','Water freezes at 32°F, boils at 212°F'],['Kelvin','كلفن','Absolute scale: 0 K = -273°C'],['Absolute zero','الصفر المطلق','Lowest possible temperature (-273°C)']],summ:['Thermometers use thermal expansion of liquids','Thermal equilibrium: touching objects reach same temp','T_K = T_C + 273; T_F = 9/5·T_C + 32','Kelvin has no negative values']},
   u2l3:{terms:[['Heat capacity','سعة حرارية','Heat to raise entire object by 1 K (J/K)'],['Specific heat','حرارة نوعية','Heat to raise 1 kg of material by 1 K (J/(kg·K))'],['Physical property','خاصية فيزيائية','Depends only on material, not on mass']],summ:['Heat capacity depends on mass and material (J/K)','Specific heat is a physical property of the material (J/(kg·K))','Water has high specific heat — used as coolant in cars','Q = m·C·Δt — more mass = more heat needed']},
@@ -1941,6 +2441,43 @@ function toast(m){
 // ===== CLOSE QUIZ ON BACKDROP & ESC =====
 document.getElementById('qOverlay').addEventListener('click',function(e){if(e.target===this)closeQuiz();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeQuiz();});
+
+// ===== FUTURE HELPERS: journey + quotes =====
+function firstUnfinished(){
+  for(const id of LIDS){ if(!getAllAttempted(id)) return id; }
+  return LIDS[0];
+}
+function startJourney(){
+  showHome();
+  setTimeout(()=>goTo(firstUnfinished()),150);
+  toast('🚀 يلا نكمل! درسك اللي عليه الدور مستنيك');
+}
+// AI chatbot removed — key stored in openrouter_api_key.txt
+(function(){
+  const quotes=[
+    '"The universe is under no obligation to make sense to you — but physics makes it fun!"',
+    '"Physics is really nothing more than a search for ultimate simplicity." — Feynman',
+    '"Every formula you master is a superpower! ⚡"',
+    '"العلم مش حفظ — العلم فهم وتجربة 🔬"',
+    '"خطوة واحدة كل يوم = تفوق في آخر الترم 🚀"'
+  ];
+  let qi=0;
+  setInterval(()=>{
+    const el=document.getElementById('quoteBox');
+    if(!el) return;
+    qi=(qi+1)%quotes.length;
+    el.style.opacity=0;
+    setTimeout(()=>{ el.textContent=quotes[qi]; el.style.opacity=1; },300);
+  },6000);
+  const phrases=['Explore • Experiment • Master the universe','Force • Gravity • Energy • Heat','ذاكر بذكاء • افهم • طبّق • تفوق 🚀'];
+  let pi=0;
+  setInterval(()=>{
+    const el=document.getElementById('typeText');
+    if(!el) return;
+    pi=(pi+1)%phrases.length;
+    el.textContent=phrases[pi];
+  },4000);
+})();
 
 // ===== INIT =====
 buildL();
