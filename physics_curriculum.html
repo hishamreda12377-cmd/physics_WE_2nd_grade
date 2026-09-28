@@ -389,11 +389,19 @@
   /* SVG */
   .svg-wrap{
     display:flex;justify-content:center;
-    margin:10px 0;background:#fafafa;
-    border-radius:var(--radius2);padding:14px;
-    border:1px solid #eee;overflow:auto;
+    margin:12px 0;background:linear-gradient(135deg,#ffffff,#f8faff);
+    border-radius:var(--radius2);padding:18px;
+    border:2px solid #e3e8f5;overflow:auto;
+    box-shadow:inset 0 2px 12px rgba(26,35,126,.05);
   }
-  .svg-wrap svg{max-width:100%;height:auto}
+  .svg-wrap svg{max-width:100%;height:auto;filter:drop-shadow(0 3px 10px rgba(0,0,0,.08))}
+  .svg-wrap figure{margin:0;text-align:center;width:100%}
+  .svg-wrap figcaption{font-size:.78em;color:var(--text2);margin-top:8px;font-weight:600}
+  .pic-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:10px 0}
+  .pic-card{background:#fff;border:2px solid #e8eaf6;border-radius:12px;padding:12px 10px;text-align:center;box-shadow:0 3px 12px rgba(0,0,0,.05)}
+  .pic-card .pe{font-size:2.6em;line-height:1.2;filter:drop-shadow(0 3px 6px rgba(0,0,0,.15))}
+  .pic-card .pt{font-weight:800;font-size:.82em;color:var(--navy);margin-top:4px}
+  .pic-card .pd{font-size:.72em;color:var(--text2);margin-top:2px;line-height:1.5}
 
   /* Example box */
   .ex-box{
@@ -966,6 +974,12 @@
         <div><div class="rl-title">🌍 Real Life Connection</div>
         <p>Think about <strong>football</strong>: when you kick the ball, you apply a force that changes it from rest to motion. The same happens when you open a fridge door or pull a desk drawer. <strong>Force is everywhere!</strong></p></div>
       </div>
+      <div class="pic-grid">
+        <div class="pic-card"><div class="pe">⚽🦵</div><div class="pt">Kick a ball</div><div class="pd">rest → motion 🏃</div></div>
+        <div class="pic-card"><div class="pe">🚪🤚</div><div class="pt">Push / Pull door</div><div class="pd">دفع أو سحب 🚶</div></div>
+        <div class="pic-card"><div class="pe">🪑🧍</div><div class="pt">Sit on chair</div><div class="pd">weight force ⬇️</div></div>
+        <div class="pic-card"><div class="pe">🤝✨</div><div class="pt">Interaction = Force</div><div class="pd">no interaction = no force!</div></div>
+      </div>
     </div>
   </div>
 
@@ -1218,6 +1232,12 @@
         <div class="ar-panel"><p>الجاذبية هي القوة التي يجذب بها الكوكب الأجسام نحو <strong>مركزه</strong>. تبقي الكواكب في مداراتها حول الشمس.</p><p>أي شيء له كتلة له جاذبية. <strong>كتلة أكبر = جاذبية أكبر.</strong> الجاذبية تضعف بزيادة المسافة.</p></div>
       </div>
       <div class="rl-box"><div class="rl-icon">🏀</div><div><div class="rl-title">🌍 Real Life</div><p>Why does a ball fall back to Earth instead of floating away? <strong>Gravity!</strong> Why does Earth stay in orbit around the Sun? <strong>Gravity!</strong> It's the hidden hero of the universe.</p></div></div>
+      <div class="pic-grid">
+        <div class="pic-card"><div class="pe">🍎⬇️🌍</div><div class="pt">Apple falls</div><div class="pd">Earth pulls to center</div></div>
+        <div class="pic-card"><div class="pe">🌍☀️🔄</div><div class="pt">Planets orbit Sun</div><div class="pd">gravity bends path</div></div>
+        <div class="pic-card"><div class="pe">🌙🌍</div><div class="pt">Moon around Earth</div><div class="pd">same law! F = Gm₁m₂/r²</div></div>
+        <div class="pic-card"><div class="pe">⚖️🧑‍🚀</div><div class="pt">More mass = more pull</div><div class="pd">Moon pull < Earth pull</div></div>
+      </div>
       <div class="svg-wrap">
         <svg viewBox="0 0 360 230" width="360" height="230">
           <circle cx="40" cy="30" r="1.6" fill="#90a4ae" opacity=".5"/><circle cx="320" cy="22" r="1.6" fill="#90a4ae" opacity=".5"/><circle cx="300" cy="90" r="1.3" fill="#90a4ae" opacity=".5"/><circle cx="60" cy="100" r="1.3" fill="#90a4ae" opacity=".5"/><circle cx="90" cy="45" r="1" fill="#90a4ae" opacity=".4"/>
@@ -1486,9 +1506,9 @@
     </div>
     <div class="section-body open">
       <div class="two-grid">
-        <div class="kbox rose"><h4>🧊 Static (سكوني)</h4><ul><li>Prevents sliding before motion</li><li><strong>Strongest</strong> type</li><li>Walking, rock climbing</li></ul></div>
-        <div class="kbox indigo"><h4>📝 Sliding (انزلاقي)</h4><ul><li>Acts during sliding</li><li>Weaker than static</li><li>Pencil writing, brakes</li></ul></div>
-        <div class="kbox teal"><h4>⚽ Rolling (دحرجي)</h4><ul><li>Acts during rolling</li><li><strong>Weakest</strong> type</li><li>Wheels, ball bearings</li></ul></div>
+        <div class="kbox rose"><h4>🧊 Static (سكوني) — الأقوى 💪</h4><ul><li>Prevents sliding <strong>before</strong> motion starts</li><li>🥾 Hiking: static friction between shoes & trail each step</li><li>🧗 Helps climbers grip vertical rock walls</li><li>🦶 Planted foot pushes back → ground pushes you forward</li><li>🧊 Ice = almost no static friction → you slip!</li></ul></div>
+        <div class="kbox indigo"><h4>📝 Sliding (انزلاقي) — متوسط</h4><ul><li>Acts <strong>during</strong> sliding (kinetic friction)</li><li>✏️ Pencil lead slides on paper — just enough friction to leave a mark</li><li>🛋️ Harder to <strong>start</strong> pushing furniture than to keep it moving</li><li>🚲 Brake pads vs rims — sliding friction stops the wheels</li></ul></div>
+        <div class="kbox teal"><h4>⚽ Rolling (دحرجي) — الأضعف 🪶</h4><ul><li>Acts during <strong>rolling</strong> (kinetic friction)</li><li>🚲🚗 Bicycles, cars, skates, scooters, skateboards</li><li>⚙️ Ball bearings: rolling instead of sliding → far less friction</li><li>💡 Rolling ≪ Sliding ≪ Static</li></ul></div>
         <div style="display:flex;align-items:center;justify-content:center">
           <div style="text-align:center;background:#fff8e1;border-radius:10px;padding:16px;width:100%;border:2px solid #ffe082">
             <div style="font-size:1.8em">📊</div>
@@ -1502,14 +1522,15 @@
   <div class="section">
     <div class="section-header" onclick="toggleSec(this)">
       <span class="s-num s3">3</span>
-      <div class="s-info"><div class="s-title">Viscosity <span class="s-tag" style="background:#e8eaf6;color:var(--indigo)">DEFINITION</span></div><div class="s-sub">اللزوجة</div></div>
+      <div class="s-info"><div class="s-title">Viscosity <span class="s-tag" style="background:#e8eaf6;color:var(--indigo)">DEFINITION</span></div><div class="s-sub">اللزوجة — من الكتاب كاملًا</div></div>
       <span class="s-arrow">▾</span>
     </div>
     <div class="section-body open">
       <div class="dual">
-        <div class="en-panel"><p>Viscosity is the property that <strong>resists relative motion of liquid layers</strong>. Between two plates (one stationary, one moving), liquid layers move at speeds from <strong>0 to v</strong>.</p></div>
-        <div class="ar-panel"><p>اللزوجة هي الخاصية التي <strong>تقاوم الحركة النسبية لطبقات السائل</strong>. بين لوحين (ثابت ومتحرك)، تتحرك الطبقات بسرعات من <strong>0 إلى v</strong>.</p></div>
+        <div class="en-panel"><p>Viscosity is the property that <strong>resists relative motion of liquid layers</strong>. Between two plates (one stationary, one moving at speed v, distance d apart), liquid layers move at speeds from <strong>0 to v</strong>.</p><p>🍯 <strong>Most viscous:</strong> flows slowly, high resistance (honey, glycerin). 💧 <strong>Least viscous:</strong> flows fast, little resistance (water).</p><p>Depends on: <strong>1- type of liquid 2- temperature</strong> (physical property).</p></div>
+        <div class="ar-panel"><p>اللزوجة هي الخاصية التي <strong>تقاوم الحركة النسبية لطبقات السائل</strong>. بين لوحين (ثابت ومتحرك بسرعة v على بعد d)، تتحرك الطبقات بسرعات من <strong>0 إلى v</strong>.</p><p>🍯 <strong>الأكثر لزوجة:</strong> ينساب ببطء ويقاوم بقوة. 💧 <strong>الأقل لزوجة:</strong> ينساب بسرعة ويقاوم قليلًا.</p><p>تعتمد على: <strong>1- نوع السائل 2- درجة الحرارة</strong>.</p></div>
       </div>
+      <div class="kbox indigo"><h4>🔬 Why do layers move 0 → v? (تفسير اللزوجة — Laminar flow)</h4><ul><li><strong>a) Adhesive forces 🧲:</strong> friction between fixed plate & touching layer → its velocity = <strong>zero</strong>. Top layer sticks to moving plate → moves at <strong>v</strong>.</li><li><strong>b) Shear (cohesive) forces ✂️:</strong> friction between <strong>each layer and the next</strong> resists sliding → gradual speed change layer by layer.</li></ul></div>
       <div class="svg-wrap">
         <svg viewBox="0 0 400 225" width="400" height="225">
           <rect x="60" y="40" width="220" height="14" rx="3" fill="#455a64"/>
@@ -1564,11 +1585,30 @@
       <span class="s-arrow">▾</span>
     </div>
     <div class="section-body open">
+      <div class="svg-wrap"><figure>
+        <svg viewBox="0 0 460 220" width="460" height="220">
+          <rect x="30" y="30" width="170" height="150" rx="10" fill="#e3f2fd" stroke="#1565c0" stroke-width="2.5"/>
+          <rect x="30" y="60" width="170" height="120" rx="6" fill="#4fc3f7" opacity=".55"/>
+          <text x="115" y="52" text-anchor="middle" fill="#0d47a1" font-size="12" font-weight="bold">💧 Water — خفيف</text>
+          <circle cx="115" cy="80" r="12" fill="#455a64"/><circle cx="111" cy="76" r="3" fill="#fff" opacity=".7"/>
+          <line x1="115" y1="92" x2="115" y2="160" stroke="#0d47a1" stroke-width="2.5" stroke-dasharray="5,3"/>
+          <text x="115" y="200" text-anchor="middle" fill="#0d47a1" font-size="11" font-weight="bold">⏱️ reaches bottom FAST ⚡</text>
+          <rect x="260" y="30" width="170" height="150" rx="10" fill="#fff8e1" stroke="#e65100" stroke-width="2.5"/>
+          <rect x="260" y="60" width="170" height="120" rx="6" fill="#ffb74d" opacity=".7"/>
+          <text x="345" y="52" text-anchor="middle" fill="#bf360c" font-size="12" font-weight="bold">🍯 Glycerin — تقيل</text>
+          <circle cx="345" cy="80" r="12" fill="#455a64"/><circle cx="341" cy="76" r="3" fill="#fff" opacity=".7"/>
+          <line x1="345" y1="92" x2="345" y2="135" stroke="#bf360c" stroke-width="2.5" stroke-dasharray="5,3"/>
+          <text x="345" y="200" text-anchor="middle" fill="#bf360c" font-size="11" font-weight="bold">🐢 reaches bottom SLOW</text>
+          <text x="230" y="118" text-anchor="middle" font-size="22">⚖️</text>
+        </svg>
+        <figcaption>🔬 تجربة الكتاب: كرتان متماثلتان — الماء تصل أولًا → الجلسرين أكثر لزوجة | Same balls: water wins → glycerin is more viscous</figcaption>
+      </figure></div>
       <div class="dual">
-        <div class="en-panel"><p><strong>Experiment:</strong> two beakers — water vs <strong>glycerin</strong>. Drop a metal ball in each: the water ball hits bottom <strong>first</strong> → glycerin resists more → <strong>more viscous</strong>. Viscosity depends on <strong>liquid type &amp; temperature</strong>.</p></div>
-        <div class="ar-panel"><p><strong>تجربة:</strong> كأسان — ماء وجلسرين. أسقط كرة معدنية في كل منهما: كرة الماء تصل أولًا → الجلسرين يقاوم أكثر → <strong>أكثر لزوجة</strong>. اللزوجة تعتمد على <strong>نوع السائل ودرجة الحرارة</strong>.</p></div>
+        <div class="en-panel"><p><strong>Experiment (from the book):</strong> two identical beakers — water vs <strong>glycerin</strong>. Drop an identical metal ball in each: the water ball hits bottom <strong>first</strong> → glycerin resists more → <strong>more viscous</strong>. Viscosity depends on <strong>liquid type &amp; temperature</strong>.</p><p><strong>η definition:</strong> tangential force on <strong>unit area</strong> to produce <strong>unit velocity change</strong> between layers <strong>unit distance</strong> apart.</p></div>
+        <div class="ar-panel"><p><strong>تجربة الكتاب:</strong> كأسان متماثلتان — ماء وجلسرين. أسقط كرة معدنية متماثلة في كل منهما: كرة الماء تصل أولًا → الجلسرين يقاوم أكثر → <strong>أكثر لزوجة</strong>. اللزوجة تعتمد على <strong>نوع السائل ودرجة الحرارة</strong>.</p><p><strong>تعريف معامل اللزوجة:</strong> القوة المماسية المؤثرة على <strong>وحدة المساحة</strong> لإحداث تغير <strong>وحدوي في السرعة</strong> بين طبقتين على بعد <strong>وحدوي</strong>.</p></div>
       </div>
-      <div class="frm-box"><div class="frm-pin">🧴 Viscosity Force</div><span class="frm-label">Tangential force on moving plate</span><div class="frm-value">F<sub>vs</sub> = η · A · v / d</div></div>
+      <div class="frm-box"><div class="frm-pin">🧴 Viscosity Force</div><span class="frm-label">Tangential force on moving plate — F ∝ A·v and F ∝ 1/d</span><div class="frm-value">F<sub>vs</sub> = η · A · v / d &nbsp; → &nbsp; η = F·d / (A·v)</div></div>
+      <div class="kbox purple"><h4>📐 Deriving η units (اشتقاق الوحدة)</h4><ul><li>η = (N·m) / (m²·m/s) = <strong>N·s/m² = kg/(m·s) = Pa·s = J·s/m³</strong></li><li>💡 All four forms in the book mean the same thing!</li></ul></div>
       <div class="ex-box"><div class="ex-title">📝 Solved (from the book)</div><p>Slab A = <strong>0.1 m²</strong>, oil layer d = <strong>10⁻⁵ m</strong>, η = <strong>1.5 kg/m·s</strong>, v = <strong>1 m/s</strong>. Force?</p><p style="direction:ltr;text-align:center;font-weight:800;margin-top:4px">F = 1.5 × 0.1 × 1 / 10⁻⁵ = <strong>15,000 N</strong></p></div>
     </div>
   </div>
@@ -1618,13 +1658,31 @@
   <div class="section">
     <div class="section-header" onclick="toggleSec(this)">
       <span class="s-num s2">2</span>
-      <div class="s-info"><div class="s-title">Quantity of Heat <span class="s-tag" style="background:#fff8e1;color:#e65100">FORMULA</span></div><div class="s-sub">كمية الحرارة</div></div>
+      <div class="s-info"><div class="s-title">Quantity of Heat <span class="s-tag" style="background:#fff8e1;color:#e65100">FORMULA</span></div><div class="s-sub">كمية الحرارة — من الكتاب</div></div>
       <span class="s-arrow">▾</span>
     </div>
     <div class="section-body open">
+      <div class="kbox amber"><h4>⚛️ What controls Heat? (عوامل مؤثرة — من الكتاب)</h4><ul><li>🏃 <strong>Speed of particles:</strong> faster = more heat</li><li>🔮 <strong>Size of particles:</strong> bigger = more energy stored</li><li>🔢 <strong>Number of particles:</strong> more molecules = more total heat (pool > cup even if cooler!)</li></ul></div>
+      <div class="kbox indigo"><h4>📏 Properties that change with temperature</h4><ul><li>📐 Length of a metal rod (expands)</li><li>♨️ Steam pressure in a boiler</li><li>🔌 Ability of a wire to conduct electricity</li><li>🌟 Color of a glowing hot object (red → white)</li></ul></div>
       <div class="frm-box"><div class="frm-pin">🔥 Heat Formula</div><span class="frm-label">Quantity of Heat</span><div class="frm-value">Q<sub>th</sub> = m · C · Δt</div></div>
       <div class="kbox teal"><h4>🔑 Key</h4><ul><li><strong>m</strong> = mass (kg)</li><li><strong>C</strong> = specific heat (property of material)</li><li><strong>Δt</strong> = temperature change</li><li>Q &amp; Δt <strong>positive</strong> → heat enters, temp rises. <strong>Negative</strong> → heat leaves, temp drops.</li></ul></div>
-      <div class="rl-box"><div class="rl-icon">🍳</div><div><div class="rl-title">🌍 Effects of Temperature</div><p><strong>1- State change:</strong> Ice melts at 0°C (solid → liquid). <strong>2- Expansion:</strong> Bridges need joints because they expand in summer and contract in winter!</p></div></div>
+      <div class="rl-box"><div class="rl-icon">🍳</div><div><div class="rl-title">🌍 Effects of Temperature (تأثيران مهمان — من الكتاب)</div><p><strong>1- State change 🔄:</strong> heating ice (solid) → water (liquid) → vapor (gas). <strong>2- Expansion 📈:</strong> hot molecules move faster & take more space → solids, liquids & gases expand (and shrink when cooled!). Thermometer liquid rises for this reason; <strong>bridge decks need expansion joints</strong> 🌉!</p></div></div>
+      <div class="svg-wrap"><figure>
+        <svg viewBox="0 0 460 170" width="460" height="170">
+          <rect x="15" y="30" width="125" height="70" rx="10" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+          <text x="77" y="52" text-anchor="middle" font-size="22">🧊</text><text x="77" y="72" text-anchor="middle" fill="#0d47a1" font-size="10" font-weight="bold">Ice solid</text><text x="77" y="88" text-anchor="middle" fill="#0d47a1" font-size="9">0°C ❄️</text>
+          <text x="152" y="70" font-size="18">🔥→</text>
+          <rect x="170" y="30" width="125" height="70" rx="10" fill="#e1f5fe" stroke="#0288d1" stroke-width="2"/>
+          <text x="232" y="52" text-anchor="middle" font-size="22">💧</text><text x="232" y="72" text-anchor="middle" fill="#01579b" font-size="10" font-weight="bold">Water liquid</text><text x="232" y="88" text-anchor="middle" font-size="9">melt 🫠</text>
+          <text x="307" y="70" font-size="18">🔥→</text>
+          <rect x="320" y="30" width="125" height="70" rx="10" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2"/>
+          <text x="382" y="52" text-anchor="middle" font-size="22">💨</text><text x="382" y="72" text-anchor="middle" fill="#4a148c" font-size="10" font-weight="bold">Vapor gas</text><text x="382" y="88" text-anchor="middle" font-size="9">boil ♨️</text>
+          <rect x="15" y="115" width="430" height="40" rx="10" fill="#fff8e1" stroke="#ffb300" stroke-width="1.5"/>
+          <text x="230" y="133" text-anchor="middle" font-size="11" font-weight="bold" fill="#e65100">🌉 Bridge expands in summer ☀️ → contracts in winter ❄️ → needs joints!</text>
+          <text x="230" y="149" text-anchor="middle" font-size="9" fill="#795548">hot molecules = faster + more space 📈</text>
+        </svg>
+        <figcaption>🔄 تغير الحالة والتمدد: ثلج → ماء → بخار | الكباري تتمدد صيفًا — عشان كده فيها فواصل!</figcaption>
+      </figure></div>
     </div>
   </div>
   <div class="section">
@@ -1703,7 +1761,8 @@
           <text x="200" y="222" text-anchor="middle" fill="#546e7a" font-size="10">Liquid expands with heat → longer column = higher t</text>
         </svg>
       </div>
-      <div class="ex-box"><div class="ex-title">📝 Example</div><p>Mercury length = 15 cm at 0°C, = 40 cm at 100°C. Find t when length = 25 cm.</p><p style="direction:ltr;text-align:center;font-weight:800;margin-top:4px">t = 100 × (25−15)/(40−15) = <strong>40°C</strong></p></div>
+      <div class="ex-box"><div class="ex-title">📝 Example (from the book)</div><p>Mercury length = 15 cm at 0°C, = 40 cm at 100°C. Find t when length = 25 cm.</p><p style="direction:ltr;text-align:center;font-weight:800;margin-top:4px">t = 100 × (25−15)/(40−15) = <strong>40°C</strong></p></div>
+      <div class="kbox amber"><h4>⚠️ t vs Δt — فرق مهم جدًا (من الكتاب)</h4><ul><li><strong>t (actual):</strong> حرارة فعلية — e.g. t = 20°C</li><li><strong>Δt (change):</strong> فرق/تغير — e.g. water heated 30°C → 50°C means <strong>Δt = 50−30 = 20°C</strong></li><li>💧 Thermometers use <strong>mercury or alcohol</strong> in a thin glass capillary — length/volume grows <strong>regularly (proportionally)</strong> with temperature.</li></ul></div>
     </div>
   </div>
   <div class="section">
@@ -1719,6 +1778,34 @@
         <tr><td>Steam point (boiling)</td><td>100</td><td>212</td><td>373</td></tr>
       </table>
       <div class="frm-box" style="font-size:.9em"><div class="frm-pin">🔄 Conversion</div><span class="frm-label">Converting Between Scales</span><div class="frm-value">T<sub>K</sub> = T<sub>C</sub> + 273 &nbsp;|&nbsp; T<sub>F</sub> = <sup>9</sup>⁄<sub>5</sub>·T<sub>C</sub> + 32</div></div>
+      <div class="svg-wrap"><figure>
+        <svg viewBox="0 0 460 160" width="460" height="160">
+          <rect x="30" y="20" width="120" height="110" rx="12" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+          <text x="90" y="42" text-anchor="middle" fill="#0d47a1" font-size="13" font-weight="bold">°C سيلسيوس</text>
+          <text x="90" y="65" text-anchor="middle" font-size="20">🧊 0°</text><text x="90" y="82" text-anchor="middle" font-size="9" fill="#546e7a">freezing</text>
+          <text x="90" y="105" text-anchor="middle" font-size="20">♨️ 100°</text><text x="90" y="122" text-anchor="middle" font-size="9" fill="#546e7a">boiling</text>
+          <rect x="170" y="20" width="120" height="110" rx="12" fill="#fff8e1" stroke="#e65100" stroke-width="2"/>
+          <text x="230" y="42" text-anchor="middle" fill="#bf360c" font-size="13" font-weight="bold">°F فهرنهايت</text>
+          <text x="230" y="65" text-anchor="middle" font-size="20">🧊 32°</text><text x="230" y="82" text-anchor="middle" font-size="9" fill="#546e7a">freezing</text>
+          <text x="230" y="105" text-anchor="middle" font-size="20">♨️ 212°</text><text x="230" y="122" text-anchor="middle" font-size="9" fill="#546e7a">boiling</text>
+          <rect x="310" y="20" width="120" height="110" rx="12" fill="#f3e5f5" stroke="#6a1b9a" stroke-width="2"/>
+          <text x="370" y="42" text-anchor="middle" fill="#4a148c" font-size="13" font-weight="bold">K كلفن</text>
+          <text x="370" y="65" text-anchor="middle" font-size="20">🧊 273</text><text x="370" y="82" text-anchor="middle" font-size="9" fill="#546e7a">freezing</text>
+          <text x="370" y="105" text-anchor="middle" font-size="20">♨️ 373</text><text x="370" y="122" text-anchor="middle" font-size="9" fill="#546e7a">boiling</text>
+          <text x="230" y="152" text-anchor="middle" font-size="10" fill="#546e7a">نفس المسافة! 100 °C = 180 °F = 100 K بين التجمد والغليان 🌡️</text>
+        </svg>
+        <figcaption>🌡️ التدريجات الثلاثة: الماء يتجمد ويغلي عند نفس النقطة الفيزيائية — الأرقام فقط مختلفة!</figcaption>
+      </figure></div>
+      <div class="kbox teal"><h4>📊 Heat vs Temperature — جدول المقارنة من الكتاب (صفحة 23) ⭐ احفظه!</h4></div>
+      <table class="tbl">
+        <tr><th>وجه المقارنة</th><th>Heat (Q) الحرارة 🔥</th><th>Temperature (T) درجة الحرارة 🌡️</th></tr>
+        <tr><td><strong>Definition</strong></td><td>Total energy of all molecular motion</td><td>Measure of average heat / thermal energy</td></tr>
+        <tr><td><strong>Tool أداة القياس</strong></td><td>Calorimeter ⚗️</td><td>Thermometer 🌡️</td></tr>
+        <tr><td><strong>SI Unit</strong></td><td>Joule</td><td>Kelvin</td></tr>
+        <tr><td><strong>Units</strong></td><td>Joules, Calories</td><td>Fahrenheit, Celsius, Kelvin</td></tr>
+        <tr><td><strong>Symbol الرمز</strong></td><td>Q</td><td>T</td></tr>
+        <tr><td><strong>Work الشغل</strong></td><td>✅ Can do work</td><td>📏 Measures degree of heat only</td></tr>
+      </table>
     </div>
   </div>
   <div class="section">
@@ -1782,7 +1869,7 @@
           <span class="cbadge">✅ IS a physical property — varies by material</span>
         </div>
       </div>
-      <div class="rl-box"><div class="rl-icon">🏖️</div><div><div class="rl-title">🌍 Why Does Sand Heat Faster Than Water?</div><p>Water has a <strong>high specific heat</strong> (4186 J/kg·K). Sand has a <strong>low specific heat</strong>. At the beach: sand is scorching, water is cool!<br><strong>Analogy:</strong> Heat capacity = bucket size. Specific heat = material type (sponge absorbs more than plastic).</p></div></div>
+      <div class="rl-box"><div class="rl-icon">🏖️</div><div><div class="rl-title">🌍 Why Does Sand Heat Faster Than Water? (ومثال الكرسي المعدني!)</div><p>Water has a <strong>high specific heat</strong> (4186 J/kg·K). Sand has a <strong>low specific heat</strong>. At the beach: sand is scorching, water is cool!<br>🪑 <strong>Book example:</strong> a metal chair in bright sun becomes <strong>too hot to touch</strong>, but equal mass of water under the same sun stays cool — water's high C absorbs more energy per degree!<br><strong>Analogy:</strong> Heat capacity = bucket size 🪣. Specific heat = material type (sponge absorbs more than plastic).</p></div></div>
       <div class="svg-wrap">
         <svg viewBox="0 0 460 210" width="460" height="210">
           <text x="115" y="24" text-anchor="middle" fill="#1565c0" font-size="12" font-weight="bold">💧 2 kg WATER</text>
@@ -1858,8 +1945,14 @@
     </div>
     <div class="section-body open">
       <div class="dual">
-        <div class="en-panel"><p>Heat transfer is energy transfer due to temperature difference — always from <strong>higher to lower</strong> temperature. It may increase internal energy.</p></div>
-        <div class="ar-panel"><p>انتقال الحرارة هو نقل الطاقة بسبب فرق الحرارة — دائمًا من <strong>الأعلى إلى الأقل</strong>. قد يزيد الطاقة الداخلية.</p></div>
+        <div class="en-panel"><p>Heat transfer is energy transfer due to temperature difference — always from <strong>higher to lower</strong> temperature. It may increase internal energy.</p><p>⚛️ <strong>Remember:</strong> all matter (solid, liquid, gas) = molecules in motion. More motion = more thermal energy!</p></div>
+        <div class="ar-panel"><p>انتقال الحرارة هو نقل الطاقة بسبب فرق الحرارة — دائمًا من <strong>الأعلى إلى الأقل</strong>. قد يزيد الطاقة الداخلية.</p><p>⚛️ <strong>تذكر:</strong> كل مادة (صلبة/سائلة/غازية) = جزيئات متحركة. حركة أكثر = طاقة حرارية أكثر!</p></div>
+      </div>
+      <div class="kbox amber"><h4>📌 4 حقائق من الكتاب (احفظهم!)</h4><ul><li><strong>1- External heat:</strong> energy transmitted from surroundings → material or vice versa</li><li><strong>2-</strong> Heat transfer may <strong>increase internal energy</strong></li><li><strong>3-</strong> Happens <strong>only if</strong> there is a temperature difference</li><li><strong>4-</strong> Direction: always <strong>higher → lower</strong> temperature ⬇️</li></ul></div>
+      <div class="pic-grid">
+        <div class="pic-card"><div class="pe">☕🥄</div><div class="pt">Spoon in coffee</div><div class="pd">spoon warms, coffee cools → equilibrium</div></div>
+        <div class="pic-card"><div class="pe">🌡️➡️❄️</div><div class="pt">Hot → Cold only</div><div class="pd">never flows backwards alone!</div></div>
+        <div class="pic-card"><div class="pe">⚛️💃</div><div class="pt">Molecules dance</div><div class="pd">faster dance = hotter!</div></div>
       </div>
     </div>
   </div>
@@ -1941,7 +2034,7 @@
     <div class="section-body open">
       <div class="rl-box"><div class="rl-icon">🔥</div><div><div class="rl-title">🌍 The Copper Rod Demo</div><p>Hold one end of a copper rod, put the other in a flame — your end gets hot by <strong>conduction</strong>. Heat flows only from <strong>higher to lower</strong> temperature. A cold spoon in hot coffee? Same story: spoon warms, coffee cools → <strong>thermal equilibrium</strong>. ☕</p></div></div>
       <div class="kbox indigo"><h4>💨 Convection Runs the World</h4><ul><li>Car engine <strong>cooling system</strong> 🚗</li><li><strong>Blood flow</strong> warming your body 🩸</li><li>Atmosphere <strong>weather</strong>, ocean currents, <strong>storms &amp; tornadoes</strong> 🌪️ (hot air rises, cold sinks)</li></ul></div>
-      <div class="rl-box"><div class="rl-icon">☀️</div><div><div class="rl-title">🌍 Everything Glows!</div><p><strong>All objects</strong> continuously radiate electromagnetic waves from <strong>thermal molecular vibrations</strong> — the Sun just does it across empty space. Dark surfaces <strong>absorb</strong>, shiny ones <strong>reflect</strong>.</p></div></div>
+      <div class="rl-box"><div class="rl-icon">☀️</div><div><div class="rl-title">🌍 Everything Glows! (حتى أنت!)</div><p><strong>All objects</strong> continuously radiate electromagnetic waves from <strong>thermal molecular vibrations</strong> — visible light 💡, infrared 🔴 & ultraviolet 🟣. The Sun just does it across empty space. Dark surfaces <strong>absorb</strong> ⬛, shiny ones <strong>reflect</strong> ⬜.</p></div></div>
     </div>
   </div>
 
